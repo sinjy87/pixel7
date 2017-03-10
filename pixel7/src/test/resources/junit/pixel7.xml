@@ -31,6 +31,10 @@
     <bean id="multipartResolver" 
         class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
     </bean> 
+    <!-- junit test용 -->
+    <bean id ="mdao"
+    class="spring.model.member.MemberDAO"
+    p:mybatis-ref="sqlSession"/>
     
 </beans>   
 		
