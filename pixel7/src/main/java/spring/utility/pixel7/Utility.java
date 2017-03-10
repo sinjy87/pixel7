@@ -29,8 +29,8 @@ public class Utility {
 	  
 	 
 	  /**
-	   * 2010-12-14 Çü½ÄÀÇ ³¯Â¥¸¦ ¸®ÅÏÇÕ´Ï´Ù.
-	   * @return 2008-01-30 Çü½ÄÀÇ ¹®ÀÚ¿­ ¸®ÅÏ
+	   * 2010-12-14 í˜•ì‹ì˜ ë‚ ì§œë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤.
+	   * @return 2008-01-30 í˜•ì‹ì˜ ë¬¸ìì—´ ë¦¬í„´
 	   */
 	  public static String getDate6(int year, int month, int day){
 	      SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
@@ -45,24 +45,24 @@ public class Utility {
 	public static String getCodeValue(String code){
 		String value = null;
 		Hashtable codes = new Hashtable();
-		codes.put("A01", "È¸»ç¿ø");
-		codes.put("A02", "Àü»ê°ü·ÃÁ÷");
-		codes.put("A03", "¿¬±¸Àü¹®Á÷");
-		codes.put("A04", "°¢Á¾ÇĞ±³ÇĞ»ı");
-		codes.put("A05", "ÀÏ¹İÀÚ¿µ¾÷");
-		codes.put("A06", "°ø¹«¿ø");
-		codes.put("A07", "ÀÇ·áÀÎ");
-		codes.put("A08", "¹ıÁ¶ÀÎ");
-		codes.put("A09", "Á¾±³/¾ğ·Ğ/¿¹¼úÀÎ");
-		codes.put("A10", "±âÅ¸");
+		codes.put("A01", "íšŒì‚¬ì›");
+		codes.put("A02", "ì „ì‚°ê´€ë ¨ì§");
+		codes.put("A03", "ì—°êµ¬ì „ë¬¸ì§");
+		codes.put("A04", "ê°ì¢…í•™êµí•™ìƒ");
+		codes.put("A05", "ì¼ë°˜ìì˜ì—…");
+		codes.put("A06", "ê³µë¬´ì›");
+		codes.put("A07", "ì˜ë£Œì¸");
+		codes.put("A08", "ë²•ì¡°ì¸");
+		codes.put("A09", "ì¢…êµ/ì–¸ë¡ /ì˜ˆìˆ ì¸");
+		codes.put("A10", "ê¸°íƒ€");
 		
 		value = (String)codes.get(code);
 		
 		return value;
 	}
 	/**
-     * ?˜¤?Š˜,?–´? œ,ê·¸ì œ ?‚ ì§? ê°?? ¸?˜¤ê¸?
-     * @return List- ?‚ ì§œë“¤ ???¥
+     * ?ì‚¤?ë’›,?ë¼±?ì £,æ´¹ëª„ì £ ?ê¶‡ï§? åª›??ì¡‡?ì‚¤æ¹²?
+     * @return List- ?ê¶‡ï§ì’•ë±¾ ???ì˜£
      */
     public static List<String> getDay(){
         List<String> list = new ArrayList<String>();
@@ -77,10 +77,10 @@ public class Utility {
         return list;
     }
     /**
-     * ?“±ë¡ë‚ ì§œì? ?˜¤?Š˜,?–´? œ,ê·¸ì œ?‚ ì§œì? ë¹„êµ
-     * @param wdate - ?“±ë¡ë‚ ì§?
-     * @return - true:?˜¤?Š˜,?–´? œ,ê·¸ì œì¤? ?“±ë¡ë‚ ì§œì? ê°™ìŒ
-     *           false:?˜¤?Š˜,?–´? œ,ê·¸ì œ ?‚ ì§œê? ?“±ë¡ë‚ ì§œì? ?‹¤ ?‹¤ë¦?
+     * ?ë²‘æ¿¡ì•¸ê¶‡ï§ì’–? ?ì‚¤?ë’›,?ë¼±?ì £,æ´¹ëª„ì £?ê¶‡ï§ì’–? é®ê¾§íƒ³
+     * @param wdate - ?ë²‘æ¿¡ì•¸ê¶‡ï§?
+     * @return - true:?ì‚¤?ë’›,?ë¼±?ì £,æ´¹ëª„ì £ä»¥? ?ë²‘æ¿¡ì•¸ê¶‡ï§ì’–? åª›ìˆˆì“¬
+     *           false:?ì‚¤?ë’›,?ë¼±?ì £,æ´¹ëª„ì £ ?ê¶‡ï§ì’“? ?ë²‘æ¿¡ì•¸ê¶‡ï§ì’–? ?ë– ?ë–ç”±?
      */
     public static boolean compareDay(String wdate){
         boolean flag = false;
@@ -102,32 +102,32 @@ public class Utility {
 		return str;
 	}
 	/** 
-	   * SPAN?ƒœê·¸ë?? ?´?š©?•œ ë°•ìŠ¤ ëª¨ë¸?˜ ì§??›, 1 ?˜?´ì§?ë¶??„° ?‹œ?‘ 
-	   * ?˜„?¬ ?˜?´ì§?: 11 / 22   [?´? „] 11 12 13 14 15 16 17 18 19 20 [?‹¤?Œ] 
+	   * SPAN?ê¹­æ´¹ëªƒ?? ?ì” ?ìŠœ?ë¸³ è«›ëº¤ë’ª ï§â‘¤ëœ½?ì“½ ï§??ì, 1 ?ëŸ¹?ì” ï§?éº??ê½£ ?ë–†?ì˜‰ 
+	   * ?ì½?ì˜± ?ëŸ¹?ì” ï§?: 11 / 22   [?ì” ?ìŸ¾] 11 12 13 14 15 16 17 18 19 20 [?ë–?ì“¬] 
 	   *  
-	   * @param totalRecord ? „ì²? ? ˆì½”ë“œ?ˆ˜ 
-	   * @param nowPage     ?˜„?¬ ?˜?´ì§? 
-	   * @param recordPerPage ?˜?´ì§??‹¹ ? ˆì½”ë“œ ?ˆ˜  
-	   * @param col ê²??ƒ‰ ì»¬ëŸ¼  
-	   * @param word ê²??ƒ‰?–´
-	   * @return ?˜?´ì§? ?ƒ?„± ë¬¸ì?—´
+	   * @param totalRecord ?ìŸ¾ï§£? ?ì …è‚„ë¶¾ë±¶?ë‹” 
+	   * @param nowPage     ?ì½?ì˜± ?ëŸ¹?ì” ï§? 
+	   * @param recordPerPage ?ëŸ¹?ì” ï§??ë–¦ ?ì …è‚„ë¶¾ë±¶ ?ë‹”  
+	   * @param col å¯ƒ??ê¹‹ è€ŒÑ‰ì†  
+	   * @param word å¯ƒ??ê¹‹?ë¼±
+	   * @return ?ëŸ¹?ì” ï§? ?ê¹®?ê½¦ è‡¾ëª„ì˜„?ë¿´
 	   */ 
 	  public static String paging1(int totalRecord, int nowPage, int recordPerPage, String col, String word){ 
-	    int pagePerBlock = 10; // ë¸”ëŸ­?‹¹ ?˜?´ì§? ?ˆ˜ 
-	    int totalPage = (int)(Math.ceil((double)totalRecord/recordPerPage)); // ? „ì²? ?˜?´ì§?  
-	    int totalGrp = (int)(Math.ceil((double)totalPage/pagePerBlock));// ? „ì²? ê·¸ë£¹ 
-	    int nowGrp = (int)(Math.ceil((double)nowPage/pagePerBlock));    // ?˜„?¬ ê·¸ë£¹ 
-	    int startPage = ((nowGrp - 1) * pagePerBlock) + 1; // ?Š¹? • ê·¸ë£¹?˜ ?˜?´ì§? ëª©ë¡ ?‹œ?‘  
-	    int endPage = (nowGrp * pagePerBlock);             // ?Š¹? • ê·¸ë£¹?˜ ?˜?´ì§? ëª©ë¡ ì¢…ë£Œ   
+	    int pagePerBlock = 10; // é‡‰ë¶¾ìœ®?ë–¦ ?ëŸ¹?ì” ï§? ?ë‹” 
+	    int totalPage = (int)(Math.ceil((double)totalRecord/recordPerPage)); // ?ìŸ¾ï§£? ?ëŸ¹?ì” ï§?  
+	    int totalGrp = (int)(Math.ceil((double)totalPage/pagePerBlock));// ?ìŸ¾ï§£? æ´¹ëªƒï¼™ 
+	    int nowGrp = (int)(Math.ceil((double)nowPage/pagePerBlock));    // ?ì½?ì˜± æ´¹ëªƒï¼™ 
+	    int startPage = ((nowGrp - 1) * pagePerBlock) + 1; // ?ë“…?ì ™ æ´¹ëªƒï¼™?ì“½ ?ëŸ¹?ì” ï§? ï§â‘¸ì¤‰ ?ë–†?ì˜‰  
+	    int endPage = (nowGrp * pagePerBlock);             // ?ë“…?ì ™ æ´¹ëªƒï¼™?ì“½ ?ëŸ¹?ì” ï§? ï§â‘¸ì¤‰ é†«ë‚…ì¦º   
 	     
 	    StringBuffer str = new StringBuffer(); 
 	     
 	    str.append("<DIV id='container'>"); 
-//	    str.append("?˜„?¬ ?˜?´ì§?: " + nowPage + " / " + totalPage + "  "); 
+//	    str.append("?ì½?ì˜± ?ëŸ¹?ì” ï§?: " + nowPage + " / " + totalPage + "  "); 
 	 
-	    int _nowPage = (nowGrp-1) * pagePerBlock; // 10ê°? ?´? „ ?˜?´ì§?ë¡? ?´?™ 
+	    int _nowPage = (nowGrp-1) * pagePerBlock; // 10åª›? ?ì” ?ìŸ¾ ?ëŸ¹?ì” ï§?æ¿¡? ?ì” ?ë£ 
 	    if (nowGrp >= 2){ 
-	      str.append("<ul class='pager'><li><A href='./list.jsp?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>?´? „</A></li></ul>"); 
+	      str.append("<ul class='pager'><li><A href='./list.jsp?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>?ì” ?ìŸ¾</A></li></ul>"); 
 	    } 
 	 
 	    for(int i=startPage; i<=endPage; i++){ 
@@ -142,9 +142,9 @@ public class Utility {
 	      } 
 	    } 
 	     
-	    _nowPage = (nowGrp * pagePerBlock)+1; // 10ê°? ?‹¤?Œ ?˜?´ì§?ë¡? ?´?™ 
+	    _nowPage = (nowGrp * pagePerBlock)+1; // 10åª›? ?ë–?ì“¬ ?ëŸ¹?ì” ï§?æ¿¡? ?ì” ?ë£ 
 	    if (nowGrp < totalGrp){ 
-	      str.append("<ul class='pager'><li><A href='./list.jsp?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>?‹¤?Œ</A></li></ul>"); 
+	      str.append("<ul class='pager'><li><A href='./list.jsp?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>?ë–?ì“¬</A></li></ul>"); 
 	    } 
 	    str.append("</DIV>"); 
 	     
@@ -152,12 +152,12 @@ public class Utility {
 	  } 
 
 	  public static String paging3(int totalRecord, int nowPage, int recordPerPage, String col, String word){ 
-		    int pagePerBlock = 10; // ë¸”ëŸ­?‹¹ ?˜?´ì§? ?ˆ˜ 
-		    int totalPage = (int)(Math.ceil((double)totalRecord/recordPerPage)); // ? „ì²? ?˜?´ì§?  
-		    int totalGrp = (int)(Math.ceil((double)totalPage/pagePerBlock));// ? „ì²? ê·¸ë£¹ 
-		    int nowGrp = (int)(Math.ceil((double)nowPage/pagePerBlock));    // ?˜„?¬ ê·¸ë£¹ 
-		    int startPage = ((nowGrp - 1) * pagePerBlock) + 1; // ?Š¹? • ê·¸ë£¹?˜ ?˜?´ì§? ëª©ë¡ ?‹œ?‘  
-		    int endPage = (nowGrp * pagePerBlock);             // ?Š¹? • ê·¸ë£¹?˜ ?˜?´ì§? ëª©ë¡ ì¢…ë£Œ   
+		    int pagePerBlock = 10; // é‡‰ë¶¾ìœ®?ë–¦ ?ëŸ¹?ì” ï§? ?ë‹” 
+		    int totalPage = (int)(Math.ceil((double)totalRecord/recordPerPage)); // ?ìŸ¾ï§£? ?ëŸ¹?ì” ï§?  
+		    int totalGrp = (int)(Math.ceil((double)totalPage/pagePerBlock));// ?ìŸ¾ï§£? æ´¹ëªƒï¼™ 
+		    int nowGrp = (int)(Math.ceil((double)nowPage/pagePerBlock));    // ?ì½?ì˜± æ´¹ëªƒï¼™ 
+		    int startPage = ((nowGrp - 1) * pagePerBlock) + 1; // ?ë“…?ì ™ æ´¹ëªƒï¼™?ì“½ ?ëŸ¹?ì” ï§? ï§â‘¸ì¤‰ ?ë–†?ì˜‰  
+		    int endPage = (nowGrp * pagePerBlock);             // ?ë“…?ì ™ æ´¹ëªƒï¼™?ì“½ ?ëŸ¹?ì” ï§? ï§â‘¸ì¤‰ é†«ë‚…ì¦º   
 		     
 		    StringBuffer str = new StringBuffer(); 
 		     
@@ -172,8 +172,8 @@ public class Utility {
 		    str.append("    border: 1px;"); 
 		    str.append("    border-style: solid;"); 
 		    str.append("    border-color: #cccccc;"); 
-		    str.append("    padding:1px 6px 1px 6px; /*?œ„, ?˜¤ë¥¸ìª½, ?•„?˜, ?™¼ìª?*/"); 
-		    str.append("    margin:1px 2px 1px 2px; /*?œ„, ?˜¤ë¥¸ìª½, ?•„?˜, ?™¼ìª?*/"); 
+		    str.append("    padding:1px 6px 1px 6px; /*?ì, ?ì‚¤ç‘œëª„ã, ?ë¸˜?ì˜’, ?ì‡Šï§Ÿ?*/"); 
+		    str.append("    margin:1px 2px 1px 2px; /*?ì, ?ì‚¤ç‘œëª„ã, ?ë¸˜?ì˜’, ?ì‡Šï§Ÿ?*/"); 
 		    str.append("  }"); 
 		    str.append("  .span_box_2{"); 
 		    str.append("    text-align: center;");    
@@ -183,16 +183,16 @@ public class Utility {
 		    str.append("    border: 1px;"); 
 		    str.append("    border-style: solid;"); 
 		    str.append("    border-color: #cccccc;"); 
-		    str.append("    padding:1px 6px 1px 6px; /*?œ„, ?˜¤ë¥¸ìª½, ?•„?˜, ?™¼ìª?*/"); 
-		    str.append("    margin:1px 2px 1px 2px; /*?œ„, ?˜¤ë¥¸ìª½, ?•„?˜, ?™¼ìª?*/"); 
+		    str.append("    padding:1px 6px 1px 6px; /*?ì, ?ì‚¤ç‘œëª„ã, ?ë¸˜?ì˜’, ?ì‡Šï§Ÿ?*/"); 
+		    str.append("    margin:1px 2px 1px 2px; /*?ì, ?ì‚¤ç‘œëª„ã, ?ë¸˜?ì˜’, ?ì‡Šï§Ÿ?*/"); 
 		    str.append("  }"); 
 		    str.append("</style>"); 
 		    str.append("<DIV id='paging'>"); 
-//		    str.append("?˜„?¬ ?˜?´ì§?: " + nowPage + " / " + totalPage + "  "); 
+//		    str.append("?ì½?ì˜± ?ëŸ¹?ì” ï§?: " + nowPage + " / " + totalPage + "  "); 
 		 
-		    int _nowPage = (nowGrp-1) * pagePerBlock; // 10ê°? ?´? „ ?˜?´ì§?ë¡? ?´?™ 
+		    int _nowPage = (nowGrp-1) * pagePerBlock; // 10åª›? ?ì” ?ìŸ¾ ?ëŸ¹?ì” ï§?æ¿¡? ?ì” ?ë£ 
 		    if (nowGrp >= 2){ 
-		      str.append("<span class='span_box_1'><A href='./list?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>?´? „</A></span>"); 
+		      str.append("<span class='span_box_1'><A href='./list?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>?ì” ?ìŸ¾</A></span>"); 
 		    } 
 		 
 		    for(int i=startPage; i<=endPage; i++){ 
@@ -207,9 +207,9 @@ public class Utility {
 		      } 
 		    } 
 		     
-		    _nowPage = (nowGrp * pagePerBlock)+1; // 10ê°? ?‹¤?Œ ?˜?´ì§?ë¡? ?´?™ 
+		    _nowPage = (nowGrp * pagePerBlock)+1; // 10åª›? ?ë–?ì“¬ ?ëŸ¹?ì” ï§?æ¿¡? ?ì” ?ë£ 
 		    if (nowGrp < totalGrp){ 
-		      str.append("<span class='span_box_1'><A href='./list?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>?‹¤?Œ</A></span>"); 
+		      str.append("<span class='span_box_1'><A href='./list?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>?ë–?ì“¬</A></span>"); 
 		    } 
 		    str.append("</DIV>"); 
 		     
@@ -217,23 +217,23 @@ public class Utility {
 		  } 	 
 	
 	/** 
-	   * ?ˆ«? ?˜•?ƒœ?˜ ?˜?´ì§?, 1 ?˜?´ì§?ë¶??„° ?‹œ?‘ 
-	   * ?˜„?¬ ?˜?´ì§?: 11 / 22   [?´? „] 11 12 13 14 15 16 17 18 19 20 [?‹¤?Œ] 
+	   * ?ë‹½?ì˜„ ?ì‚?ê¹­?ì“½ ?ëŸ¹?ì” ï§?, 1 ?ëŸ¹?ì” ï§?éº??ê½£ ?ë–†?ì˜‰ 
+	   * ?ì½?ì˜± ?ëŸ¹?ì” ï§?: 11 / 22   [?ì” ?ìŸ¾] 11 12 13 14 15 16 17 18 19 20 [?ë–?ì“¬] 
 	   *  
-	   * @param totalRecord ? „ì²? ? ˆì½”ë“œ?ˆ˜ 
-	   * @param nowPage     ?˜„?¬ ?˜?´ì§? 
-	   * @param recordPerPage ?˜?´ì§??‹¹ ì¶œë ¥?•  ? ˆì½”ë“œ ?ˆ˜
-	   * @param col ê²??ƒ‰ ì»¬ëŸ¼  
-	   * @param word ê²??ƒ‰?–´
-	   * @return ?˜?´ì§? ?ƒ?„± ë¬¸ì?—´
+	   * @param totalRecord ?ìŸ¾ï§£? ?ì …è‚„ë¶¾ë±¶?ë‹” 
+	   * @param nowPage     ?ì½?ì˜± ?ëŸ¹?ì” ï§? 
+	   * @param recordPerPage ?ëŸ¹?ì” ï§??ë–¦ ç•°ì’•ì °?ë¸· ?ì …è‚„ë¶¾ë±¶ ?ë‹”
+	   * @param col å¯ƒ??ê¹‹ è€ŒÑ‰ì†  
+	   * @param word å¯ƒ??ê¹‹?ë¼±
+	   * @return ?ëŸ¹?ì” ï§? ?ê¹®?ê½¦ è‡¾ëª„ì˜„?ë¿´
 	   */ 
 	  public static String paging(int totalRecord, int nowPage, int recordPerPage, String col, String word){ 
-	    int pagePerBlock = 10; // ë¸”ëŸ­?‹¹ ?˜?´ì§? ?ˆ˜ 
-	    int totalPage = (int)(Math.ceil((double)totalRecord/recordPerPage));// ? „ì²? ?˜?´ì§?  
-	    int totalGrp = (int)(Math.ceil((double)totalPage/pagePerBlock));// ? „ì²? ê·¸ë£¹ 
-	    int nowGrp = (int)(Math.ceil((double)nowPage/pagePerBlock));    // ?˜„?¬ ê·¸ë£¹ 
-	    int startPage = ((nowGrp - 1) * pagePerBlock) + 1; // ?Š¹? • ê·¸ë£¹?˜ ?˜?´ì§? ëª©ë¡ ?‹œ?‘  
-	    int endPage = (nowGrp * pagePerBlock);             // ?Š¹? • ê·¸ë£¹?˜ ?˜?´ì§? ëª©ë¡ ì¢…ë£Œ   
+	    int pagePerBlock = 10; // é‡‰ë¶¾ìœ®?ë–¦ ?ëŸ¹?ì” ï§? ?ë‹” 
+	    int totalPage = (int)(Math.ceil((double)totalRecord/recordPerPage));// ?ìŸ¾ï§£? ?ëŸ¹?ì” ï§?  
+	    int totalGrp = (int)(Math.ceil((double)totalPage/pagePerBlock));// ?ìŸ¾ï§£? æ´¹ëªƒï¼™ 
+	    int nowGrp = (int)(Math.ceil((double)nowPage/pagePerBlock));    // ?ì½?ì˜± æ´¹ëªƒï¼™ 
+	    int startPage = ((nowGrp - 1) * pagePerBlock) + 1; // ?ë“…?ì ™ æ´¹ëªƒï¼™?ì“½ ?ëŸ¹?ì” ï§? ï§â‘¸ì¤‰ ?ë–†?ì˜‰  
+	    int endPage = (nowGrp * pagePerBlock);             // ?ë“…?ì ™ æ´¹ëªƒï¼™?ì“½ ?ëŸ¹?ì” ï§? ï§â‘¸ì¤‰ é†«ë‚…ì¦º   
 	     
 	    StringBuffer str = new StringBuffer(); 
 	     
@@ -244,11 +244,11 @@ public class Utility {
 	    str.append("  #paging A:visited {text-decoration:none;color:black; font-size: 1em;}"); 
 	    str.append("</style>"); 
 	    str.append("<DIV id='paging'>"); 
-	    str.append("ÇöÀç ÆäÀÌÁö " + nowPage + " / " + totalPage + "  "); 
+	    str.append("í˜„ì¬ í˜ì´ì§€ " + nowPage + " / " + totalPage + "  "); 
 	 
-	    int _nowPage = (nowGrp-1) * pagePerBlock; // 10ê°? ?´? „ ?˜?´ì§?ë¡? ?´?™ 
+	    int _nowPage = (nowGrp-1) * pagePerBlock; // 10åª›? ?ì” ?ìŸ¾ ?ëŸ¹?ì” ï§?æ¿¡? ?ì” ?ë£ 
 	    if (nowGrp >= 2){ 
-	      str.append("[<A href='./list.jsp?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>?´? „</A>]"); 
+	      str.append("[<A href='./list.jsp?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>?ì” ?ìŸ¾</A>]"); 
 	    } 
 	 
 	    for(int i=startPage; i<=endPage; i++){ 
@@ -256,7 +256,7 @@ public class Utility {
 	        break; 
 	      } 
 	  
-	      if (nowPage == i){ // ?˜„?¬ ?˜?´ì§??´ë©? ê°•ì¡° ?š¨ê³? 
+	      if (nowPage == i){ // ?ì½?ì˜± ?ëŸ¹?ì” ï§??ì” ï§? åª›ëº¤â€œ ?ìŠšæ€¨? 
 	        str.append("<span style='font-size: 1.2em; font-weight: bold;'>"+i+"</span> ");   
 	      }else{ 
 	        str.append("<A href='./list.jsp?col="+col+"&word="+word+"&nowPage="+i+"'>"+i+"</A> "); 
@@ -264,9 +264,9 @@ public class Utility {
 	       
 	    } 
 	     
-	    _nowPage = (nowGrp * pagePerBlock)+1; // 10ê°? ?‹¤?Œ ?˜?´ì§?ë¡? ?´?™ 
+	    _nowPage = (nowGrp * pagePerBlock)+1; // 10åª›? ?ë–?ì“¬ ?ëŸ¹?ì” ï§?æ¿¡? ?ì” ?ë£ 
 	    if (nowGrp < totalGrp){ 
-	      str.append("[<A href='./list.jsp?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>?‹¤?Œ</A>]"); 
+	      str.append("[<A href='./list.jsp?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>?ë–?ì“¬</A>]"); 
 	    } 
 	    str.append("</DIV>"); 
 	     
@@ -289,21 +289,21 @@ public class Utility {
         OutputStream outputStream = null; 
  
         try { 
-            if( fileSize > 0 ) { // ÆÄÀÏÀÌ Á¸ÀçÇÑ´Ù¸é 
-                // ÀÎÇ² ½ºÆ®¸²À» ¾ò´Â´Ù. 
+            if( fileSize > 0 ) { // íŒŒì¼ì´ ì¡´ì¬í•œë‹¤ë©´ 
+                // ì¸í’‹ ìŠ¤íŠ¸ë¦¼ì„ ì–»ëŠ”ë‹¤. 
                 inputStream = fileMF.getInputStream(); 
  
                 File oldfile = new File(basePath, originalFileName); 
              
                 if ( oldfile.exists()){ 
                     for(int k=0; true; k++){ 
-                        //ÆÄÀÏ¸í Áßº¹À» ÇÇÇÏ±â À§ÇÑ ÀÏ·Ã ¹øÈ£¸¦ »ı¼ºÇÏ¿© 
-                        //ÆÄÀÏ¸íÀ¸·Î Á¶ÇÕ 
+                        //íŒŒì¼ëª… ì¤‘ë³µì„ í”¼í•˜ê¸° ìœ„í•œ ì¼ë ¨ ë²ˆí˜¸ë¥¼ ìƒì„±í•˜ì—¬ 
+                        //íŒŒì¼ëª…ìœ¼ë¡œ ì¡°í•© 
                         oldfile = new File(basePath,"("+k+")"+originalFileName); 
                      
-                        //Á¶ÇÕµÈ ÆÄÀÏ¸íÀÌ Á¸ÀçÇÏÁö ¾Ê´Â´Ù¸é, ÀÏ·Ã¹øÈ£°¡ 
-                        //ºÙÀº ÆÄÀÏ¸í ´Ù½Ã »ı¼º 
-                        if(!oldfile.exists()){ //Á¸ÀçÇÏÁö ¾Ê´Â °æ¿ì 
+                        //ì¡°í•©ëœ íŒŒì¼ëª…ì´ ì¡´ì¬í•˜ì§€ ì•ŠëŠ”ë‹¤ë©´, ì¼ë ¨ë²ˆí˜¸ê°€ 
+                        //ë¶™ì€ íŒŒì¼ëª… ë‹¤ì‹œ ìƒì„± 
+                        if(!oldfile.exists()){ //ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ê²½ìš° 
                             fileName = "("+k+")"+originalFileName; 
                             break; 
                         } 
@@ -319,7 +319,7 @@ public class Utility {
                  
                 outputStream = new FileOutputStream( serverFullPath ); 
   
-                // ¹öÆÛ¸¦ ¸¸µç´Ù. 
+                // ë²„í¼ë¥¼ ë§Œë“ ë‹¤. 
                 int readBytes = 0; 
                 byte[] buffer = new byte[8192]; 
  
@@ -348,24 +348,24 @@ public class Utility {
 
 
 /** 
- * ´ñ±Û¿ë ÆäÀÌÂ¡ ¸Ş¼Òµå
- * @param totalRecord ÀüÃ¼ ·¹ÄÚµå¼ö 
- * @param nowPage     ´ñ±ÛÀÇ ÇöÀç ÆäÀÌÁö 
- * @param recordPerPage ´ñ±ÛÀÇ ÆäÀÌÁö´ç ·¹ÄÚµå ¼ö 
- * @param url ÀÌµ¿ÇÒ ÆäÀÌÁö - read
- * @param bbsno bbs ±Û¹øÈ£
- * @param nowPage bbsÀÇ ÇöÀç ÆäÀÌÁö
- * @param col bbsÀÇ °Ë»ö ÄÃ·³
- * @param word bbsÀÇ °Ë»ö¾î
- * @return ÆäÀÌÂ¡ »ı¼º ¹®ÀÚ¿­
+ * ëŒ“ê¸€ìš© í˜ì´ì§• ë©”ì†Œë“œ
+ * @param totalRecord ì „ì²´ ë ˆì½”ë“œìˆ˜ 
+ * @param nowPage     ëŒ“ê¸€ì˜ í˜„ì¬ í˜ì´ì§€ 
+ * @param recordPerPage ëŒ“ê¸€ì˜ í˜ì´ì§€ë‹¹ ë ˆì½”ë“œ ìˆ˜ 
+ * @param url ì´ë™í•  í˜ì´ì§€ - read
+ * @param bbsno bbs ê¸€ë²ˆí˜¸
+ * @param nowPage bbsì˜ í˜„ì¬ í˜ì´ì§€
+ * @param col bbsì˜ ê²€ìƒ‰ ì»¬ëŸ¼
+ * @param word bbsì˜ ê²€ìƒ‰ì–´
+ * @return í˜ì´ì§• ìƒì„± ë¬¸ìì—´
  */ 
 public static String paging(String noname, int totalRecord, int nPage, int recordPerPage,String url,int bbsno,int nowPage, String col, String word){ 
-  int pagePerBlock = 10; // ºí·°´ç ÆäÀÌÁö ¼ö 
-  int totalPage = (int)(Math.ceil((double)totalRecord/recordPerPage)); // ÀüÃ¼ ÆäÀÌÁö  
-  int totalGrp = (int)(Math.ceil((double)totalPage/pagePerBlock));// ÀüÃ¼ ±×·ì 
-  int nowGrp = (int)(Math.ceil((double)nPage/pagePerBlock));    // ÇöÀç ±×·ì 
-  int startPage = ((nowGrp - 1) * pagePerBlock) + 1; // Æ¯Á¤ ±×·ìÀÇ ÆäÀÌÁö ¸ñ·Ï ½ÃÀÛ  
-  int endPage = (nowGrp * pagePerBlock);             // Æ¯Á¤ ±×·ìÀÇ ÆäÀÌÁö ¸ñ·Ï Á¾·á   
+  int pagePerBlock = 10; // ë¸”ëŸ­ë‹¹ í˜ì´ì§€ ìˆ˜ 
+  int totalPage = (int)(Math.ceil((double)totalRecord/recordPerPage)); // ì „ì²´ í˜ì´ì§€  
+  int totalGrp = (int)(Math.ceil((double)totalPage/pagePerBlock));// ì „ì²´ ê·¸ë£¹ 
+  int nowGrp = (int)(Math.ceil((double)nPage/pagePerBlock));    // í˜„ì¬ ê·¸ë£¹ 
+  int startPage = ((nowGrp - 1) * pagePerBlock) + 1; // íŠ¹ì • ê·¸ë£¹ì˜ í˜ì´ì§€ ëª©ë¡ ì‹œì‘  
+  int endPage = (nowGrp * pagePerBlock);             // íŠ¹ì • ê·¸ë£¹ì˜ í˜ì´ì§€ ëª©ë¡ ì¢…ë£Œ   
    
   StringBuffer str = new StringBuffer(); 
    
@@ -380,8 +380,8 @@ public static String paging(String noname, int totalRecord, int nPage, int recor
   str.append("    border: 1px;"); 
   str.append("    border-style: solid;"); 
   str.append("    border-color: #cccccc;"); 
-  str.append("    padding:1px 6px 1px 6px; /*À§, ¿À¸¥ÂÊ, ¾Æ·¡, ¿ŞÂÊ*/"); 
-  str.append("    margin:1px 2px 1px 2px; /*À§, ¿À¸¥ÂÊ, ¾Æ·¡, ¿ŞÂÊ*/"); 
+  str.append("    padding:1px 6px 1px 6px; /*ìœ„, ì˜¤ë¥¸ìª½, ì•„ë˜, ì™¼ìª½*/"); 
+  str.append("    margin:1px 2px 1px 2px; /*ìœ„, ì˜¤ë¥¸ìª½, ì•„ë˜, ì™¼ìª½*/"); 
   str.append("  }"); 
   str.append("  .span_box_2{"); 
   str.append("    text-align: center;");    
@@ -391,16 +391,16 @@ public static String paging(String noname, int totalRecord, int nPage, int recor
   str.append("    border: 1px;"); 
   str.append("    border-style: solid;"); 
   str.append("    border-color: #cccccc;"); 
-  str.append("    padding:1px 6px 1px 6px; /*À§, ¿À¸¥ÂÊ, ¾Æ·¡, ¿ŞÂÊ*/"); 
-  str.append("    margin:1px 2px 1px 2px; /*À§, ¿À¸¥ÂÊ, ¾Æ·¡, ¿ŞÂÊ*/"); 
+  str.append("    padding:1px 6px 1px 6px; /*ìœ„, ì˜¤ë¥¸ìª½, ì•„ë˜, ì™¼ìª½*/"); 
+  str.append("    margin:1px 2px 1px 2px; /*ìœ„, ì˜¤ë¥¸ìª½, ì•„ë˜, ì™¼ìª½*/"); 
   str.append("  }"); 
   str.append("</style>"); 
   str.append("<DIV id='paging'>"); 
-//    str.append("ÇöÀç ÆäÀÌÁö: " + nowPage + " / " + totalPage + "  "); 
+//    str.append("í˜„ì¬ í˜ì´ì§€: " + nowPage + " / " + totalPage + "  "); 
 
-  int _nowPage = (nowGrp-1) * pagePerBlock; // 10°³ ÀÌÀü ÆäÀÌÁö·Î ÀÌµ¿ 
+  int _nowPage = (nowGrp-1) * pagePerBlock; // 10ê°œ ì´ì „ í˜ì´ì§€ë¡œ ì´ë™ 
   if (nowGrp >= 2){ 
-    str.append("<span class='span_box_1'><A href='./"+url+"?nowPage="+nowPage+"&col="+col+"&word="+word+"&"+noname+"="+bbsno+"&nPage="+_nowPage+"'>ÀÌÀü</A></span>"); 
+    str.append("<span class='span_box_1'><A href='./"+url+"?nowPage="+nowPage+"&col="+col+"&word="+word+"&"+noname+"="+bbsno+"&nPage="+_nowPage+"'>ì´ì „</A></span>"); 
   } 
 
   for(int i=startPage; i<=endPage; i++){ 
@@ -415,9 +415,9 @@ public static String paging(String noname, int totalRecord, int nPage, int recor
     } 
   } 
    
-  _nowPage = (nowGrp * pagePerBlock)+1; // 10°³ ´ÙÀ½ ÆäÀÌÁö·Î ÀÌµ¿ 
+  _nowPage = (nowGrp * pagePerBlock)+1; // 10ê°œ ë‹¤ìŒ í˜ì´ì§€ë¡œ ì´ë™ 
   if (nowGrp < totalGrp){ 
-    str.append("<span class='span_box_1'><A href='./"+url+"?nowPage="+nowPage+"&col="+col+"&word="+word+"&"+noname+"="+bbsno+"&nPage="+_nowPage+"'>´ÙÀ½</A></span>"); 
+    str.append("<span class='span_box_1'><A href='./"+url+"?nowPage="+nowPage+"&col="+col+"&word="+word+"&"+noname+"="+bbsno+"&nPage="+_nowPage+"'>ë‹¤ìŒ</A></span>"); 
   } 
   str.append("</DIV>"); 
    

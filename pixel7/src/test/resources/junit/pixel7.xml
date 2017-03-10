@@ -31,6 +31,11 @@
     <bean id="multipartResolver" 
         class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
     </bean> 
+  
+   <bean 
+   id="ndao" 
+   class="spring.model.notice.NoticeDAO"
+   p:mybatis-ref="sqlSession"/>  
     
 </beans>   
 		
