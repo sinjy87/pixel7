@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="reply_create">
 
 <!-- 댓글 생성 -->
-<insert id="create" parameterType="DTO">
+<insert id="create" parameterType="ReplyDTO">
 insert into reply_create(reply_num, id, reply_content, reply_grpno,
 reply_date)
 values((select nvl (max(reply_num),0)+1 from reply_create),
@@ -16,25 +16,41 @@ values((select nvl (max(reply_num),0)+1 from reply_create),
 </insert>
 
 <!-- 댓글 수정 -->
-<update id="update" parameterType="DTO">
+<update id="update" parameterType="ReplyDTO">
 update reply_create
 set reply_content=#{reply_content}
 where reply_num= #{reply_num}
 </update>
 
 <!-- 댓글에 답글 생성 -->
-<insert id="rcreate" parameterType="DTO">
+<insert id="rcreate" parameterType="ReplyDTO">
 insert into reply_create(reply_num, id, reply_content, reply_grpno,
 reply_indent,reply_ansnum,reply_date)
 values((select nvl (max(reply_num),0)+1 from reply_create),#{id},#{reply_content}
 ,#{reply_grpno},(select nvl (max(reply_indent),0)+1 from reply_create),
-(select nvl (max(reply_ansnum),0)+1 from reply_create),sysdate); 
+(select nvl (max(reply_ansnum),0)+1 from reply_create),sysdate)
 </insert>
+
+<!-- 댓글 보기 -->
+<select id="readReply" resultType="ReplyDTO" parameterType="int">
+select reply_num, id, reply_content, reply_grpno,
+reply_indent,reply_ansnum,reply_date
+from reply_create
+where reply_num = #{reply_num}
+</select>
+
+<!-- 답글에 답글 생성 -->
+<update id="upAnsnum" parameterType="Map">
+update reply_create
+set reply_ansnum = reply_ansnum +1
+where reply_grpno = #{reply_grpno}
+and reply_ansnum > #{reply_ansnum}
+</update>
 
 <!-- 답글 삭제 -->
 <delete id="delete" parameterType="int">
 delete from reply_create 
-where reply_num= #{reply_num};
+where reply_num= #{reply_num}
 </delete>
 
 </mapper>

@@ -32,5 +32,9 @@
         class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
     </bean> 
     
+    <bean id="rdao"
+    	class="spring.model.reply.ReplyDAO"
+    	p:mybatis-ref="sqlSession"/>
+    
 </beans>   
 		
