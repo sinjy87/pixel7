@@ -5,44 +5,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="img_item">
 
-<!-- 	<insert id="create" parameterType="Img_itemDTO"> -->
-<!-- 		insert into img_item(img_num, -->
-<!-- 		img_photo, img_content, img_date,img_ban, -->
-<!-- 		img_price, img_category,id) -->
-<!-- 		values((SELECT NVL(MAX(img_num), 0) + 1 as img_num FROM -->
-<!-- 		img_item),#{img_photo},#{img_content},sysdate,#{img_ban},#{img_price},#{img_category},#{id}) -->
-<!-- 	</insert> -->
+	<insert id="create" parameterType="Img_itemDTO">
+		insert into img_item(img_num,
+		img_photo, img_content, img_date,img_ban,
+		img_price, img_category,id)
+		values((SELECT NVL(MAX(img_num), 0) + 1 as img_num FROM img_item),
+		#{img_photo},#{img_content},sysdate,#{img_ban},#{img_price},#{img_category},#{id})
+	</insert>
 
-<!-- 	<select id="list" parameterType="Map" resultType="Img_itemDTO"> -->
-<!-- 		select img_photo from img_item order by img_num desc; -->
-<!-- 	</select> -->
+	<select id="list" parameterType="Map" resultType="Img_itemDTO">
+		select img_photo from img_item order by img_num desc;
+	</select>
 
-<!-- 	<select id="read" parameterType="int" resultType="Img_itemDTO"> -->
-<!-- 		select img_photo, img_content, img_date, img_like, -->
-<!-- 		img_price, -->
-<!-- 		img_category,img_viewcnt,id -->
-<!-- 		from img_item -->
-<!-- 		where img_num = -->
-<!-- 		#{img_num} -->
-<!-- 	</select> -->
-<!-- 	<update id="update" parameterType="Img_itemDTO"> -->
-<!-- 		update img_item -->
-<!-- 		set img_content=#{img_content} -->
-<!-- 		where -->
-<!-- 		img_num = #{img_num} -->
-<!-- 	</update> -->
+	<select id="read" parameterType="int" resultType="Img_itemDTO">
+		select img_photo, img_content, img_date, img_like,
+		img_price,
+		img_category,img_viewcnt,id
+		from img_item
+		where img_num =
+		#{img_num}
+	</select>
+	<update id="update" parameterType="Img_itemDTO">
+		update img_item
+		set img_content=#{img_content}
+		where
+		img_num = #{img_num}
+	</update>
 
-<!-- 	<delete id="delete" parameterType="int"> -->
-<!-- 		delete from img_item where img_num=#{img_num} -->
-<!-- 	</delete> -->
+	<delete id="delete" parameterType="int">
+		delete from img_item where img_num=#{img_num}
+	</delete>
 
-<!-- 	<update id="viewcnt" parameterType="int"> -->
+	<update id="viewcnt" parameterType="int">
 
-<!-- 		update img_item -->
-<!-- 		set img_viewcnt = img_viewcnt+1 -->
-<!-- 		where -->
-<!-- 		img_num =#{img_num} -->
-<!-- 	</update> -->
+		update img_item
+		set img_viewcnt = img_viewcnt+1
+		where
+		img_num =#{img_num}
+	</update>
 
 
 </mapper>

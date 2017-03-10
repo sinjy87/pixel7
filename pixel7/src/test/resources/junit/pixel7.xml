@@ -32,5 +32,9 @@
         class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
     </bean> 
     
+    <bean id="itemdao"
+                class="spring.model.img_item.Img_itemDAO"
+                p:mybatis-ref="sqlSession"/>
+    
 </beans>   
 		
