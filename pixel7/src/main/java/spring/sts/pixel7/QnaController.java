@@ -17,6 +17,8 @@ public class QnaController {
 	public String list(){
 		
 		
+		int a;
+		
 		
 		
 		return "/qna/list";
