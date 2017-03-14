@@ -9,16 +9,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 레코드 추가 -->
   <insert id="create" parameterType="NoticeDTO">
 
-    INSERT INTO notice(notice_no, notice_labeldate, notice_label, notice_title, notice_content, notice_cnt, notice_date)
-    VALUES(#{notice_no}, #{notice_labeldate}, #{notice_label}, #{notice_title}, #{notice_content}, 0, sysdate)
+	INSERT INTO notice(notice_no, id, notice_labeldate, notice_label, notice_title, notice_content,  notice_date)
+	VALUES( (SELECT NVL(MAX(notice_no), 0) + 1 as notice_no FROM notice),
+	        #{id}, 
+	        #{notice_labeldate}, 
+	        #{notice_label}, 
+	        #{notice_title}, 
+	        #{notice_content}, 
+	        sysdate)
+	        
+ 
   </insert>
  
-  <select id="list" resultType="NoticeDTO">
-    SELECT notice_no, notice_labeldate, notice_label, notice_title, notice_content, notice_cnt, notice_date
-    FROM notice
-    ORDER BY notice_no DESC
-  </select>
-  
+	<select id="list" parameterType="Map" resultType="NoticeDTO">
+
+	SELECT notice_no, id, notice_labeldate , notice_label, notice_title, notice_content, notice_date, r
+	     from( 
+	SELECT notice_no, id, notice_labeldate, notice_label, notice_title, notice_content, notice_date, rownum r
+	     from( 
+	SELECT notice_no, id, notice_labeldate, notice_label, notice_title, notice_content, notice_date
+	     FROM notice
+	<where>
+		<if test="col=='id'">
+		id like '%'||#{word}||'%'
+		</if>
+		<if test="col=='notice_content'">
+		notice_content like '%'||#{word}||'%'
+		</if>
+	</where>
+	ORDER BY id ASC
+	)
+	)
+
+<![CDATA[where r>=#{sno} and r<=#{eno}   ]]>    
+</select>
+
+
   <!-- 1개의 레코드 출력 -->
   <select id="read" parameterType="int" resultType="NoticeDTO">
     SELECT notice_no, notice_labeldate, notice_label, notice_title, notice_content, notice_cnt, notice_date
@@ -26,7 +52,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     WHERE notice_no = #{notice_no}
   </select>
  
-  <!-- 글 수정 -->
+  <!-- 글 수정 --> 
   <update id="update" parameterType="NoticeDTO">
     UPDATE notice
     SET notice_labeldate=#{notice_labeldate}, notice_label=#{notice_label}, notice_title=#{notice_title}, notice_content=#{notice_content}
@@ -43,9 +69,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     SELECT notice_no, notice_labeldate, notice_label
     FROM notice
     WHERE notice_labeldate = #{notice_labeldate}
-    <!-- 최적화 ↑-->
-<!--    WHERE substr(labeldate, 1, 10) = #labeldate# -->
-    
+
   </select>
  
  <select id="total" parameterType="Map" resultType="int">
@@ -65,6 +89,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  set notice_cnt = notice_cnt +1
  where notice_no = #{notice_no}
 </update>
+
 
  
 

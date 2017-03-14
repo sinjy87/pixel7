@@ -21,7 +21,6 @@ import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
-
 public class NoticeDAOTest {
 	private static BeanFactory beans;
 	private static NoticeDAO ndao;
@@ -30,7 +29,7 @@ public class NoticeDAOTest {
 	public static void setUpBeforeClass() throws Exception {
 		Resource resource = new ClassPathResource("junit/pixel7.xml");
 		beans = new XmlBeanFactory(resource);
-		
+
 	}
 
 	@AfterClass
@@ -39,46 +38,47 @@ public class NoticeDAOTest {
 
 	@Before
 	public void setUp() throws Exception {
-
-		ndao = (NoticeDAO)beans.getBean("ndao");
+		ndao = (NoticeDAO) beans.getBean("ndao");
 	}
 
 	@After
 	public void tearDown() throws Exception {
 	}
 
-	@Test @Ignore
-	public void testCreate() {
-       NoticeDTO dto = new NoticeDTO();
-       dto.setId("king");
-       dto.setNotice_cnt("1");
-       dto.setNotice_content("242");
-       dto.setNotice_title("123124");
-       dto.setNotice_label("213123");
-       dto.setNotice_labeldate("1235123");
-       dto.setNotice_no(1);
-  
+	@Test 	@Ignore
+	public void testCreate() throws Exception {
+		NoticeDTO dto = new NoticeDTO();
 		
+		dto.setId("king");
+		dto.setNotice_labeldate("2016-01-01");
+		dto.setNotice_label("what?");
+		dto.setNotice_title("제목");
+		dto.setNotice_content("content");
+		        
+		assertTrue(ndao.create(dto));
+
 	}
 
-	@Test @Ignore
+	@Test
 	public void testList() throws Exception {
-	    Map map = new HashMap();
-	    map.put("col","notice_title");
-	    map.put("word", "");
-	    map.put("sno", 1);
-	    map.put("eno",5);
-	    List<NoticeDTO> list = ndao.list(map);
-	    assertEquals(list.size(),3);
+		Map map = new HashMap();
+		map.put("col", "정동진");
+		map.put("word", "31");
+		map.put("sno", 1);
+		map.put("eno", 5);
+		List<NoticeDTO> list = ndao.list(map);
+		assertEquals(list.size(), 5);
 	}
 
-	@Test @Ignore
+	@Test
+	@Ignore
 	public void testRead() throws Exception {
 		ndao.upViewcnt(10);
-	   assertNotNull(ndao.read(2));
+		assertNotNull(ndao.read(2));
 	}
 
-	@Test @Ignore
+	@Test
+	@Ignore
 	public void testUpdate() throws Exception {
 		NoticeDTO dto = new NoticeDTO();
 		dto.setNotice_no(2);
@@ -87,24 +87,22 @@ public class NoticeDAOTest {
 		dto.setNotice_title("asdqwe");
 		dto.setNotice_content("asdq");
 		assertTrue(ndao.update(dto));
-	
+
+	}
+
+	@Test
+	@Ignore
+	public void testDelete() throws Exception {
+		assertTrue(ndao.delete(4));
+
 	}
 
 	@Test @Ignore
-	public void testDelete() throws Exception {
-		assertTrue(ndao.delete(4));
-	
-	}
-
-	@Test 
 	public void testTotal() throws Exception {
 		Map map = new HashMap();
-		map.put("col","");
-		map.put("word","");
-		map.put("sno","");
-		map.put("eno","");
-	   assertEquals(ndao.total(map),1);	
+		map.put("col", "");
+		map.put("word", "");
+		assertNotNull(ndao.total(map));
 	}
-	
 
 }

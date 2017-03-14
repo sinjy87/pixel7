@@ -1,5 +1,7 @@
 package spring.model.notice;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,18 +17,19 @@ public class NoticeDAO implements Pixel7_NoticeDAO {
     private SqlSessionTemplate mybatis;
 	
 	
-	
-	/** Junit test**/
+
 	public void setMybatis(SqlSessionTemplate mybatis) {
 		this.mybatis = mybatis;
 	}
 
-	
 	@Override
 	public boolean create(Object dto) throws Exception {
     	boolean flag = false;
-		int cnt = mybatis.insert("notice.create",dto);
-		if(cnt>0) flag = true;
+    	
+		int cnt = mybatis.insert("notice.create", dto);
+		System.out.println(cnt);
+		if(cnt>0) 
+			flag = true;
 	    
 		return flag;
 	}
@@ -69,6 +72,16 @@ public class NoticeDAO implements Pixel7_NoticeDAO {
 		mybatis.update("notice.upViewcnt",notice_no);
 
 	}
+	  /**
+	   * 레이블 목록
+	   * @return ArrayList가 Object 타입으로 저장되어 리턴
+	   * @throws SQLException
+	   */
+	  public Object labelList(Object notice_labeldate){
+	    Object obj = mybatis.selectList("notice.label", notice_labeldate);
+	    
+	    return obj;
+	  }  
 
 
 	

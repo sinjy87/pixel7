@@ -18,28 +18,31 @@
     
 <FORM name="frmData" method="POST" action="./create">
   <TABLE>
-    <tr>
+  
+<%--      #{id.SessionScope} --%>
+
+ <tr>
       <th width='20%'>출력 날짜</th>
       <td width='80%'>
-        <input type="date" name='labeldate' size='10'>
+        <input type="date" name='notice_labeldate' size='10'>
        </td>
     </tr>  
     <tr>
       <th>출력 레이블</th>
       <td colspan='5' align='left'>
-        <input type='text' name='label' value='' size='20'>
+        <input type='text' name='notice_label' value='' size='20'>
         형식: 최대 20자
         </td>
     </tr>  
     <tr>
       <th>제목</th>
       <td>
-      <input type='text' name='title' value='' size='40'></td>      
+      <input type='text' name='notice_title' value='' size='40'></td>      
     </tr>
     <tr>
       <th>내용</th>
       <td>
-      <TEXTAREA name='content' rows='10' cols='40'></TEXTAREA>
+      <TEXTAREA name='notice_content' rows='10' cols='40'></TEXTAREA>
       </td>
     </tr>      
      

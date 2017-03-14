@@ -2,9 +2,12 @@ package spring.sts.pixel7;
  
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,20 +24,28 @@ import spring.utility.pixel7.Utility;
 @Controller
 public class NoticeController {
   @Autowired
-  NoticeDAO dao= null;
+  NoticeDAO dao;
   
-  public NoticeController(){
-    //System.out.println("--> CalendarCont created.");
+  
+  
+  @RequestMapping(value="/cal/login", method=RequestMethod.GET)
+   public String login(){
+	   return "/calendar/login";
+   }
+  
+  @RequestMapping(value="/cal/login",method=RequestMethod.POST)
+  public String login(String id,HttpSession session){
+	  session.setAttribute("id", id);
+	  return "redirect:../";
   }
-  
   /**
    * 등록 폼
    * @return
-   */
-  @RequestMapping(value="/admin/cal/create", method=RequestMethod.GET)
+   **/
+  @RequestMapping(value="/cal/create", method=RequestMethod.GET)
   public ModelAndView create(){
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/calendar/create"); // /calendar/createForm.jsp
+    mav.setViewName("/cal/create"); // /calendar/createForm.jsp
     return mav;
   }
   
@@ -42,29 +53,37 @@ public class NoticeController {
    * 등록 처리
    * @param dto 자동 생성된 값 객체
    * @return
+ * @throws Exception 
    */
-  @RequestMapping(value="/admin/cal/create", method=RequestMethod.POST)
-  public ModelAndView create(NoticeDTO dto){
+  @RequestMapping(value="/cal/create", method=RequestMethod.POST)
+  public ModelAndView create(NoticeDTO dto,HttpSession session) throws Exception{
     ModelAndView mav = new ModelAndView();
     mav.setViewName("calendar/msgView"); // /calendar/msgView.jsp
-    
-    if ((Integer)(dao.create(dto)) >= 1){
+    dto.setId((String)session.getAttribute("id"));
+    if (dao.create(dto)) {
       mav.addObject("msg1", "일정을 등록 했습니다.");
-      mav.addObject("link1", "<input type='button' value='계속 등록' onclick=\"location.href='./create.do'\">");
-      mav.addObject("link2", "<input type='button' value='목록' onclick=\"location.href='./list.do'\">");
+      mav.addObject("link1", "<input type='button' value='계속 등록' onclick=\"location.href='./create'\">");
+      mav.addObject("link2", "<input type='button' value='목록' onclick=\"location.href='./list'\">");
+   
     }else{
       mav.addObject("msg1", "일정 등록에 실패 했습니다.");
       mav.addObject("link1", "<input type='button' value='다시 시도' onclick='history.back()'>");
-      mav.addObject("link2", "<input type='button' value='목록' onclick=\"location.href='./list.do'\">");
+      mav.addObject("link2", "<input type='button' value='목록' onclick=\"location.href='./list'\">");
     }
-    
     return mav;
+
   }
   
-  @RequestMapping(value="/admin/cal/list", method=RequestMethod.GET)
-  public String list(Model model){
+  @RequestMapping(value="/cal/list", method=RequestMethod.GET)
+  public String list(Model model) throws Exception {
     
-    List list = (List)dao.list();
+	  Map map = new HashMap();
+	  map.put("col", "");
+		map.put("word", "");
+		map.put("sno", 1);
+		map.put("eno", 6);
+
+    List list = (List)dao.list(map);
     System.out.println("size:"+list.size());
     model.addAttribute("list", list);
     
@@ -75,13 +94,12 @@ public class NoticeController {
    * 수정 폼
    * @return
    */
-  @RequestMapping(value = "/admin/cal/update"
-                             , method = RequestMethod.GET)
-  public ModelAndView updateForm(int calendarno) throws Exception{
+  @RequestMapping(value = "/cal/update", method = RequestMethod.GET)
+  public ModelAndView updateForm(int notice_no) throws Exception{
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/calendar/update"); // updateForm.jsp
+    mav.setViewName("/cal/update"); // updateForm.jsp
     
-    mav.addObject("dto", dao.read(calendarno));
+    mav.addObject("dto", dao.read(notice_no));
     
     return mav;
   }
@@ -91,13 +109,13 @@ public class NoticeController {
    * @param dto
    * @return
    */
-  @RequestMapping(value = "/admin/cal/update",
+  @RequestMapping(value = "/cal/update",
                              method = RequestMethod.POST)
   public ModelAndView updateProc(NoticeDTO dto) throws Exception{
     ModelAndView mav = new ModelAndView();
     mav.setViewName("calendar/msgView"); // msgView.jsp
     
-    if ((Integer)(dao.update(dto)) == 1){
+    if (dao.update(dto)){
       mav.addObject("msg1", "일정을 수정했습니다.");
       mav.addObject("link1", "<input type='button' value='목록' onclick=\"location.href='./list'\">");
     }else{
@@ -113,11 +131,11 @@ public class NoticeController {
   
   @RequestMapping(value="/admin/cal/delete", 
                              method=RequestMethod.POST)
-  public ModelAndView delete(int notice_no){
+  public ModelAndView delete(int notice_no) throws Exception{
     ModelAndView mav = new ModelAndView();
     mav.setViewName("calendar/msgView");
     
-    if ((Integer)(dao.delete(notice_no)) >= 1){
+    if (dao.delete(notice_no)) {
       mav.addObject("msg1", "일정을 삭제했습니다.");
       mav.addObject("link1", "<input type='button' value='목록' onclick=\"location.href='./list.do'\">");
     }else{
@@ -212,13 +230,13 @@ public class NoticeController {
   
       // str = cal.get(Calendar.YEAR) + "-" + cal.get(Calendar.MONTH) + "-" + cal.get(Calendar.DATE);
       str = Utility.getDate6(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
-      list = (ArrayList)dao.notice_labelList(str); // 날짜에 해당하는 레이블 컬럼 추출
+      list = (ArrayList)dao.labelList(str); // 날짜에 해당하는 레이블 컬럼 추출
    
       if (list != null){ // 날짜당 일정 추출
         for(int i=0; i<list.size(); i++){
           NoticeDTO dto = (NoticeDTO)list.get(i);
           sb.append("<img src='"+Utility.getRoot()+"/images/bu5.gif'>");
-          sb.append("<a href='./cal/update?calendarno="+dto.getNotice_no()+"'>"+dto.getNotice_Label()+"</a><br>");
+          sb.append("<a href='./cal/update?notice_no="+dto.getNotice_no()+"'>"+dto.getNotice_label()+"</a><br>");
         }
     
       }
@@ -263,7 +281,7 @@ public class NoticeController {
    * @return
    * @throws Exception
    */
-  @RequestMapping(value = "/admin/cal/calendar", method = RequestMethod.GET)
+  @RequestMapping(value = "/cal/calendar", method = RequestMethod.GET)
   public ModelAndView calendar(HttpServletRequest request) throws Exception{
     ModelAndView mav = new ModelAndView();
     mav.setViewName("/calendar/calendar"); // calendar.jsp
@@ -340,13 +358,13 @@ public class NoticeController {
   
       // str = cal.get(Calendar.YEAR) + "-" + cal.get(Calendar.MONTH) + "-" + cal.get(Calendar.DATE);
       str = Utility.getDate6(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
-      list = (ArrayList)dao.notice_labelList(str); // 날짜에 해당하는 레이블 컬럼 추출
+      list = (ArrayList)dao.labelList(str); // 날짜에 해당하는 레이블 컬럼 추출
    
       if (list != null){ // 날짜당 일정 추출
         for(int i=0; i<list.size(); i++){
           NoticeDTO dto = (NoticeDTO)list.get(i);
           sb.append("<img src='"+Utility.getRoot()+"/images/bu5.gif'>");
-          sb.append("<a href='./update?calendarno="+dto.getNotice_no()+"'>"+dto.getNotice_label()+"</a><br>");
+          sb.append("<a href='./cal/update?notice_no="+dto.getNotice_no()+"'>"+dto.getNotice_label()+"</a><br>");
         }
     
       }

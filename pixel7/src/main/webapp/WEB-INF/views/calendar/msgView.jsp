@@ -1,6 +1,6 @@
 <%@ page contentType = "text/html; charset=UTF-8" %>
 <%@ page import="java.util.Properties" %>
-<%@ page import="spring.utility.blog.Utility" %>
+<%@ page import="spring.utility.pixel7.Utility" %>
 
 <html>
 <head>

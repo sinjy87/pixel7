@@ -10,29 +10,29 @@
 
 <script type="text/javascript">
   
-  function f_update(calendarno){
-    location.href='./update?calendarno=' + calendarno;
+  function f_update(notice_no){
+    location.href='./update?notice_no=' + notice_no;
 /*  var f = document.frmData;
     f.action = './update.do';
-    f.calendarno.value = calendarno;
+    f.notice_no.value = notice_no;
     f.submit(); */
   }
  
   // 이렇게 쓰면 post방식이 됨.
   // delete POST
-   function f_delete(calendarno){
+   function f_delete(notice_no){
     var sw = confirm('정말로 삭제하시겠습니까?'); // sw=스위치
     if(sw == true){
       var f = document.frm;
       f.action = './delete';
-      f.calendarno.value = calendarno;
+      f.notice_no.value = notice_no;
       f.submit();     
     }
 
   } 
      // delete GET
-/*   function f_delete(calendarno){
-    location.href='./delete.do?calendarno=' + calendarno;
+/*   function f_delete(notice_no){
+    location.href='./delete.do?notice_no=' + notice_no;
     }  */ 
   
 
@@ -64,21 +64,21 @@
   <tr bgcolor="#EEEEEE" 
       onMouseOver="this.style.backgroundColor='#ffffff'" 
       onMouseOut="this.style.backgroundColor='#EEEEEE'"> 
-  <td align='center'>${dto.calendarno}</td>
-  <td align='center'>${dto.labeldate}</td>
+  <td align='center'>${dto.notice_no}</td>
+  <td align='center'>${dto.notice_labeldate}</td>
   <td align='left'>
-  <a href="javascript:f_update('${dto.calendarno}')">${dto.label}</a></td>
+  <a href="javascript:f_update('${dto.notice_no}')">${dto.notice_label}</a></td>
   <td align='left'>
-  <a href="javascript:f_update('${dto.calendarno}')">${dto.title}</a>
-  <c:if test="${ex:newImg(fn:substring(dto.rdate,0,10)) }">
+  <a href="javascript:f_update('${dto.notice_no}')">${dto.notice_title}</a>
+  <c:if test="${ex:newImg(fn:substring(dto.notice_date,0,10)) }">
   <img src='${pageContext.request.contextPath}/images/new.gif'>
   </c:if>
   </td>
-  <td align="center">${dto.cnt}</td>
-  <td align="center">${fn:substring(dto.rdate,0,10)}</td>
+  <td align="center">${dto.notice_cnt}</td>
+  <td align="center">${fn:substring(dto.notice_date,0,10)}</td>
   <td align='center'>
-  <input type='button' value='U' onclick="f_update('${dto.calendarno}')" title='수정'>
-  <input type='button' value='D' onclick="f_delete('${dto.calendarno}')" title='삭제'>
+  <input type='button' value='U' onclick="f_update('${dto.notice_no}')" title='수정'>
+  <input type='button' value='D' onclick="f_delete('${dto.notice_no}')" title='삭제'>
   </td>
   </tr>
 </c:forEach>
@@ -91,7 +91,7 @@
     
     <!-- DELETE -->
     <form name='frm' method="post" action='./delete'>
-      <input type='hidden' name='calendarno' value=''>
+      <input type='hidden' name='notice_no' value=''>
     </form>
 <!-- *********************************************** -->
 </body>
