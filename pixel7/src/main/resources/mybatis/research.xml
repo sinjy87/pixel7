@@ -24,4 +24,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where research_num = #{research_num}
 	</update>
 
+	<delete id="delete" parameterType="int">
+		delete research
+		where research_num = #{research_num}
+	</delete>
+	
+	<select id="total" parameterType="Map" resultType="int">
+		select count(*) from research
+	</select>
+
 </mapper>

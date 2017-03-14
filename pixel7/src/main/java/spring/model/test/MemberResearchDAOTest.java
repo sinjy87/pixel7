@@ -2,7 +2,6 @@ package spring.model.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -20,12 +19,14 @@ import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
-import spring.model.pixel7.ResearchDAO;
+import spring.model.pixel7.MemberResearchDAO;
+import spring.model.pixel7.MemberResearchDTO;
 import spring.model.pixel7.ResearchDTO;
 
-public class ResearchDAOTest {
+public class MemberResearchDAOTest {
 
-	private static ResearchDAO dao;
+	
+	private static MemberResearchDAO dao;
 	private static BeanFactory beans;
 	
 	
@@ -37,12 +38,11 @@ public class ResearchDAOTest {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		
 	}
 
 	@Before
 	public void setUp() throws Exception {
-		dao = (ResearchDAO)beans.getBean("redao");
+		dao = (MemberResearchDAO) beans.getBean("mredao");
 	}
 
 	@After
@@ -51,56 +51,46 @@ public class ResearchDAOTest {
 
 	@Test @Ignore
 	public void testCreate() throws Exception {
-		ResearchDTO dto = new ResearchDTO();
-		dto.setResearch_title("좋아하는 음식은?");
+		MemberResearchDTO dto = new MemberResearchDTO();
+		dto.setId("king");
+		dto.setResearchitem_num(2);
 		
 		assertTrue(dao.create(dto));
 	}
 
 	@Test @Ignore
 	public void testList() throws Exception {
-		
-		Map map = new HashMap();
-//		assertNotNull(dao.list(map));
-		List<ResearchDTO> list = dao.list(map);
-		Iterator<ResearchDTO> iter = list.iterator();
-		
-		System.out.println(list.size());
-		
-		while(iter.hasNext()){
-			ResearchDTO dto = iter.next();
-			
-			System.out.print(dto.getResearch_num());
-			System.out.println("  "+dto.getResearch_title());
-		}
+	
 	}
 
-	@Test @Ignore
+	@Test 
 	public void testRead() throws Exception {
 		int pk = 1;
-		ResearchDTO dto = (ResearchDTO) dao.read(pk);
-		assertEquals(dto.getResearch_num(),1);
-		assertEquals(dto.getResearch_title(), "무슨 색을 좋아 하시나요?");
+		MemberResearchDTO dto = (MemberResearchDTO) dao.read(pk);
+
+		System.out.println(dto.getResearchitem_num());
 	}
 
 	@Test @Ignore
 	public void testUpdate() throws Exception {
-		int pk = 3;
-		ResearchDTO dto = (ResearchDTO) dao.read(pk);
-		dto.setResearch_title("이 싸이트는 어떻게 알게 되었나요?");
-		assertTrue(dao.update(dto));
+
 	}
 
 	@Test @Ignore
 	public void testDelete() throws Exception {
-		int pk = 1;
-		assertTrue(dao.delete(pk));
+
 	}
 
-	@Test 
+	@Test @Ignore
 	public void testTotal() throws Exception {
-		Map map = new HashMap();
-		System.out.println(dao.total(map));
+
 	}
+	
+	
+	
+	
+	
+	
+	
 
 }

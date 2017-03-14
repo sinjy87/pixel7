@@ -48,6 +48,16 @@
 		  class="spring.model.pixel7.ResearchDAO"
 		  p:sqlSession-ref="sqlSession"
 	/>
+	<!--     ResearchItemDAO 객체 생성 -->
+	<bean id="reidao" 
+		  class="spring.model.pixel7.ResearchItemDAO"
+		  p:sqlSession-ref="sqlSession"
+	/>	
+	<!--     MemberResearchDAO 객체 생성 -->
+	<bean id="mredao" 
+		  class="spring.model.pixel7.MemberResearchDAO"
+		  p:sqlSession-ref="sqlSession"
+	/>
     
     
 </beans>   

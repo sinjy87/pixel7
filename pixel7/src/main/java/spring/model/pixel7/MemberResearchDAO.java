@@ -6,11 +6,11 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class ResearchDAO implements DAOSTDInter {
+public class MemberResearchDAO implements DAOSTDInter {
 
+	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
 	
 	public void setSqlSession(SqlSessionTemplate sqlSession) {
 		this.sqlSession = sqlSession;
@@ -18,9 +18,10 @@ public class ResearchDAO implements DAOSTDInter {
 
 	@Override
 	public boolean create(Object dto) throws Exception {
-
+		
 		boolean flag = false;
-		int cnt = sqlSession.insert("research.create", dto);
+		
+		int cnt = sqlSession.insert("memberresearch.create", dto);
 		if(cnt>0)
 			flag = true;
 		
@@ -29,42 +30,34 @@ public class ResearchDAO implements DAOSTDInter {
 
 	@Override
 	public List list(Map map) throws Exception {
-
-		return sqlSession.selectList("research.list", map);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public Object read(Object pk) throws Exception {
-		
-		return sqlSession.selectOne("research.read", pk);
+
+		return sqlSession.selectOne("memberresearch.read", pk);
 	}
 
 	@Override
 	public boolean update(Object dto) throws Exception {
-
 		boolean flag = false;
 		
-		int cnt = sqlSession.update("research.update", dto);
-		if(cnt>0)
-			flag = true;
-			
 		return flag;
 	}
 
 	@Override
 	public boolean delete(Object pk) throws Exception {
 		boolean flag = false;
-		int cnt = sqlSession.delete("research.delete", pk);
-		if(cnt>0)
-			flag = true;
 		
 		return flag;
 	}
 
 	@Override
 	public int total(Map map) throws Exception {
-		
-		return sqlSession.selectOne("research.total", map);
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
