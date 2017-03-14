@@ -4,19 +4,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title><tiles:getAsString name="title"/></title>
+<style type="text/css">
+#body_center {
+	margin-left: 200px;
+}
+</style>
+<title><tiles:getAsString name="title" /></title>
 </head>
 <body>
 
 	<!-- 상단 메뉴 -->
-	<tiles:insertAttribute name="left"/>
+	<tiles:insertAttribute name="left" />
 	<!-- 상단 메뉴 끝 -->
 
 	<!-- 내용 시작 -->
-	<tiles:insertAttribute name="body"/>
+	<div id="body_center">
+	<tiles:insertAttribute name="body" />
+	</div>
 	<!-- 내용 끝 -->
 
-	
+
 
 </body>
 </html>

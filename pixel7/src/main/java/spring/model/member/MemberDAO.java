@@ -36,6 +36,11 @@ public class MemberDAO implements Pixel7_MemberDAO {
 	public void setMybatis(SqlSessionTemplate mybatis) {
 		this.mybatis = mybatis;
 	}
+	
+	/**회원등급리턴*/
+	public String getGrade(String id) {
+		return mybatis.selectOne("member.grade", id);
+	}
 
 	
 	

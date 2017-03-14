@@ -15,4 +15,5 @@ public interface Pixel7_MemberDAO extends DAOSTDInter {
 
 	Object statDate(Map map);
 
+	String getGrade(String id);
 }

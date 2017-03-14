@@ -19,142 +19,72 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<script>
-	function startTime() {
-		var today = new Date();
-		var h = today.getHours();
-		var m = today.getMinutes();
-		var s = today.getSeconds();
-		m = checkTime(m);
-		s = checkTime(s);
-		document.getElementById('txt').innerHTML = h + ":" + m + ":" + s;
-		var t = setTimeout(startTime, 500);
-	}
-	function checkTime(i) {
-		if (i < 10) {
-			i = "0" + i
-		}
-		; // add zero in front of numbers < 10
-		return i;
-	}
-</script>
-<style>
-body.b1 {
-	font-family: "Lato", sans-serif;
-}
 
-.mySlides {
-	display: none
-}
-</style>
 <body onload="startTime()">
 
 
 
-	<!-- Navbar -->
-	<div class="w3-top">
-		<ul class="w3-navbar w3-black w3-card-2 w3-left-align">
+	<!-- Icon Bar (Sidebar - hidden on small screens) -->
+	<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small">
+		<!-- Avatar image in top left corner -->
+		<img src="/w3images/avatar_smoke.jpg" style="width: 100%"> <a
+			class="w3-bar-item w3-button w3-center w3-padding-large w3-black"
+			href="#"> <i class="fa fa-home w3-xxlarge"></i>
+			<p>HOME</p>
+		</a> <a
+			class="w3-bar-item w3-button w3-center w3-padding-large w3-hover-black"
+			href="${pageContext.request.contextPath }/member/read"> <i
+			class="fa fa-user w3-xxlarge"></i>
+			<p>read</p>
+		</a> <a
+			class="w3-bar-item w3-button w3-center w3-padding-large w3-hover-black"
+			href="${pageContext.request.contextPath }/member/login"> <i
+			class="fa fa-user w3-xxlarge"></i>
+			<p>login</p>
+		</a> <a
+			class="w3-bar-item w3-button w3-center w3-padding-large w3-hover-black"
+			href="${pageContext.request.contextPath }/member/logout"> <i
+			class="fa fa-user w3-xxlarge"></i>
+			<p>logout</p>
+		</a> <a
+			class="w3-bar-item w3-button w3-center w3-padding-large w3-hover-black"
+			href="${pageContext.request.contextPath }/member/agree"> <i
+			class="fa fa-envelope w3-xxlarge"></i>
+			<p>create</p>
+		</a> <a
+			class="w3-bar-item w3-button w3-center w3-padding-large w3-hover-black"
+			href="${pageContext.request.contextPath }/member/update"> <i
+			class="fa fa-envelope w3-xxlarge"></i>
+			<p>update</p>
+		</a> <a
+			class="w3-bar-item w3-button w3-center w3-padding-large w3-hover-black"
+			href="${pageContext.request.contextPath }/member/delete"> <i
+			 class="fa fa-envelope w3-xxlarge"></i>
+			<p>delete</p>
+		</a> <a
+			class="w3-bar-item w3-button w3-center w3-padding-large w3-hover-black"
+			href="${pageContext.request.contextPath }/member/list"> <i class="fa fa-envelope w3-xxlarge"></i>
+			<p>list</p>
+		</a><a
+			class="w3-bar-item w3-button w3-center w3-padding-large w3-hover-black"
+			href="${pageContext.request.contextPath }/member/list?col=grade&word=admin"> <i class="fa fa-envelope w3-xxlarge"></i>
+			<p>adminlist</p>
+		</a>
+	</nav>
 
 
-
-
-			<li><a href="${pageContext.request.contextPath }"
-				class="w3-hover-none w3-hover-text-grey w3-padding-large">Home</a></li>
-
-
-
-			<li class="w3-hide-small w3-dropdown-hover"><a
-				href="javascript:void(0)" class="w3-hover-none w3-padding-large"
-				title="member">PhotoGrapher(member) <i class="fa fa-caret-down"></i></a>
-				<div class="w3-dropdown-content w3-white w3-card-4">
-					<a href="${pageContext.request.contextPath }/admin/list">list</a> <a
-						href="${pageContext.request.contextPath }/member/agree">agree</a>
-					<c:choose>
-						<c:when test="${not empty sessionScope.id  }">
-						<a href="${pageContext.request.contextPath }/member/read">Mypage</a>
-							<a href="${pageContext.request.contextPath }/member/logout">logout</a>
-						</c:when>
-						<c:otherwise>
-						<a href="${pageContext.request.contextPath }/member/login">login</a>
-						</c:otherwise>
-
-					</c:choose>
-
-					
-
-
-				</div></li>
-
-
-			<li class="w3-hide-small w3-dropdown-hover"><a
-				href="javascript:void(0)" class="w3-hover-none w3-padding-large"
-				title="photo">Photo(Image) <i class="fa fa-caret-down"></i></a>
-
-				<div class="w3-dropdown-content w3-white w3-card-4">
-					<a href="${pageContext.request.contextPath }/image/list">list</a>
-					<a href="${pageContext.request.contextPath }/image/create">create</a>
-				</div></li>
-
-
-
-
-			<li class="w3-hide-small w3-dropdown-hover"><a
-				href="javascript:void(0)" class="w3-hover-none w3-padding-large"
-				title="More">BBS <i class="fa fa-caret-down"></i></a>
-
-				<div class="w3-dropdown-content w3-white w3-card-4">
-					<a href="${pageContext.request.contextPath }/bbs/create">create</a>
-					<a href="${pageContext.request.contextPath }/bbs/list">list</a>
-					<a href="#">^-^</a>
-				</div></li>
-
-
-
-			<li class="w3-hide-small w3-dropdown-hover"><a
-				href="javascript:void(0)" class="w3-hover-none w3-padding-large"
-				title="More">memo <i class="fa fa-caret-down"></i></a>
-
-				<div class="w3-dropdown-content w3-white w3-card-4">
-					<a href="${pageContext.request.contextPath }/memo/list">list</a>
-					<a href="${pageContext.request.contextPath }/memo/create">create</a> <a href="#">~_~</a>
-				</div></li>
-
-
-
-
-
-			<li style="float: right;">
-				<div align="right" id="txt" style="color: white; margin: 13px 10px">
-				</div>
-			</li>
-		</ul>
+	<!-- Navbar on small screens (Hidden on medium and large screens) -->
+	<div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
+		<div
+			class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
+			<a class="w3-bar-item w3-button" style="width: 25% !important"
+				href="#">HOME</a> <a class="w3-bar-item w3-button"
+				style="width: 25% !important" href="#about">ABOUT</a> <a
+				class="w3-bar-item w3-button" style="width: 25% !important"
+				href="#photos">PHOTOS</a> <a class="w3-bar-item w3-button"
+				style="width: 25% !important" href="#contact">CONTACT</a>
+		</div>
 	</div>
-
-	<br>
-
-
-
-
-
-	<script>
-		// Used to toggle the menu on small screens when clicking on the menu button
-		function myFunction() {
-			var x = document.getElementById("navDemo");
-			if (x.className.indexOf("w3-show") == -1) {
-				x.className += " w3-show";
-			} else {
-				x.className = x.className.replace(" w3-show", "");
-			}
-		}
-
-		// When the user clicks anywhere outside of the modal, close it
-		var modal = document.getElementById('ticketModal');
-		window.onclick = function(event) {
-			if (event.target == modal) {
-				modal.style.display = "none";
-			}
-		}
-	</script>
 
 </body>
 </html>

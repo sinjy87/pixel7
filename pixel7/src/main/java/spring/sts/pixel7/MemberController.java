@@ -40,14 +40,42 @@ import spring.utility.pixel7.Utility;
 public class MemberController {
 	@Autowired
 	private MemberDAO dao;
+	
+	
+
+	/** 로그아웃 */
+	@RequestMapping("member/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:../";
+	}
+
+	/** 로그인 */
+	@RequestMapping(value = "member/login", method = RequestMethod.POST)
+	public String login(String id, String password, HttpSession session) {
+		if (dao.passwdCheck(id, password)) {
+			session.setAttribute("id", id);
+			session.setAttribute("grade", dao.getGrade(id));
+			return "redirect:../";
+		} else {
+			return "error";
+		}
+	}
+
+	/** 로그인 */
+	@RequestMapping(value = "member/login", method = RequestMethod.GET)
+	public String login() {
+		return "/member/login";
+	}
 
 	/** 회원목록 */
 	@RequestMapping("member/list")
 	public String list(HttpServletRequest request) throws Exception {
 		String col = Utility.checkNull(request.getParameter("col"));
 		String word = Utility.checkNull(request.getParameter("word"));
-		String grade = Utility.checkNull(request.getParameter("grade"));
+		System.out.println(col);
 		if (col.equals("total")) {
+			
 			word = "";
 		}
 
@@ -72,14 +100,15 @@ public class MemberController {
 
 		String paging = Utility.paging3(total, nowPage, recordPerPage, col, word);
 		request.setAttribute("list", list);
+		request.setAttribute("paging", paging);
 		return "/member/list";
 
 	}
 
 	/** 회원정보 */
 	@RequestMapping("/member/read")
-	public String read(Model model, String id) {
-		model.addAttribute("dto", dao.read(id));
+	public String read(Model model,HttpSession session) {
+		model.addAttribute("dto", dao.read(session.getAttribute("id")));
 		return "/member/read";
 	}
 
@@ -91,7 +120,9 @@ public class MemberController {
 		String id = (String) session.getAttribute("id");
 		Map map = (Map) dao.photoName(id);
 		String bgphoto = (String) map.get("bgphoto");
+		System.out.println(bgphoto);
 		String photo = (String) map.get("photo");
+		System.out.println(photo);
 
 		if (dao.passwdCheck(id, password)) {
 			if (!(bgphoto.equals("member_bgphoto.jpg"))) {

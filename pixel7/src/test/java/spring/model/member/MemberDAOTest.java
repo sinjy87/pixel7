@@ -145,11 +145,17 @@ public class MemberDAOTest {
 	}
 	
 	@Test
+	@Ignore
 	public void testStatDate(){
 		Map map =new HashMap();
 		MemberDTO dto =(MemberDTO)mdao.statDate(map);
 		System.out.println("d"+dto.getSignup());
 		assertNotNull(dto.getSignup());
 
+	}
+	@Test
+	@Ignore
+	public void testGetgrade(){
+		assertEquals(mdao.getGrade("vip"), "vip");
 	}
 }

@@ -5,8 +5,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 <mapper namespace="member">
+	<select id="grade" parameterType="String" resultType="String">
+		select grade from member
+		where id=#{id}
+	</select>
 	<select id="statDate" parameterType="Map" resultType="MemberDTO">
-		SELECT * FROM member_stat
+		SELECT *
+		FROM member_stat
 		ORDER BY statdate ASC
 	</select>
 
@@ -65,11 +70,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		photo,profile, grade
 		FROM member
 		<where>
-			<if test="col=='email'">email like '%'||#{word}||'%'</if>
-			<if test="col=='id'">id like '%'||#{word}||'%'</if>
+		<if test ="col==''">grade != 'admin'</if>
+			<if test="col=='email'">email like '%'||#{word}||'%' and grade != 'admin'</if>
+			<if test="col=='id'">id like '%'||#{word}||'%' and grade != 'admin'</if>
 			<if test="col=='grade'">grade like '%'||#{word}||'%'</if>
 		</where>
-		
+
 
 		ORDER BY id ASC
 		)
@@ -90,12 +96,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 	<select id="read" parameterType="String" resultType="MemberDTO">
-		SELECT id,
-		email, mdate, interests, bgphoto , photo,profile
-		FROM
-		member
-		where id
-		=#{id}
+		SELECT * FROM
+		member where id= #{id}
 	</select>
 
 	<insert id="create" parameterType="MemberDTO">
