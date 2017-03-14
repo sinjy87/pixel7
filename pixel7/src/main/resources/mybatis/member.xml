@@ -5,6 +5,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 <mapper namespace="member">
+	<select id="statDate" parameterType="Map" resultType="MemberDTO">
+		SELECT * FROM member_stat
+		ORDER BY statdate ASC
+	</select>
+
+	<select id="photoName" parameterType="String" resultType="map">
+		select
+		bgphoto , photo
+		from member
+		where id =#{id}
+
+	</select>
+
+
 	<update id="updateGd" parameterType="Map">
 		update member
 		set grade =
@@ -53,7 +67,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<where>
 			<if test="col=='email'">email like '%'||#{word}||'%'</if>
 			<if test="col=='id'">id like '%'||#{word}||'%'</if>
+			<if test="col=='grade'">grade like '%'||#{word}||'%'</if>
 		</where>
+		
 
 		ORDER BY id ASC
 		)

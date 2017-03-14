@@ -2,6 +2,7 @@ package spring.model.member;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -18,7 +19,26 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-
+/**
+ * 
+ * <pre>
+ * Copyright 2017 JAVADB Course, Inc. All rights reserved.
+ * 패키지명        : spring.model.member 
+ * 파일명          : MemberDAOTest.java , 2017. 3. 13. 오전 11:36:54
+ * 작성자          : 정내용
+ * 작성자 email    : content_j@naver.com
+ * 수정내용
+ * ----------------------------------------------
+ * 수정 이력
+ * ---------------------------------------------- 
+ * 수정일      수정자  연락처
+ *   
+ * 수정내용
+ *
+ * ----------------------------------------------
+ * 
+ *</pre>
+ */
 public class MemberDAOTest {
 	private static BeanFactory beans;
 	private static MemberDAO mdao;
@@ -78,7 +98,7 @@ public class MemberDAOTest {
 	@Test
 	@Ignore
 	public void testUpdate() throws Exception {
-		MemberDTO dto = (MemberDTO)mdao.read("1");
+		MemberDTO dto = (MemberDTO) mdao.read("1");
 		dto.setPhoto("1");
 		assertTrue(mdao.update(dto));
 	}
@@ -92,13 +112,12 @@ public class MemberDAOTest {
 	@Test
 	@Ignore
 	public void testTotal() throws Exception {
-		Map map =new HashMap();
+		Map map = new HashMap();
 		map.put("col", "");
 		map.put("word", "");
-		
-		assertEquals(mdao.total(map),6 );
-	}
 
+		assertEquals(mdao.total(map), 6);
+	}
 
 	@Test
 	@Ignore
@@ -106,15 +125,31 @@ public class MemberDAOTest {
 		assertTrue(mdao.updatePw("1", "2"));
 	}
 
-	
 	@Test
 	@Ignore
 	public void testPasswdCheck() {
 		assertTrue(mdao.passwdCheck("1", "2"));
 	}
+
 	@Test
+	@Ignore
 	public void testUpdateGd() {
 		assertTrue(mdao.updateGd("1", "normal"));
 	}
 
+	@Test
+	@Ignore
+	public void testPhotoName() {
+		assertNotNull(mdao.photoName("1"));
+
+	}
+	
+	@Test
+	public void testStatDate(){
+		Map map =new HashMap();
+		MemberDTO dto =(MemberDTO)mdao.statDate(map);
+		System.out.println("d"+dto.getSignup());
+		assertNotNull(dto.getSignup());
+
+	}
 }
