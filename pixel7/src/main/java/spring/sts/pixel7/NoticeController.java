@@ -241,7 +241,6 @@ public class NoticeController {
     
       }
       sb.append("</td>");
-  
       // 한달의 마지막 날이 아니면서 토요일인 경우 다음줄로 생성
       // System.out.println(cal.getActualMaximum ( Calendar.DAY_OF_MONTH ));
       if ((cal.getActualMaximum ( Calendar.DAY_OF_MONTH ) != cal.get(Calendar.DATE))) {
