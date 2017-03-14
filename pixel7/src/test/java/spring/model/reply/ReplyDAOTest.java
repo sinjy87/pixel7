@@ -42,7 +42,9 @@ public class ReplyDAOTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-
+	/**
+	 * ´ñ±Û »ý¼º
+	 */
 	@Test @Ignore
 	public void testCreate() {
 		ReplyDTO dto = new ReplyDTO();
@@ -53,6 +55,9 @@ public class ReplyDAOTest {
 		
 	}
 
+	/**
+	 * ´ñ±Û ¼öÁ¤
+	 */
 	@Test @Ignore
 	public void testUpdate() throws Exception {
 		ReplyDTO dto = new ReplyDTO();
@@ -63,13 +68,19 @@ public class ReplyDAOTest {
 		assertTrue(rdao.update(dto));
 		
 	}
-
+	
+	/**
+	 * ´ñ±Û »èÁ¦
+	 */
 	@Test @Ignore
 	public void testDelete() throws Exception {
 		assertTrue(rdao.delete(6));
 	}
 
-	@Test 
+	/**
+	 * ´ñ±ÛÀÇ ´ä±Û »ý¼º
+	 */
+	@Test @Ignore
 	public void testRcreate() throws Exception {
 		ReplyDTO rdto = (ReplyDTO)rdao.read(3);
 		ReplyDTO dto = new ReplyDTO();
@@ -88,6 +99,9 @@ public class ReplyDAOTest {
 		fail("Not yet implemented");
 	}
 
+	/**
+	 * ´ñ±Û º¸±â
+	 */
 	@Test @Ignore
 	public void testRead() throws Exception {
 		ReplyDTO dto = (ReplyDTO) rdao.read(3);
