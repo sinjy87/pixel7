@@ -5,12 +5,18 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Repository;
+@Repository
 public class Img_itemDAO implements Pixel7_Img_itemDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 
 	/** junit test */
+	
+	public void upViewcnt(int img_num) {
+		mybatis.update("img_item.upViewcnt", img_num);
+
+	}
 
 	public void setMybatis(SqlSessionTemplate mybatis) {
 		this.mybatis = mybatis;
@@ -31,8 +37,9 @@ public class Img_itemDAO implements Pixel7_Img_itemDAO {
 
 	@Override
 	public List list(Map map) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+
+		return mybatis.selectList("img_item.list", map);
+		
 	}
 
 	@Override

@@ -29,8 +29,8 @@ public class Utility {
 	  
 	 
 	  /**
-	   * 2010-12-14 Çü½ÄÀÇ ³¯Â¥¸¦ ¸®ÅÏÇÕ´Ï´Ù.
-	   * @return 2008-01-30 Çü½ÄÀÇ ¹®ÀÚ¿­ ¸®ÅÏ
+	   * 2010-12-14 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
+	   * @return 2008-01-30 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 	   */
 	  public static String getDate6(int year, int month, int day){
 	      SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
@@ -45,24 +45,24 @@ public class Utility {
 	public static String getCodeValue(String code){
 		String value = null;
 		Hashtable codes = new Hashtable();
-		codes.put("A01", "È¸»ç¿ø");
-		codes.put("A02", "Àü»ê°ü·ÃÁ÷");
-		codes.put("A03", "¿¬±¸Àü¹®Á÷");
-		codes.put("A04", "°¢Á¾ÇĞ±³ÇĞ»ı");
-		codes.put("A05", "ÀÏ¹İÀÚ¿µ¾÷");
-		codes.put("A06", "°ø¹«¿ø");
-		codes.put("A07", "ÀÇ·áÀÎ");
-		codes.put("A08", "¹ıÁ¶ÀÎ");
-		codes.put("A09", "Á¾±³/¾ğ·Ğ/¿¹¼úÀÎ");
-		codes.put("A10", "±âÅ¸");
+		codes.put("Human", "Human");
+		codes.put("A02", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		codes.put("A03", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		codes.put("A04", "ï¿½ï¿½ï¿½ï¿½ï¿½Ğ±ï¿½ï¿½Ğ»ï¿½");
+		codes.put("A05", "ï¿½Ï¹ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½");
+		codes.put("A06", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		codes.put("A07", "ï¿½Ç·ï¿½ï¿½ï¿½");
+		codes.put("A08", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		codes.put("A09", "ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		codes.put("A10", "ï¿½ï¿½Å¸");
 		
 		value = (String)codes.get(code);
 		
 		return value;
 	}
 	/**
-     * ?˜¤?Š˜,?–´? œ,ê·¸ì œ ?‚ ì§? ê°?? ¸?˜¤ê¸?
-     * @return List- ?‚ ì§œë“¤ ???¥
+     * ?ï¿½ï¿½?ï¿½ï¿½,?ï¿½ï¿½?ï¿½ï¿½,ê·¸ì œ ?ï¿½ï¿½ï¿½? ï¿½??ï¿½ï¿½?ï¿½ï¿½ï¿½?
+     * @return List- ?ï¿½ï¿½ì§œë“¤ ???ï¿½ï¿½
      */
     public static List<String> getDay(){
         List<String> list = new ArrayList<String>();
@@ -77,10 +77,10 @@ public class Utility {
         return list;
     }
     /**
-     * ?“±ë¡ë‚ ì§œì? ?˜¤?Š˜,?–´? œ,ê·¸ì œ?‚ ì§œì? ë¹„êµ
-     * @param wdate - ?“±ë¡ë‚ ì§?
-     * @return - true:?˜¤?Š˜,?–´? œ,ê·¸ì œì¤? ?“±ë¡ë‚ ì§œì? ê°™ìŒ
-     *           false:?˜¤?Š˜,?–´? œ,ê·¸ì œ ?‚ ì§œê? ?“±ë¡ë‚ ì§œì? ?‹¤ ?‹¤ë¦?
+     * ?ï¿½ï¿½ë¡ë‚ ì§œï¿½? ?ï¿½ï¿½?ï¿½ï¿½,?ï¿½ï¿½?ï¿½ï¿½,ê·¸ì œ?ï¿½ï¿½ì§œï¿½? ë¹„êµ
+     * @param wdate - ?ï¿½ï¿½ë¡ë‚ ï¿½?
+     * @return - true:?ï¿½ï¿½?ï¿½ï¿½,?ï¿½ï¿½?ï¿½ï¿½,ê·¸ì œï¿½? ?ï¿½ï¿½ë¡ë‚ ì§œï¿½? ê°™ìŒ
+     *           false:?ï¿½ï¿½?ï¿½ï¿½,?ï¿½ï¿½?ï¿½ï¿½,ê·¸ì œ ?ï¿½ï¿½ì§œï¿½? ?ï¿½ï¿½ë¡ë‚ ì§œï¿½? ?ï¿½ï¿½ ?ï¿½ï¿½ï¿½?
      */
     public static boolean compareDay(String wdate){
         boolean flag = false;
@@ -102,32 +102,32 @@ public class Utility {
 		return str;
 	}
 	/** 
-	   * SPAN?ƒœê·¸ë?? ?´?š©?•œ ë°•ìŠ¤ ëª¨ë¸?˜ ì§??›, 1 ?˜?´ì§?ë¶??„° ?‹œ?‘ 
-	   * ?˜„?¬ ?˜?´ì§?: 11 / 22   [?´? „] 11 12 13 14 15 16 17 18 19 20 [?‹¤?Œ] 
+	   * SPAN?ï¿½ï¿½ê·¸ï¿½?? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ë°•ìŠ¤ ëª¨ë¸?ï¿½ï¿½ ï¿½??ï¿½ï¿½, 1 ?ï¿½ï¿½?ï¿½ï¿½ï¿½?ï¿½??ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ 
+	   * ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ï¿½?: 11 / 22   [?ï¿½ï¿½?ï¿½ï¿½] 11 12 13 14 15 16 17 18 19 20 [?ï¿½ï¿½?ï¿½ï¿½] 
 	   *  
-	   * @param totalRecord ? „ì²? ? ˆì½”ë“œ?ˆ˜ 
-	   * @param nowPage     ?˜„?¬ ?˜?´ì§? 
-	   * @param recordPerPage ?˜?´ì§??‹¹ ? ˆì½”ë“œ ?ˆ˜  
-	   * @param col ê²??ƒ‰ ì»¬ëŸ¼  
-	   * @param word ê²??ƒ‰?–´
-	   * @return ?˜?´ì§? ?ƒ?„± ë¬¸ì?—´
+	   * @param totalRecord ?ï¿½ï¿½ï¿½? ?ï¿½ï¿½ì½”ë“œ?ï¿½ï¿½ 
+	   * @param nowPage     ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ï¿½? 
+	   * @param recordPerPage ?ï¿½ï¿½?ï¿½ï¿½ï¿½??ï¿½ï¿½ ?ï¿½ï¿½ì½”ë“œ ?ï¿½ï¿½  
+	   * @param col ï¿½??ï¿½ï¿½ ì»¬ëŸ¼  
+	   * @param word ï¿½??ï¿½ï¿½?ï¿½ï¿½
+	   * @return ?ï¿½ï¿½?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½ ë¬¸ì?ï¿½ï¿½
 	   */ 
 	  public static String paging1(int totalRecord, int nowPage, int recordPerPage, String col, String word){ 
-	    int pagePerBlock = 10; // ë¸”ëŸ­?‹¹ ?˜?´ì§? ?ˆ˜ 
-	    int totalPage = (int)(Math.ceil((double)totalRecord/recordPerPage)); // ? „ì²? ?˜?´ì§?  
-	    int totalGrp = (int)(Math.ceil((double)totalPage/pagePerBlock));// ? „ì²? ê·¸ë£¹ 
-	    int nowGrp = (int)(Math.ceil((double)nowPage/pagePerBlock));    // ?˜„?¬ ê·¸ë£¹ 
-	    int startPage = ((nowGrp - 1) * pagePerBlock) + 1; // ?Š¹? • ê·¸ë£¹?˜ ?˜?´ì§? ëª©ë¡ ?‹œ?‘  
-	    int endPage = (nowGrp * pagePerBlock);             // ?Š¹? • ê·¸ë£¹?˜ ?˜?´ì§? ëª©ë¡ ì¢…ë£Œ   
+	    int pagePerBlock = 10; // ë¸”ëŸ­?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ï¿½? ?ï¿½ï¿½ 
+	    int totalPage = (int)(Math.ceil((double)totalRecord/recordPerPage)); // ?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½ï¿½?  
+	    int totalGrp = (int)(Math.ceil((double)totalPage/pagePerBlock));// ?ï¿½ï¿½ï¿½? ê·¸ë£¹ 
+	    int nowGrp = (int)(Math.ceil((double)nowPage/pagePerBlock));    // ?ï¿½ï¿½?ï¿½ï¿½ ê·¸ë£¹ 
+	    int startPage = ((nowGrp - 1) * pagePerBlock) + 1; // ?ï¿½ï¿½?ï¿½ï¿½ ê·¸ë£¹?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ï¿½? ëª©ë¡ ?ï¿½ï¿½?ï¿½ï¿½  
+	    int endPage = (nowGrp * pagePerBlock);             // ?ï¿½ï¿½?ï¿½ï¿½ ê·¸ë£¹?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ï¿½? ëª©ë¡ ì¢…ë£Œ   
 	     
 	    StringBuffer str = new StringBuffer(); 
 	     
 	    str.append("<DIV id='container'>"); 
-//	    str.append("?˜„?¬ ?˜?´ì§?: " + nowPage + " / " + totalPage + "  "); 
+//	    str.append("?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ï¿½?: " + nowPage + " / " + totalPage + "  "); 
 	 
-	    int _nowPage = (nowGrp-1) * pagePerBlock; // 10ê°? ?´? „ ?˜?´ì§?ë¡? ?´?™ 
+	    int _nowPage = (nowGrp-1) * pagePerBlock; // 10ï¿½? ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ï¿½?ï¿½? ?ï¿½ï¿½?ï¿½ï¿½ 
 	    if (nowGrp >= 2){ 
-	      str.append("<ul class='pager'><li><A href='./list.jsp?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>?´? „</A></li></ul>"); 
+	      str.append("<ul class='pager'><li><A href='./list.jsp?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>?ï¿½ï¿½?ï¿½ï¿½</A></li></ul>"); 
 	    } 
 	 
 	    for(int i=startPage; i<=endPage; i++){ 
@@ -142,9 +142,9 @@ public class Utility {
 	      } 
 	    } 
 	     
-	    _nowPage = (nowGrp * pagePerBlock)+1; // 10ê°? ?‹¤?Œ ?˜?´ì§?ë¡? ?´?™ 
+	    _nowPage = (nowGrp * pagePerBlock)+1; // 10ï¿½? ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ï¿½?ï¿½? ?ï¿½ï¿½?ï¿½ï¿½ 
 	    if (nowGrp < totalGrp){ 
-	      str.append("<ul class='pager'><li><A href='./list.jsp?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>?‹¤?Œ</A></li></ul>"); 
+	      str.append("<ul class='pager'><li><A href='./list.jsp?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>?ï¿½ï¿½?ï¿½ï¿½</A></li></ul>"); 
 	    } 
 	    str.append("</DIV>"); 
 	     
@@ -152,12 +152,12 @@ public class Utility {
 	  } 
 
 	  public static String paging3(int totalRecord, int nowPage, int recordPerPage, String col, String word){ 
-		    int pagePerBlock = 10; // ë¸”ëŸ­?‹¹ ?˜?´ì§? ?ˆ˜ 
-		    int totalPage = (int)(Math.ceil((double)totalRecord/recordPerPage)); // ? „ì²? ?˜?´ì§?  
-		    int totalGrp = (int)(Math.ceil((double)totalPage/pagePerBlock));// ? „ì²? ê·¸ë£¹ 
-		    int nowGrp = (int)(Math.ceil((double)nowPage/pagePerBlock));    // ?˜„?¬ ê·¸ë£¹ 
-		    int startPage = ((nowGrp - 1) * pagePerBlock) + 1; // ?Š¹? • ê·¸ë£¹?˜ ?˜?´ì§? ëª©ë¡ ?‹œ?‘  
-		    int endPage = (nowGrp * pagePerBlock);             // ?Š¹? • ê·¸ë£¹?˜ ?˜?´ì§? ëª©ë¡ ì¢…ë£Œ   
+		    int pagePerBlock = 10; // ë¸”ëŸ­?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ï¿½? ?ï¿½ï¿½ 
+		    int totalPage = (int)(Math.ceil((double)totalRecord/recordPerPage)); // ?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½ï¿½?  
+		    int totalGrp = (int)(Math.ceil((double)totalPage/pagePerBlock));// ?ï¿½ï¿½ï¿½? ê·¸ë£¹ 
+		    int nowGrp = (int)(Math.ceil((double)nowPage/pagePerBlock));    // ?ï¿½ï¿½?ï¿½ï¿½ ê·¸ë£¹ 
+		    int startPage = ((nowGrp - 1) * pagePerBlock) + 1; // ?ï¿½ï¿½?ï¿½ï¿½ ê·¸ë£¹?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ï¿½? ëª©ë¡ ?ï¿½ï¿½?ï¿½ï¿½  
+		    int endPage = (nowGrp * pagePerBlock);             // ?ï¿½ï¿½?ï¿½ï¿½ ê·¸ë£¹?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ï¿½? ëª©ë¡ ì¢…ë£Œ   
 		     
 		    StringBuffer str = new StringBuffer(); 
 		     
@@ -172,8 +172,8 @@ public class Utility {
 		    str.append("    border: 1px;"); 
 		    str.append("    border-style: solid;"); 
 		    str.append("    border-color: #cccccc;"); 
-		    str.append("    padding:1px 6px 1px 6px; /*?œ„, ?˜¤ë¥¸ìª½, ?•„?˜, ?™¼ìª?*/"); 
-		    str.append("    margin:1px 2px 1px 2px; /*?œ„, ?˜¤ë¥¸ìª½, ?•„?˜, ?™¼ìª?*/"); 
+		    str.append("    padding:1px 6px 1px 6px; /*?ï¿½ï¿½, ?ï¿½ï¿½ë¥¸ìª½, ?ï¿½ï¿½?ï¿½ï¿½, ?ï¿½ï¿½ï¿½?*/"); 
+		    str.append("    margin:1px 2px 1px 2px; /*?ï¿½ï¿½, ?ï¿½ï¿½ë¥¸ìª½, ?ï¿½ï¿½?ï¿½ï¿½, ?ï¿½ï¿½ï¿½?*/"); 
 		    str.append("  }"); 
 		    str.append("  .span_box_2{"); 
 		    str.append("    text-align: center;");    
@@ -183,16 +183,16 @@ public class Utility {
 		    str.append("    border: 1px;"); 
 		    str.append("    border-style: solid;"); 
 		    str.append("    border-color: #cccccc;"); 
-		    str.append("    padding:1px 6px 1px 6px; /*?œ„, ?˜¤ë¥¸ìª½, ?•„?˜, ?™¼ìª?*/"); 
-		    str.append("    margin:1px 2px 1px 2px; /*?œ„, ?˜¤ë¥¸ìª½, ?•„?˜, ?™¼ìª?*/"); 
+		    str.append("    padding:1px 6px 1px 6px; /*?ï¿½ï¿½, ?ï¿½ï¿½ë¥¸ìª½, ?ï¿½ï¿½?ï¿½ï¿½, ?ï¿½ï¿½ï¿½?*/"); 
+		    str.append("    margin:1px 2px 1px 2px; /*?ï¿½ï¿½, ?ï¿½ï¿½ë¥¸ìª½, ?ï¿½ï¿½?ï¿½ï¿½, ?ï¿½ï¿½ï¿½?*/"); 
 		    str.append("  }"); 
 		    str.append("</style>"); 
 		    str.append("<DIV id='paging'>"); 
-//		    str.append("?˜„?¬ ?˜?´ì§?: " + nowPage + " / " + totalPage + "  "); 
+//		    str.append("?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ï¿½?: " + nowPage + " / " + totalPage + "  "); 
 		 
-		    int _nowPage = (nowGrp-1) * pagePerBlock; // 10ê°? ?´? „ ?˜?´ì§?ë¡? ?´?™ 
+		    int _nowPage = (nowGrp-1) * pagePerBlock; // 10ï¿½? ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ï¿½?ï¿½? ?ï¿½ï¿½?ï¿½ï¿½ 
 		    if (nowGrp >= 2){ 
-		      str.append("<span class='span_box_1'><A href='./list?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>?´? „</A></span>"); 
+		      str.append("<span class='span_box_1'><A href='./list?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>?ï¿½ï¿½?ï¿½ï¿½</A></span>"); 
 		    } 
 		 
 		    for(int i=startPage; i<=endPage; i++){ 
@@ -207,9 +207,9 @@ public class Utility {
 		      } 
 		    } 
 		     
-		    _nowPage = (nowGrp * pagePerBlock)+1; // 10ê°? ?‹¤?Œ ?˜?´ì§?ë¡? ?´?™ 
+		    _nowPage = (nowGrp * pagePerBlock)+1; // 10ï¿½? ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ï¿½?ï¿½? ?ï¿½ï¿½?ï¿½ï¿½ 
 		    if (nowGrp < totalGrp){ 
-		      str.append("<span class='span_box_1'><A href='./list?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>?‹¤?Œ</A></span>"); 
+		      str.append("<span class='span_box_1'><A href='./list?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>?ï¿½ï¿½?ï¿½ï¿½</A></span>"); 
 		    } 
 		    str.append("</DIV>"); 
 		     
@@ -217,23 +217,23 @@ public class Utility {
 		  } 	 
 	
 	/** 
-	   * ?ˆ«? ?˜•?ƒœ?˜ ?˜?´ì§?, 1 ?˜?´ì§?ë¶??„° ?‹œ?‘ 
-	   * ?˜„?¬ ?˜?´ì§?: 11 / 22   [?´? „] 11 12 13 14 15 16 17 18 19 20 [?‹¤?Œ] 
+	   * ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ï¿½?, 1 ?ï¿½ï¿½?ï¿½ï¿½ï¿½?ï¿½??ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ 
+	   * ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ï¿½?: 11 / 22   [?ï¿½ï¿½?ï¿½ï¿½] 11 12 13 14 15 16 17 18 19 20 [?ï¿½ï¿½?ï¿½ï¿½] 
 	   *  
-	   * @param totalRecord ? „ì²? ? ˆì½”ë“œ?ˆ˜ 
-	   * @param nowPage     ?˜„?¬ ?˜?´ì§? 
-	   * @param recordPerPage ?˜?´ì§??‹¹ ì¶œë ¥?•  ? ˆì½”ë“œ ?ˆ˜
-	   * @param col ê²??ƒ‰ ì»¬ëŸ¼  
-	   * @param word ê²??ƒ‰?–´
-	   * @return ?˜?´ì§? ?ƒ?„± ë¬¸ì?—´
+	   * @param totalRecord ?ï¿½ï¿½ï¿½? ?ï¿½ï¿½ì½”ë“œ?ï¿½ï¿½ 
+	   * @param nowPage     ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ï¿½? 
+	   * @param recordPerPage ?ï¿½ï¿½?ï¿½ï¿½ï¿½??ï¿½ï¿½ ì¶œë ¥?ï¿½ï¿½ ?ï¿½ï¿½ì½”ë“œ ?ï¿½ï¿½
+	   * @param col ï¿½??ï¿½ï¿½ ì»¬ëŸ¼  
+	   * @param word ï¿½??ï¿½ï¿½?ï¿½ï¿½
+	   * @return ?ï¿½ï¿½?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½ ë¬¸ì?ï¿½ï¿½
 	   */ 
 	  public static String paging(int totalRecord, int nowPage, int recordPerPage, String col, String word){ 
-	    int pagePerBlock = 10; // ë¸”ëŸ­?‹¹ ?˜?´ì§? ?ˆ˜ 
-	    int totalPage = (int)(Math.ceil((double)totalRecord/recordPerPage));// ? „ì²? ?˜?´ì§?  
-	    int totalGrp = (int)(Math.ceil((double)totalPage/pagePerBlock));// ? „ì²? ê·¸ë£¹ 
-	    int nowGrp = (int)(Math.ceil((double)nowPage/pagePerBlock));    // ?˜„?¬ ê·¸ë£¹ 
-	    int startPage = ((nowGrp - 1) * pagePerBlock) + 1; // ?Š¹? • ê·¸ë£¹?˜ ?˜?´ì§? ëª©ë¡ ?‹œ?‘  
-	    int endPage = (nowGrp * pagePerBlock);             // ?Š¹? • ê·¸ë£¹?˜ ?˜?´ì§? ëª©ë¡ ì¢…ë£Œ   
+	    int pagePerBlock = 10; // ë¸”ëŸ­?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ï¿½? ?ï¿½ï¿½ 
+	    int totalPage = (int)(Math.ceil((double)totalRecord/recordPerPage));// ?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½ï¿½?  
+	    int totalGrp = (int)(Math.ceil((double)totalPage/pagePerBlock));// ?ï¿½ï¿½ï¿½? ê·¸ë£¹ 
+	    int nowGrp = (int)(Math.ceil((double)nowPage/pagePerBlock));    // ?ï¿½ï¿½?ï¿½ï¿½ ê·¸ë£¹ 
+	    int startPage = ((nowGrp - 1) * pagePerBlock) + 1; // ?ï¿½ï¿½?ï¿½ï¿½ ê·¸ë£¹?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ï¿½? ëª©ë¡ ?ï¿½ï¿½?ï¿½ï¿½  
+	    int endPage = (nowGrp * pagePerBlock);             // ?ï¿½ï¿½?ï¿½ï¿½ ê·¸ë£¹?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ï¿½? ëª©ë¡ ì¢…ë£Œ   
 	     
 	    StringBuffer str = new StringBuffer(); 
 	     
@@ -244,11 +244,11 @@ public class Utility {
 	    str.append("  #paging A:visited {text-decoration:none;color:black; font-size: 1em;}"); 
 	    str.append("</style>"); 
 	    str.append("<DIV id='paging'>"); 
-	    str.append("ÇöÀç ÆäÀÌÁö " + nowPage + " / " + totalPage + "  "); 
+	    str.append("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ " + nowPage + " / " + totalPage + "  "); 
 	 
-	    int _nowPage = (nowGrp-1) * pagePerBlock; // 10ê°? ?´? „ ?˜?´ì§?ë¡? ?´?™ 
+	    int _nowPage = (nowGrp-1) * pagePerBlock; // 10ï¿½? ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ï¿½?ï¿½? ?ï¿½ï¿½?ï¿½ï¿½ 
 	    if (nowGrp >= 2){ 
-	      str.append("[<A href='./list.jsp?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>?´? „</A>]"); 
+	      str.append("[<A href='./list.jsp?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>?ï¿½ï¿½?ï¿½ï¿½</A>]"); 
 	    } 
 	 
 	    for(int i=startPage; i<=endPage; i++){ 
@@ -256,7 +256,7 @@ public class Utility {
 	        break; 
 	      } 
 	  
-	      if (nowPage == i){ // ?˜„?¬ ?˜?´ì§??´ë©? ê°•ì¡° ?š¨ê³? 
+	      if (nowPage == i){ // ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ï¿½??ï¿½ï¿½ï¿½? ê°•ì¡° ?ï¿½ï¿½ï¿½? 
 	        str.append("<span style='font-size: 1.2em; font-weight: bold;'>"+i+"</span> ");   
 	      }else{ 
 	        str.append("<A href='./list.jsp?col="+col+"&word="+word+"&nowPage="+i+"'>"+i+"</A> "); 
@@ -264,9 +264,9 @@ public class Utility {
 	       
 	    } 
 	     
-	    _nowPage = (nowGrp * pagePerBlock)+1; // 10ê°? ?‹¤?Œ ?˜?´ì§?ë¡? ?´?™ 
+	    _nowPage = (nowGrp * pagePerBlock)+1; // 10ï¿½? ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ï¿½?ï¿½? ?ï¿½ï¿½?ï¿½ï¿½ 
 	    if (nowGrp < totalGrp){ 
-	      str.append("[<A href='./list.jsp?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>?‹¤?Œ</A>]"); 
+	      str.append("[<A href='./list.jsp?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>?ï¿½ï¿½?ï¿½ï¿½</A>]"); 
 	    } 
 	    str.append("</DIV>"); 
 	     
@@ -289,21 +289,21 @@ public class Utility {
         OutputStream outputStream = null; 
  
         try { 
-            if( fileSize > 0 ) { // ÆÄÀÏÀÌ Á¸ÀçÇÑ´Ù¸é 
-                // ÀÎÇ² ½ºÆ®¸²À» ¾ò´Â´Ù. 
+            if( fileSize > 0 ) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´Ù¸ï¿½ 
+                // ï¿½ï¿½Ç² ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â´ï¿½. 
                 inputStream = fileMF.getInputStream(); 
  
                 File oldfile = new File(basePath, originalFileName); 
              
                 if ( oldfile.exists()){ 
                     for(int k=0; true; k++){ 
-                        //ÆÄÀÏ¸í Áßº¹À» ÇÇÇÏ±â À§ÇÑ ÀÏ·Ã ¹øÈ£¸¦ »ı¼ºÇÏ¿© 
-                        //ÆÄÀÏ¸íÀ¸·Î Á¶ÇÕ 
+                        //ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ßºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ 
+                        //ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
                         oldfile = new File(basePath,"("+k+")"+originalFileName); 
                      
-                        //Á¶ÇÕµÈ ÆÄÀÏ¸íÀÌ Á¸ÀçÇÏÁö ¾Ê´Â´Ù¸é, ÀÏ·Ã¹øÈ£°¡ 
-                        //ºÙÀº ÆÄÀÏ¸í ´Ù½Ã »ı¼º 
-                        if(!oldfile.exists()){ //Á¸ÀçÇÏÁö ¾Ê´Â °æ¿ì 
+                        //ï¿½ï¿½ï¿½Õµï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´Ù¸ï¿½, ï¿½Ï·Ã¹ï¿½È£ï¿½ï¿½ 
+                        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
+                        if(!oldfile.exists()){ //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½ï¿½ï¿½ 
                             fileName = "("+k+")"+originalFileName; 
                             break; 
                         } 
@@ -319,7 +319,7 @@ public class Utility {
                  
                 outputStream = new FileOutputStream( serverFullPath ); 
   
-                // ¹öÆÛ¸¦ ¸¸µç´Ù. 
+                // ï¿½ï¿½ï¿½Û¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½. 
                 int readBytes = 0; 
                 byte[] buffer = new byte[8192]; 
  
@@ -348,24 +348,24 @@ public class Utility {
 
 
 /** 
- * ´ñ±Û¿ë ÆäÀÌÂ¡ ¸Ş¼Òµå
- * @param totalRecord ÀüÃ¼ ·¹ÄÚµå¼ö 
- * @param nowPage     ´ñ±ÛÀÇ ÇöÀç ÆäÀÌÁö 
- * @param recordPerPage ´ñ±ÛÀÇ ÆäÀÌÁö´ç ·¹ÄÚµå ¼ö 
- * @param url ÀÌµ¿ÇÒ ÆäÀÌÁö - read
- * @param bbsno bbs ±Û¹øÈ£
- * @param nowPage bbsÀÇ ÇöÀç ÆäÀÌÁö
- * @param col bbsÀÇ °Ë»ö ÄÃ·³
- * @param word bbsÀÇ °Ë»ö¾î
- * @return ÆäÀÌÂ¡ »ı¼º ¹®ÀÚ¿­
+ * ï¿½ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½Â¡ ï¿½Ş¼Òµï¿½
+ * @param totalRecord ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½Úµï¿½ï¿½ 
+ * @param nowPage     ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+ * @param recordPerPage ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ 
+ * @param url ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ - read
+ * @param bbsno bbs ï¿½Û¹ï¿½È£
+ * @param nowPage bbsï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * @param col bbsï¿½ï¿½ ï¿½Ë»ï¿½ ï¿½Ã·ï¿½
+ * @param word bbsï¿½ï¿½ ï¿½Ë»ï¿½ï¿½ï¿½
+ * @return ï¿½ï¿½ï¿½ï¿½Â¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½
  */ 
 public static String paging(String noname, int totalRecord, int nPage, int recordPerPage,String url,int bbsno,int nowPage, String col, String word){ 
-  int pagePerBlock = 10; // ºí·°´ç ÆäÀÌÁö ¼ö 
-  int totalPage = (int)(Math.ceil((double)totalRecord/recordPerPage)); // ÀüÃ¼ ÆäÀÌÁö  
-  int totalGrp = (int)(Math.ceil((double)totalPage/pagePerBlock));// ÀüÃ¼ ±×·ì 
-  int nowGrp = (int)(Math.ceil((double)nPage/pagePerBlock));    // ÇöÀç ±×·ì 
-  int startPage = ((nowGrp - 1) * pagePerBlock) + 1; // Æ¯Á¤ ±×·ìÀÇ ÆäÀÌÁö ¸ñ·Ï ½ÃÀÛ  
-  int endPage = (nowGrp * pagePerBlock);             // Æ¯Á¤ ±×·ìÀÇ ÆäÀÌÁö ¸ñ·Ï Á¾·á   
+  int pagePerBlock = 10; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ 
+  int totalPage = (int)(Math.ceil((double)totalRecord/recordPerPage)); // ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  
+  int totalGrp = (int)(Math.ceil((double)totalPage/pagePerBlock));// ï¿½ï¿½Ã¼ ï¿½×·ï¿½ 
+  int nowGrp = (int)(Math.ceil((double)nPage/pagePerBlock));    // ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ 
+  int startPage = ((nowGrp - 1) * pagePerBlock) + 1; // Æ¯ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½  
+  int endPage = (nowGrp * pagePerBlock);             // Æ¯ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½   
    
   StringBuffer str = new StringBuffer(); 
    
@@ -380,8 +380,8 @@ public static String paging(String noname, int totalRecord, int nPage, int recor
   str.append("    border: 1px;"); 
   str.append("    border-style: solid;"); 
   str.append("    border-color: #cccccc;"); 
-  str.append("    padding:1px 6px 1px 6px; /*À§, ¿À¸¥ÂÊ, ¾Æ·¡, ¿ŞÂÊ*/"); 
-  str.append("    margin:1px 2px 1px 2px; /*À§, ¿À¸¥ÂÊ, ¾Æ·¡, ¿ŞÂÊ*/"); 
+  str.append("    padding:1px 6px 1px 6px; /*ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Æ·ï¿½, ï¿½ï¿½ï¿½ï¿½*/"); 
+  str.append("    margin:1px 2px 1px 2px; /*ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Æ·ï¿½, ï¿½ï¿½ï¿½ï¿½*/"); 
   str.append("  }"); 
   str.append("  .span_box_2{"); 
   str.append("    text-align: center;");    
@@ -391,16 +391,16 @@ public static String paging(String noname, int totalRecord, int nPage, int recor
   str.append("    border: 1px;"); 
   str.append("    border-style: solid;"); 
   str.append("    border-color: #cccccc;"); 
-  str.append("    padding:1px 6px 1px 6px; /*À§, ¿À¸¥ÂÊ, ¾Æ·¡, ¿ŞÂÊ*/"); 
-  str.append("    margin:1px 2px 1px 2px; /*À§, ¿À¸¥ÂÊ, ¾Æ·¡, ¿ŞÂÊ*/"); 
+  str.append("    padding:1px 6px 1px 6px; /*ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Æ·ï¿½, ï¿½ï¿½ï¿½ï¿½*/"); 
+  str.append("    margin:1px 2px 1px 2px; /*ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Æ·ï¿½, ï¿½ï¿½ï¿½ï¿½*/"); 
   str.append("  }"); 
   str.append("</style>"); 
   str.append("<DIV id='paging'>"); 
-//    str.append("ÇöÀç ÆäÀÌÁö: " + nowPage + " / " + totalPage + "  "); 
+//    str.append("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: " + nowPage + " / " + totalPage + "  "); 
 
-  int _nowPage = (nowGrp-1) * pagePerBlock; // 10°³ ÀÌÀü ÆäÀÌÁö·Î ÀÌµ¿ 
+  int _nowPage = (nowGrp-1) * pagePerBlock; // 10ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ 
   if (nowGrp >= 2){ 
-    str.append("<span class='span_box_1'><A href='./"+url+"?nowPage="+nowPage+"&col="+col+"&word="+word+"&"+noname+"="+bbsno+"&nPage="+_nowPage+"'>ÀÌÀü</A></span>"); 
+    str.append("<span class='span_box_1'><A href='./"+url+"?nowPage="+nowPage+"&col="+col+"&word="+word+"&"+noname+"="+bbsno+"&nPage="+_nowPage+"'>ï¿½ï¿½ï¿½ï¿½</A></span>"); 
   } 
 
   for(int i=startPage; i<=endPage; i++){ 
@@ -415,9 +415,9 @@ public static String paging(String noname, int totalRecord, int nPage, int recor
     } 
   } 
    
-  _nowPage = (nowGrp * pagePerBlock)+1; // 10°³ ´ÙÀ½ ÆäÀÌÁö·Î ÀÌµ¿ 
+  _nowPage = (nowGrp * pagePerBlock)+1; // 10ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ 
   if (nowGrp < totalGrp){ 
-    str.append("<span class='span_box_1'><A href='./"+url+"?nowPage="+nowPage+"&col="+col+"&word="+word+"&"+noname+"="+bbsno+"&nPage="+_nowPage+"'>´ÙÀ½</A></span>"); 
+    str.append("<span class='span_box_1'><A href='./"+url+"?nowPage="+nowPage+"&col="+col+"&word="+word+"&"+noname+"="+bbsno+"&nPage="+_nowPage+"'>ï¿½ï¿½ï¿½ï¿½</A></span>"); 
   } 
   str.append("</DIV>"); 
    

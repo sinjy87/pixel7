@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE  tiles-definitions PUBLIC 
+    "-//Aapche Software Foundation//DTD Tiles Configuration 2.0//EN" 
+    "http://tiles.apache.org/dtds/tiles-config_2_0.dtd"> 
+
+<tiles-definitions> 
+     <definition name="main" template="/WEB-INF/views/template/template.jsp"> 
+        <put-attribute name="left" value="/WEB-INF/views/template/nav.jsp" /> 
+    </definition> 
+    
+    <definition name="/main" extends="main"> 
+        <put-attribute name="title" value="MainPage" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/main.jsp" /> 
+    </definition>   
+    <definition name="/img_item/create" extends="main"> 
+        <put-attribute name="title" value="Writing" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/img_item/create.jsp" /> 
+    </definition>   
+    
+    <definition name="/img_item/list" extends="main"> 
+        <put-attribute name="title" value="Marketplace"></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/img_item/list.jsp" /> 
+    </definition>
+       
+    <definition name="/img_item/read" extends="main"> 
+        <put-attribute name="title" value="product"></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/img_item/read.jsp" /> 
+    </definition>   
+    
+    <definition name="/img_item/update" extends="main"> 
+        <put-attribute name="title" value="Update" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/img_item/update.jsp" /> 
+    </definition>
+       
+    <definition name="/img_item/login" extends="main"> 
+        <put-attribute name="title" value="Login" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/img_item/login.jsp" /> 
+    </definition>   
+
+</tiles-definitions> 

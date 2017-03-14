@@ -1,8 +1,13 @@
 package spring.model.img_item;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -52,11 +57,13 @@ public class Img_itemDAOTest {
 	}
 
 	@Test @Ignore
-	public void testList() {
-		fail("Not yet implemented");
+	public void testList() throws Exception {
+		Map map = new HashMap();
+		List list = itemdao.list(map);
+		assertEquals(list.size(), 2);
 	}
 
-	@Test @Ignore
+	@Test 
 	public void testRead() throws Exception {
 		Img_itemDTO dto = itemdao.read(1);
 		assertNotNull(dto);
@@ -71,7 +78,7 @@ public class Img_itemDAOTest {
 		assertTrue(itemdao.update(dto));
 	}
 
-	@Test 
+	@Test @Ignore
 	public void testDelete() throws Exception {
 		int img_num = 2;
 		assertTrue(itemdao.delete(img_num));
