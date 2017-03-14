@@ -5,5 +5,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="research">
 
+	<select id="list" parameterType="Map" resultType="ResearchDTO">
+		select * from research
+	</select>
+	
+	<insert id="create" parameterType="Map">
+		insert into research(research_num, research_title)
+		values((select nvl(max(research_num),0)+1 from research), #{research_title})
+	</insert>
+	
+	<select id="read" parameterType="int" resultType="ResearchDTO">
+		select * from research
+		where research_num = #{research_num}
+	</select>
+	
+	<update id="update" parameterType="ResearchDTO">
+		update research set research_title = #{research_title}
+		where research_num = #{research_num}
+	</update>
 
 </mapper>
