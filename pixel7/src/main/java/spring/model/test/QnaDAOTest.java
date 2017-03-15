@@ -3,6 +3,7 @@ package spring.model.test;
 import static org.junit.Assert.*;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +20,7 @@ import org.springframework.core.io.Resource;
 
 import spring.model.pixel7.QnaDAO;
 import spring.model.pixel7.QnaDTO;
+import spring.model.pixel7.ResearchDTO;
 
 public class QnaDAOTest {
 	
@@ -44,7 +46,7 @@ public class QnaDAOTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test 
+	@Test @Ignore
 	public void testCreate() throws Exception {
 		
 		QnaDTO dto = new QnaDTO();
@@ -59,7 +61,7 @@ public class QnaDAOTest {
 		assertTrue(dao.create(dto));
 		
 	}
-	@Test @Ignore
+	@Test 
 	public void testList() throws Exception {
 		Map map = new HashMap();
 		map.put("col", "qna_title");
@@ -69,6 +71,16 @@ public class QnaDAOTest {
 		
 		List<QnaDTO> list = dao.list(map);
 		assertEquals(list.size(), 1);
+	
+		
+		Iterator<QnaDTO> iter = list.iterator();
+		while(iter.hasNext()){
+			QnaDTO dto = iter.next();
+			
+			System.out.print(dto.getId());
+			
+		}
+		
 	}
 	
 	@Test @Ignore

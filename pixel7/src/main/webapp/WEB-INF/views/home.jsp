@@ -10,5 +10,8 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
+
+	<input type="button" value="질문 게시판" onclick="location.href='./qna/list'">
+	${id}  
 </body>
 </html>
