@@ -18,34 +18,39 @@
    
   
   	<definition name="/cal/list" extends="main">
-		<put-attribute name="title" value=" calendar 목록"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/views/calendar/list.jsp" />
+		<put-attribute name="title" value=" notice 목록"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/notice/list.jsp" />
 	</definition>
 
-	<definition name="/calendar/calendar" extends="main">
+	<definition name="/notice/notice" extends="main">
 		<put-attribute name="title" value=" 조회"></put-attribute>
 		<put-attribute name="body"
-			value="/WEB-INF/views/calendar/calendar.jsp" />
+			value="/WEB-INF/views/notice/notice.jsp" />
 	</definition>
 
-	<definition name="/cal/create" extends="main">
-		<put-attribute name="title" value="calendar 글쓰기"></put-attribute>
+	<definition name="/notice/create" extends="main">
+		<put-attribute name="title" value="notice 글쓰기"></put-attribute>
 		<put-attribute name="body"
-			value="/WEB-INF/views/calendar/createForm.jsp" />
+			value="/WEB-INF/views/notice/createForm.jsp" />
 	</definition>
 
-	<definition name="/calendar/update" extends="main">
-		<put-attribute name="title" value=" calendar 글수정"></put-attribute>
+	<definition name="/notice/update" extends="main">
+		<put-attribute name="title" value=" notice 글수정"></put-attribute>
 		<put-attribute name="body"
-			value="/WEB-INF/views/calendar/updateForm.jsp" />
+			value="/WEB-INF/views/notice/updateForm.jsp" />
 	</definition>
  
- <definition name="/calendar/login" extends="main">
-		<put-attribute name="title" value=" calendar 글수정"></put-attribute>
+ <definition name="/notice/login" extends="main">
+		<put-attribute name="title" value=" notice 글수정"></put-attribute>
 		<put-attribute name="body"
-			value="/WEB-INF/views/calendar/login.jsp" />
+			value="/WEB-INF/views/notice/login.jsp" />
 	</definition>
    
+      <definition name="/notice/read" extends="main">
+		<put-attribute name="title" value=" notice 글수정"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/notice/read.jsp" />
+	</definition>
      
     
 </tiles-definitions> 

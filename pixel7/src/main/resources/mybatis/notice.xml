@@ -23,11 +23,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 	<select id="list" parameterType="Map" resultType="NoticeDTO">
 
-	SELECT notice_no, id, notice_labeldate , notice_label, notice_title, notice_content, notice_date, r
+	SELECT notice_no, id, notice_labeldate , notice_label, notice_title, notice_content, notice_date,notice_cnt,r
 	     from( 
-	SELECT notice_no, id, notice_labeldate, notice_label, notice_title, notice_content, notice_date, rownum r
+	SELECT notice_no, id, notice_labeldate, notice_label, notice_title, notice_content, notice_date,notice_cnt, rownum r
 	     from( 
-	SELECT notice_no, id, notice_labeldate, notice_label, notice_title, notice_content, notice_date
+	SELECT notice_no, id, notice_labeldate, notice_label, notice_title, notice_content, notice_date,notice_cnt
 	     FROM notice
 	<where>
 		<if test="col=='id'">

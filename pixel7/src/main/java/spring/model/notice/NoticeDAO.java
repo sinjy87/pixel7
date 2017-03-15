@@ -35,7 +35,7 @@ public class NoticeDAO implements Pixel7_NoticeDAO {
 	}
 
 	@Override
-	public List list(Map map) throws Exception {
+	public List<NoticeDTO> list(Map map) throws Exception {
 		
 		return mybatis.selectList("notice.list",map);
 	}
@@ -70,6 +70,7 @@ public class NoticeDAO implements Pixel7_NoticeDAO {
 	
 	public void upViewcnt(int notice_no) {
 		mybatis.update("notice.upViewcnt",notice_no);
+		System.out.println(notice_no);
 
 	}
 	  /**

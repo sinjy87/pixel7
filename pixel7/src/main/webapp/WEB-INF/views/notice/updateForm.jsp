@@ -30,32 +30,32 @@ function f_list(){  // 목록
 </div>
     
 <FORM name="frm" method="POST" action="./update">
-  <input type='hidden' name='calendarno' value='${dto.calendarno }'>
+  <input type='hidden' name='notice_no' value='${dto.notice_no }'>
   
   <table>
     <tr>
       <th width='20%'>레이블 날짜</th>
       <td width='80%' align='left'>
-        <input type="date" name='labeldate' value='${dto.labeldate }' size='40'>
+        <input type="date" name='notice_labeldate' value='${dto.notice_labeldate }' size='40'>
       </td>
     </tr>   
     <tr>
       <th>레이블</th>
       <td align='left'>
-        <input type='text' name='label' value='${dto.label }' size='20'>
+        <input type='text' name='notice_label' value='${dto.notice_label }' size='20'>
         형식: 최대 20자
         </td>
     </tr>  
     <tr>
       <th>제목</th>
       <td align='left'>
-      <input type='text' name='title' value='${dto.title }'>    
+      <input type='text' name='notice_title' value='${dto.notice_title }'>    
       </td>
     </tr>
     <tr>
       <th>내용</th>
       <td align='left'>
-      <TEXTAREA name='content' rows='10' cols='40'>${dto.content}</TEXTAREA>
+      <TEXTAREA name='notice_content' rows='10' cols='40'>${dto.notice_content}</TEXTAREA>
       </td>
     </tr>      
      

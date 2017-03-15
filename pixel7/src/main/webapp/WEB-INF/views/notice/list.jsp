@@ -9,7 +9,15 @@
 <title>목록</title>
 
 <script type="text/javascript">
-  
+
+function f_read(notice_no){
+    location.href='./read?notice_no=' + notice_no;
+/*  var f = document.frmData;
+    f.action = './update.do';
+    f.notice_no.value = notice_no;
+    f.submit(); */
+  }
+
   function f_update(notice_no){
     location.href='./update?notice_no=' + notice_no;
 /*  var f = document.frmData;
@@ -67,9 +75,9 @@
   <td align='center'>${dto.notice_no}</td>
   <td align='center'>${dto.notice_labeldate}</td>
   <td align='left'>
-  <a href="javascript:f_update('${dto.notice_no}')">${dto.notice_label}</a></td>
+  <a href="javascript:f_read('${dto.notice_no}')">${dto.notice_label}</a></td>
   <td align='left'>
-  <a href="javascript:f_update('${dto.notice_no}')">${dto.notice_title}</a>
+  <a href="javascript:f_read('${dto.notice_no}')">${dto.notice_title}</a>
   <c:if test="${ex:newImg(fn:substring(dto.notice_date,0,10)) }">
   <img src='${pageContext.request.contextPath}/images/new.gif'>
   </c:if>

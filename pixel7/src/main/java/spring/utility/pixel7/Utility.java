@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 //import spring.model.bbs.ReplyDAO;
 
 public class Utility {
-	private static final String root ="/blog";
+	private static final String root ="/pixel7";
 	 
 	  public static synchronized String getRoot(){
 	    return root;

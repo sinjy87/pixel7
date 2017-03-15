@@ -26,11 +26,19 @@ public class NoticeController {
   @Autowired
   NoticeDAO dao;
   
+  @RequestMapping("/cal/read")
+  public String read(int notice_no, String col, String word, Model model,HttpServletRequest request  ) throws Exception{
+	  dao.upViewcnt(notice_no);
+	  model.addAttribute("dto", dao.read(notice_no));
+
+	  return "/notice/read";
+  }
+  
   
   
   @RequestMapping(value="/cal/login", method=RequestMethod.GET)
    public String login(){
-	   return "/calendar/login";
+	   return "/notice/login";
    }
   
   @RequestMapping(value="/cal/login",method=RequestMethod.POST)
@@ -43,10 +51,9 @@ public class NoticeController {
    * @return
    **/
   @RequestMapping(value="/cal/create", method=RequestMethod.GET)
-  public ModelAndView create(){
-    ModelAndView mav = new ModelAndView();
-    mav.setViewName("/cal/create"); // /calendar/createForm.jsp
-    return mav;
+  public String create(){
+
+    return "/notice/create";
   }
   
   /**
@@ -56,48 +63,47 @@ public class NoticeController {
  * @throws Exception 
    */
   @RequestMapping(value="/cal/create", method=RequestMethod.POST)
-  public ModelAndView create(NoticeDTO dto,HttpSession session) throws Exception{
-    ModelAndView mav = new ModelAndView();
-    mav.setViewName("calendar/msgView"); // /calendar/msgView.jsp
-    dto.setId((String)session.getAttribute("id"));
+  public String create(NoticeDTO dto,HttpSession session, Model model) throws Exception{
+
+	  dto.setId((String)session.getAttribute("id"));
     if (dao.create(dto)) {
-      mav.addObject("msg1", "일정을 등록 했습니다.");
-      mav.addObject("link1", "<input type='button' value='계속 등록' onclick=\"location.href='./create'\">");
-      mav.addObject("link2", "<input type='button' value='목록' onclick=\"location.href='./list'\">");
+    	 model.addAttribute("msg1", "일정을 등록 했습니다.");
+    	 model.addAttribute("link1", "<input type='button' value='계속 등록' onclick=\"location.href='./create'\">");
+    	 model.addAttribute("link2", "<input type='button' value='목록' onclick=\"location.href='./list'\">");
    
     }else{
-      mav.addObject("msg1", "일정 등록에 실패 했습니다.");
-      mav.addObject("link1", "<input type='button' value='다시 시도' onclick='history.back()'>");
-      mav.addObject("link2", "<input type='button' value='목록' onclick=\"location.href='./list'\">");
+    	 model.addAttribute("msg1", "일정 등록에 실패 했습니다.");
+    	 model.addAttribute("link1", "<input type='button' value='다시 시도' onclick='history.back()'>");
+    	 model.addAttribute("link2", "<input type='button' value='목록' onclick=\"location.href='./list'\">");
     }
-    return mav;
+    return "/notice/msgView";
 
   }
   
   @RequestMapping(value="/cal/list", method=RequestMethod.GET)
   public String list(Model model) throws Exception {
-    
+  
 	  Map map = new HashMap();
 	  map.put("col", "");
 		map.put("word", "");
 		map.put("sno", 1);
 		map.put("eno", 6);
 
-    List list = (List)dao.list(map);
+    List<NoticeDTO> list = dao.list(map);
     System.out.println("size:"+list.size());
     model.addAttribute("list", list);
     
-    return "/calendar/list";
+    return "/cal/list";
   }
  
   /**
    * 수정 폼
    * @return
    */
-  @RequestMapping(value = "/cal/update", method = RequestMethod.GET)
+  @RequestMapping(value="/cal/update", method = RequestMethod.GET)
   public ModelAndView updateForm(int notice_no) throws Exception{
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/cal/update"); // updateForm.jsp
+    mav.setViewName("/notice/update"); // updateForm.jsp
     
     mav.addObject("dto", dao.read(notice_no));
     
@@ -113,7 +119,7 @@ public class NoticeController {
                              method = RequestMethod.POST)
   public ModelAndView updateProc(NoticeDTO dto) throws Exception{
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("calendar/msgView"); // msgView.jsp
+    mav.setViewName("notice/msgView"); // msgView.jsp
     
     if (dao.update(dto)){
       mav.addObject("msg1", "일정을 수정했습니다.");
@@ -129,11 +135,11 @@ public class NoticeController {
     return mav;
   }
   
-  @RequestMapping(value="/admin/cal/delete", 
+  @RequestMapping(value="/cal/delete", 
                              method=RequestMethod.POST)
   public ModelAndView delete(int notice_no) throws Exception{
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("calendar/msgView");
+    mav.setViewName("notice/msgView");
     
     if (dao.delete(notice_no)) {
       mav.addObject("msg1", "일정을 삭제했습니다.");
@@ -153,10 +159,10 @@ public class NoticeController {
    * @return
    * @throws Exception
    */
-  @RequestMapping(value = "/cal/calendar_home", method = RequestMethod.GET)
+  @RequestMapping(value = "/cal/notice_home", method = RequestMethod.GET)
   public ModelAndView calendar_home(HttpServletRequest request) throws Exception{
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("calendar/calendar_home"); // calendar_home.jsp
+    mav.setViewName("notice/notice_home"); // calendar_home.jsp
     
     Calendar cal = Calendar.getInstance();
     int year = 0;
@@ -236,7 +242,7 @@ public class NoticeController {
         for(int i=0; i<list.size(); i++){
           NoticeDTO dto = (NoticeDTO)list.get(i);
           sb.append("<img src='"+Utility.getRoot()+"/images/bu5.gif'>");
-          sb.append("<a href='./cal/update?notice_no="+dto.getNotice_no()+"'>"+dto.getNotice_label()+"</a><br>");
+          sb.append("<a href='./cal/read?notice_no="+dto.getNotice_no()+"'>"+dto.getNotice_label()+"</a><br>");
         }
     
       }
@@ -283,7 +289,7 @@ public class NoticeController {
   @RequestMapping(value = "/cal/calendar", method = RequestMethod.GET)
   public ModelAndView calendar(HttpServletRequest request) throws Exception{
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/calendar/calendar"); // calendar.jsp
+    mav.setViewName("/notice/notice"); // notice.jsp
     
     Calendar cal = Calendar.getInstance();
     int year = 0;
@@ -363,7 +369,7 @@ public class NoticeController {
         for(int i=0; i<list.size(); i++){
           NoticeDTO dto = (NoticeDTO)list.get(i);
           sb.append("<img src='"+Utility.getRoot()+"/images/bu5.gif'>");
-          sb.append("<a href='./cal/update?notice_no="+dto.getNotice_no()+"'>"+dto.getNotice_label()+"</a><br>");
+          sb.append("<a href='./read?notice_no="+dto.getNotice_no()+"'>"+dto.getNotice_label()+"</a><br>");
         }
     
       }

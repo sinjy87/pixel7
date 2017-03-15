@@ -16,7 +16,7 @@
 <P>  <a href="./cal/create">일정등록</a> </P>
 
 <hr>
-<c:import url="/cal/calendar_home"></c:import>
+<c:import url="/cal/notice_home"></c:import>
 
 
 </body>
