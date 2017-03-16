@@ -7,6 +7,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
+
+<script type="text/javascript">
+
+function qna_read(qna_num){
+	
+	var url= "./read?qna_num="+qna_num;
+	url += "&col=${col}";
+	url += "&word=${word}";
+	url += "&nowPage=${nowPage}";
+	
+	location.href= url;
+
+}
+
+
+</script>
+
 </head>
 <body>
 
@@ -30,7 +47,7 @@
 				<c:forEach items="${list}" var="dto">
 					<tr>
 						<td>${dto.qna_num}</td>
-						<td><a href="./read?qna_num=${dto.qna_num}">${dto.qna_title}</a></td>
+						<td><a href="javascript:qna_read('${dto.qna_num}')">${dto.qna_title}</a></td>
 						<td>${dto.id}</td>
 						<td>${fn:substring(dto.qna_date,0,10)}</td>
 						<td>${dto.qna_check}</td>
