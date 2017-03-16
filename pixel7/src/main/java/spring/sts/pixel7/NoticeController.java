@@ -26,6 +26,13 @@ public class NoticeController {
   @Autowired
   NoticeDAO dao;
   
+  
+  @RequestMapping("pop")
+  public String pop(){
+	
+	  return "/notice/notice";
+	}
+  
   @RequestMapping("/cal/read")
   public String read(int notice_no, String col, String word, Model model,HttpServletRequest request  ) throws Exception{
 	  dao.upViewcnt(notice_no);
@@ -84,7 +91,7 @@ public class NoticeController {
   public String list(Model model) throws Exception {
   
 	  Map map = new HashMap();
-	  map.put("col", "");
+	    map.put("col", "");
 		map.put("word", "");
 		map.put("sno", 1);
 		map.put("eno", 6);
@@ -286,7 +293,7 @@ public class NoticeController {
    * @return
    * @throws Exception
    */
-  @RequestMapping(value = "/cal/calendar", method = RequestMethod.GET)
+  @RequestMapping(value = "/cal/notice", method = RequestMethod.GET)
   public ModelAndView calendar(HttpServletRequest request) throws Exception{
     ModelAndView mav = new ModelAndView();
     mav.setViewName("/notice/notice"); // notice.jsp

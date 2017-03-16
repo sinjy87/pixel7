@@ -4,9 +4,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
 <link href="${pageContext.request.contextPath }/css/style.css" rel="stylesheet" type="text/css">
 </head>
-<body>
+
+<body onLoad="closeWin('5000')">
+이창은 15초후 자동으로 창이 닫힘니다.<br>
 <table border="0" cellpadding="0" cellspacing="0" width="90%" height="70%" align='center' 
        style="margin-top: 10px;padding-top: 10px;padding-bottom: 10px">
   <tr>
@@ -37,6 +40,9 @@
   <div style="text-align: center">
   <input type='button' value='등록' onclick="location.href='./create'">
   <input type='button' value='목록' onclick="location.href='./list'">
+  
+
+	
   </div>
 </body>
 </html>

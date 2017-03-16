@@ -4,6 +4,15 @@
 <html>
 <head>
 	<title>Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<script type="text/javascript">
+
+window.onload =function () {
+   window.open("pop",  "popupNo1", "width=500, height=500");
+}
+
+
+</script>
 </head>
 <body style="padding-top: 20px;text-align: center">
 
