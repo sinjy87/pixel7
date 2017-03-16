@@ -142,6 +142,19 @@ public class QnaController {
 
 	}
 
+	@RequestMapping("/qna/delete")
+	public String delete(int qna_num, String oldfilename, HttpServletRequest request) throws Exception{
+		
+		String basePath = request.getRealPath("/qna/storage");
+		
+		if(dao.delete(qna_num)){
+			Utility.deleteFile(basePath, oldfilename);
+			return "redirect:./list";
+		}
+		else{
+			return "error";
+		}
+	}
 	
 
 }

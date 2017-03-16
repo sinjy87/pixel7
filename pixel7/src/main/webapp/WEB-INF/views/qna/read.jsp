@@ -19,6 +19,17 @@ function qna_update(){
 	location.href=url;
 }
 
+
+function qna_delete(){
+	var url = "./delete?qna_num=${dto.qna_num}";
+	url +="&col=${param.col}";
+	url +="&word=${param.col}";
+	url +="&nowPage=${param.nowPage}";
+	url +="&oldfilename=${dto.qna_filename}";
+	
+	location.href=url;
+}
+
 </script>
 
 
@@ -45,7 +56,7 @@ function qna_update(){
 
 <input type="button" value="목록" onclick="location.href='./list'">
 <input type="button" value="수정" onclick="qna_update()">
-<input type="button" value="삭제" onclick="location.href='./delete'">
+<input type="button" value="삭제" onclick="qna_delete()">
 
 
 

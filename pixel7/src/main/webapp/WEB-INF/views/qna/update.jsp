@@ -29,11 +29,13 @@
 			<td><input type="file" name="qna_MF">${dto.qna_filename}</td>
 		</tr>
 	
-	
+		
+		
 	
 	
 	</table>
-	
+	<input type="hidden" name="qna_num" value="${dto.qna_num}">
+	<input type="hidden" name="oldfilename" value="${dto.qna_filename}">
 	<input type="submit" value="등록">
 	<input type="button" value="목록" onclick="location.href='./list'">
 	
