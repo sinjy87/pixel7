@@ -35,6 +35,9 @@
     <bean id ="mdao"
     class="spring.model.member.MemberDAO"
     p:mybatis-ref="sqlSession"/>
+    <bean id ="msdao"
+    class="spring.model.message.MessageDAO"
+    p:mybatis-ref="sqlSession"/>
     
 </beans>   
 		

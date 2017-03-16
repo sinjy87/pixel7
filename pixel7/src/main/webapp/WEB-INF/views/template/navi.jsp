@@ -29,7 +29,7 @@
 		<!-- Avatar image in top left corner -->
 		<img src="/w3images/avatar_smoke.jpg" style="width: 100%"> <a
 			class="w3-bar-item w3-button w3-center w3-padding-large w3-black"
-			href="#"> <i class="fa fa-home w3-xxlarge"></i>
+			href="#myNavbar"> <i class="fa fa-home w3-xxlarge"></i>
 			<p>HOME</p>
 		</a> <a
 			class="w3-bar-item w3-button w3-center w3-padding-large w3-hover-black"
@@ -59,20 +59,34 @@
 		</a> <a
 			class="w3-bar-item w3-button w3-center w3-padding-large w3-hover-black"
 			href="${pageContext.request.contextPath }/member/delete"> <i
-			 class="fa fa-envelope w3-xxlarge"></i>
+			class="fa fa-envelope w3-xxlarge"></i>
 			<p>delete</p>
 		</a> <a
 			class="w3-bar-item w3-button w3-center w3-padding-large w3-hover-black"
-			href="${pageContext.request.contextPath }/member/list"> <i class="fa fa-envelope w3-xxlarge"></i>
+			href="${pageContext.request.contextPath }/member/list"> <i
+			class="fa fa-envelope w3-xxlarge"></i>
 			<p>list</p>
 		</a><a
 			class="w3-bar-item w3-button w3-center w3-padding-large w3-hover-black"
-			href="${pageContext.request.contextPath }/member/list?col=grade&word=admin"> <i class="fa fa-envelope w3-xxlarge"></i>
+			href="${pageContext.request.contextPath }/member/list?col=grade&word=admin">
+			<i class="fa fa-envelope w3-xxlarge"></i>
 			<p>adminlist</p>
+		</a> <a
+			class="w3-bar-item w3-button w3-center w3-padding-large w3-hover-black"
+			href="javascript:messagelist()"> <i
+			class="fa fa-envelope w3-xxlarge"></i>
+			<p>message-list</p>
 		</a>
 	</nav>
 
 
+	<script type="text/javascript">
+		function messagelist() {
+			var url = "../message/list";
+			var wr = window.open(url, "쪽지", "width=500, height=500");
+			wr.moveTo((window.screen.width - 500) / 2, (window.screen.height - 500) / 2)
+		}
+	</script>
 	<!-- Navbar on small screens (Hidden on medium and large screens) -->
 	<div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
 		<div

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="message">
+
+	<select id="total" parameterType="Map" resultType="int">
+		select count(*) from message
+		<where>
+			<if test="col==''">id like '%'||#{id}||'%' or message_id like
+				'%'||#{word}||'%'  </if>
+			<if test="col=='id'">id like '%'||#{id}||'%' and id like '%'||#{word}||'%'
+			</if>
+			<if test="col=='message_id'">message_id like '%'||#{id}||'%'and message_id like
+				'%'||#{word}||'%' </if>
+			<if test="col=='content'">message_content like '%'||#{word}||'%' and (id like
+				'%'||#{id}||'%' or message_id like '%'||#{id}||'%' )  </if>
+		</where>
+
+	</select>
+
+	<delete id="delete" parameterType="int">
+		delete from message
+		where
+		message_num
+		=#{message_num}
+	</delete>
+
+	<select id="list" parameterType="Map" resultType="MessageDTO">
+		SELECT message_num, id, message_date, message_content,message_id, r
+		from(
+		SELECT message_num, id, message_date, message_content,message_id,
+		rownum r
+		from(
+		SELECT message_num,
+		id,message_date,message_content,message_id
+		FROM message
+		<where>
+			<if test="col==''">id like '%'||#{id}||'%' or message_id like
+				'%'||#{word}||'%'  </if>
+			<if test="col=='id'">id like '%'||#{id}||'%' and id like '%'||#{word}||'%'
+			</if>
+			<if test="col=='message_id'">message_id like '%'||#{id}||'%'and message_id like
+				'%'||#{word}||'%' </if>
+			<if test="col=='content'">message_content like '%'||#{word}||'%' and (id like
+				'%'||#{id}||'%' or message_id like '%'||#{id}||'%' )  </if>
+		</where>
+		ORDER BY message_date ASC
+		)
+		)<![CDATA[where r>=#{sno} and r<=#{eno}  ]]>
+
+	</select>
+
+
+	<select id="read" parameterType="int" resultType="MessageDTO">
+		SELECT * FROM
+		message
+		where message_num= #{message_num}
+	</select>
+
+	<insert id="create" parameterType="MessageDTO">
+		INSERT INTO
+		message(message_num, id,message_date,message_content, message_id)
+		VALUES((SELECT NVL(MAX(message_num), 0)+1 as message_num FROM
+		message),#{id},sysdate,#{message_content},#{message_id})
+	</insert>
+
+</mapper>

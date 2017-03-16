@@ -6,7 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="member">
 	<select id="grade" parameterType="String" resultType="String">
-		select grade from member
+		select
+		grade from member
 		where id=#{id}
 	</select>
 	<select id="statDate" parameterType="Map" resultType="MemberDTO">
@@ -47,8 +48,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="total" parameterType="Map" resultType="int">
 		select count(*) from member
 		<where>
-			<if test="col=='email'">email like '%'||?||'%'</if>
-			<if test="col=='id'">id like '%'||?||'%'</if>
+			<if test="col==''">grade != 'admin'</if>
+			<if test="col=='email'">email like '%'||#{word}||'%' and grade != 'admin'</if>
+			<if test="col=='id'">id like '%'||#{word}||'%' and grade != 'admin'</if>
+			<if test="col=='grade'">grade like '%'||#{word}||'%'</if>
 		</where>
 
 	</select>
@@ -70,7 +73,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		photo,profile, grade
 		FROM member
 		<where>
-		<if test ="col==''">grade != 'admin'</if>
+			<if test="col==''">grade != 'admin'</if>
 			<if test="col=='email'">email like '%'||#{word}||'%' and grade != 'admin'</if>
 			<if test="col=='id'">id like '%'||#{word}||'%' and grade != 'admin'</if>
 			<if test="col=='grade'">grade like '%'||#{word}||'%'</if>
@@ -96,7 +99,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 	<select id="read" parameterType="String" resultType="MemberDTO">
-		SELECT * FROM
+		SELECT *
+		FROM
 		member where id= #{id}
 	</select>
 
