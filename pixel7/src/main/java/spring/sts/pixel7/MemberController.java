@@ -40,8 +40,15 @@ import spring.utility.pixel7.Utility;
 public class MemberController {
 	@Autowired
 	private MemberDAO dao;
-	
-	
+
+	/** 통계 */
+	@RequestMapping("member/stat")
+	public String stat(Model model) {
+		Map map = new HashMap();
+		List list = (List) dao.statDate(map);
+		// model.addAttribute("list", list);
+		return "member/stat";
+	}
 
 	/** 로그아웃 */
 	@RequestMapping("member/logout")
@@ -52,13 +59,20 @@ public class MemberController {
 
 	/** 로그인 */
 	@RequestMapping(value = "member/login", method = RequestMethod.POST)
-	public String login(String id, String password, HttpSession session) {
-		if (dao.passwdCheck(id, password)) {
-			session.setAttribute("id", id);
-			session.setAttribute("grade", dao.getGrade(id));
-			return "redirect:../";
+	public String login(String id, String password, HttpSession session, Model model) {
+		String seceder = dao.getGrade(id);
+		if (seceder.equals("seceder")) {
+			String sts = "이미 탈퇴한 회원입니다.";
+			model.addAttribute("sts",sts);
+			return "/member/seceder";
 		} else {
-			return "error";
+			if (dao.passwdCheck(id, password)) {
+				session.setAttribute("id", id);
+				session.setAttribute("grade", dao.getGrade(id));
+				return "redirect:../";
+			} else {
+				return "error";
+			}
 		}
 	}
 
@@ -75,7 +89,7 @@ public class MemberController {
 		String word = Utility.checkNull(request.getParameter("word"));
 		System.out.println(col);
 		if (col.equals("total")) {
-			
+
 			word = "";
 		}
 
@@ -107,9 +121,24 @@ public class MemberController {
 
 	/** 회원정보 */
 	@RequestMapping("/member/read")
-	public String read(Model model,HttpSession session) {
-		model.addAttribute("dto", dao.read(session.getAttribute("id")));
-		return "/member/read";
+	public String read(Model model, HttpSession session, HttpServletRequest request) {
+
+		String id = Utility.checkNull(request.getParameter("id"));
+		if (id == "") {
+			model.addAttribute("dto", dao.read(session.getAttribute("id")));
+			return "/member/read";
+		} else {
+
+			String seceder = dao.getGrade(id);
+			if (seceder.equals("seceder")) {
+				String sts = "이미 탈퇴한 회원입니다.";
+				model.addAttribute("sts",sts);
+				return "/member/seceder";
+			} else {
+				model.addAttribute("dto", dao.read(session.getAttribute("id")));
+				return "/member/read";
+			}
+		}
 	}
 
 	/** * 회원탈퇴POST */
@@ -145,9 +174,21 @@ public class MemberController {
 
 	/** * 회원탈퇴GET */
 	@RequestMapping(value = "/member/delete", method = RequestMethod.GET)
-	public String delete() {
+	public String delete(Model model, HttpServletRequest request) {
+		String id = Utility.checkNull(request.getParameter("id"));
+		if (id == "") {
+			return "/member/delete";
+		} else {
 
-		return "/member/delete";
+			String seceder = dao.getGrade(id);
+			if (seceder.equals("seceder")) {
+				String sts = "이미 탈퇴한 회원입니다.";
+				model.addAttribute("sts",sts);
+				return "/member/seceder";
+			} else {
+				return "/member/delete";
+			}
+		}
 	}
 
 	/** * 회원수정POST */
@@ -198,53 +239,86 @@ public class MemberController {
 
 	/** * 회원수정GET */
 	@RequestMapping(value = "/member/update", method = RequestMethod.GET)
-	public String update(HttpSession session, Model model) {
+	public String update(HttpSession session, Model model, HttpServletRequest request) {
 		String id = (String) session.getAttribute("id");
+		String rqid = Utility.checkNull(request.getParameter("id"));
+		if (rqid == "") {
+			model.addAttribute("dto", dao.read(id));
+			return "/member/update";
+		} else {
 
-		model.addAttribute("dto", dao.read(id));
-		return "/member/update";
+			String seceder = dao.getGrade(rqid);
+			if (seceder.equals("seceder")) {
+				String sts = "이미 탈퇴한 회원입니다.";
+				model.addAttribute("sts",sts);
+				return "/member/seceder";
+			} else {
+				model.addAttribute("dto", dao.read(id));
+				return "/member/update";
+			}
+		}
 	}
 
 	/** * 회원가입POST */
 	@RequestMapping(value = "/member/create", method = RequestMethod.POST)
-	public String create(MemberDTO dto, HttpServletRequest request) {
-
-		String basePath = request.getRealPath("/member/stroage"); // 저장경로
-		int bgphotosize = (int) dto.getBgphotoMF().getSize(); // 배경사진사이즈
-		int photosize = (int) dto.getPhotoMF().getSize();// 사진사이즈
-		String bgphoto = "member_bgphoto.jpg";// 배경사진이름
-		String photo = "member_photo.jpg";// 사진이름
-
-		if (bgphotosize > 0) {
-			bgphoto = Utility.saveFile(dto.getBgphotoMF(), basePath);
-		}
-		if (photosize > 0) {
-			photo = Utility.saveFile(dto.getPhotoMF(), basePath);
-		}
-
-		dto.setBgphoto(bgphoto);
-		dto.setPhoto(photo);
-
-		if (dao.create(dto)) {
-			return "redirect:../";
+	public String create(MemberDTO dto, HttpServletRequest request, Model model) {
+		String seceder = dao.getGrade(dto.getId());
+		if (seceder.equals("seceder")) {
+			String sts = "7일 이내로 재가입이 불가합니다.";
+			model.addAttribute("sts",sts);
+			return "/member/seceder";
 		} else {
 
-			if (!(bgphoto.equals("member_bgphoto.jpg"))) {
-				Utility.deleteFile(basePath, dto.getBgphoto());
+			String basePath = request.getRealPath("/member/stroage"); // 저장경로
+			int bgphotosize = (int) dto.getBgphotoMF().getSize(); // 배경사진사이즈
+			int photosize = (int) dto.getPhotoMF().getSize();// 사진사이즈
+			String bgphoto = "member_bgphoto.jpg";// 배경사진이름
+			String photo = "member_photo.jpg";// 사진이름
+
+			if (bgphotosize > 0) {
+				bgphoto = Utility.saveFile(dto.getBgphotoMF(), basePath);
 			}
-			if (!(photo.equals("member_photo.jpg"))) {
-				Utility.deleteFile(basePath, dto.getPhoto());
+			if (photosize > 0) {
+				photo = Utility.saveFile(dto.getPhotoMF(), basePath);
 			}
 
-			return "error";
+			dto.setBgphoto(bgphoto);
+			dto.setPhoto(photo);
+
+			if (dao.create(dto)) {
+				return "redirect:../";
+			} else {
+
+				if (!(bgphoto.equals("member_bgphoto.jpg"))) {
+					Utility.deleteFile(basePath, dto.getBgphoto());
+				}
+				if (!(photo.equals("member_photo.jpg"))) {
+					Utility.deleteFile(basePath, dto.getPhoto());
+				}
+
+				return "error";
+			}
+
 		}
-
 	}
 
 	/** * 회원가입 GET */
 	@RequestMapping(value = "/member/create", method = RequestMethod.GET)
-	public String create() {
-		return "/member/create";
+	public String create(HttpServletRequest request, Model model) {
+		String id = Utility.checkNull(request.getParameter("id"));
+		if (id == "") {
+			return "/member/create";
+		} else {
+
+			String seceder = dao.getGrade(id);
+			if (seceder.equals("seceder")) {
+				String sts = "이미 탈퇴한 회원입니다.";
+				model.addAttribute("sts",sts);
+				return "/member/seceder";
+			} else {
+				return "/member/create";
+			}
+		}
 	}
 
 	/** 회원가입 동의서 */
@@ -252,4 +326,5 @@ public class MemberController {
 	public String agree() {
 		return "/member/agree";
 	}
+
 }

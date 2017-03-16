@@ -43,13 +43,19 @@
 			</TR>
 			<TR>
 				<TH>${dto.message_id }</TH>
-				<TD>${dto.message_content }</TD>
+				
+				<TD><a href="javascript:read(${dto.message_num })">${dto.message_content }</a></TD>
 				<TD>${dto.id }</TD>
 				<td><input type="button" value="전체쪽지"
 					onclick="javascript:dele()"></td>
 			</TR>
 		</TABLE>
 		<script type="text/javascript">
+			function read(num) {
+	var url ="./read";
+	url= url +"?message_num="+num;
+	location.href=url;
+			}
 			function dele() {
 				var result = confirm('쪽지를 삭제 하시겠습니까???');
 				if (result) {
@@ -65,6 +71,6 @@
 	${paging }
 
 
-	<input type="button" value="" onclick="">
+	<input type="button" value="쪽지보내기" onclick="location.href='./create'">
 </body>
 </html>

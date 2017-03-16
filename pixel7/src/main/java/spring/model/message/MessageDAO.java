@@ -77,7 +77,12 @@ public class MessageDAO implements Pixel7_MessageDAO {
 
 	@Override
 	public int total(Map map) throws Exception {
-		return mybatis.selectOne("message.total",map);
+		return mybatis.selectOne("message.total", map);
+	}
+
+	@Override
+	public String getGrade(String id) {
+		return mybatis.selectOne("message.getgrade", id);
 	}
 
 }

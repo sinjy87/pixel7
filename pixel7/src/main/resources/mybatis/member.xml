@@ -48,16 +48,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="total" parameterType="Map" resultType="int">
 		select count(*) from member
 		<where>
-			<if test="col==''">grade != 'admin'</if>
-			<if test="col=='email'">email like '%'||#{word}||'%' and grade != 'admin'</if>
-			<if test="col=='id'">id like '%'||#{word}||'%' and grade != 'admin'</if>
-			<if test="col=='grade'">grade like '%'||#{word}||'%'</if>
+			<if test="col==''">grade != 'admin' and grade !='seceder'</if>
+			<if test="col=='email'">email like '%'||#{word}||'%' and grade != 'admin' and
+				grade !='seceder'</if>
+			<if test="col=='id'">id like '%'||#{word}||'%' and grade != 'admin' and grade
+				!='seceder'</if>
+			<if test="col=='grade'">grade like '%'||#{word}||'%' and grade !='seceder'</if>
 		</where>
 
 	</select>
 
 	<delete id="delete" parameterType="String">
-		delete from member
+		update member
+		set
+		grade='seceder'
 		where id
 		=#{id}
 	</delete>
@@ -73,10 +77,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		photo,profile, grade
 		FROM member
 		<where>
-			<if test="col==''">grade != 'admin'</if>
-			<if test="col=='email'">email like '%'||#{word}||'%' and grade != 'admin'</if>
-			<if test="col=='id'">id like '%'||#{word}||'%' and grade != 'admin'</if>
-			<if test="col=='grade'">grade like '%'||#{word}||'%'</if>
+			<if test="col==''">grade != 'admin' and grade !='seceder'</if>
+			<if test="col=='email'">email like '%'||#{word}||'%' and grade != 'admin' and
+				grade !='seceder'</if>
+			<if test="col=='id'">id like '%'||#{word}||'%' and grade != 'admin' and grade
+				!='seceder'</if>
+			<if test="col=='grade'">grade like '%'||#{word}||'%' and grade !='seceder'</if>
 		</where>
 
 

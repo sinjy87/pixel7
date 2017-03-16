@@ -47,7 +47,7 @@ public class MemberDAO implements Pixel7_MemberDAO {
 	/*** 통계용 */
 	@Override
 	public Object statDate(Map map) {
-		return mybatis.selectOne("member.statDate", map);
+		return mybatis.selectList("member.statDate", map);
 	}
 
 	/** * 프로필사진이름리턴 배경사진이름리턴 */

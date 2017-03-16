@@ -47,7 +47,7 @@ public class MessageController {
 	public String list(HttpServletRequest request, HttpSession session, Model model) throws Exception {
 		String col = Utility.checkNull(request.getParameter("col"));
 		String word = Utility.checkNull(request.getParameter("word"));
-	
+
 		// 페이징관련
 		int nowPage = 1;
 		int recordPerPage = 9;
@@ -99,19 +99,29 @@ public class MessageController {
 	/** 쪽지보내기POST */
 	@RequestMapping(value = "/message/create", method = RequestMethod.POST)
 	public String create(MessageDTO dto, Model model) throws Exception {
-		String message = "전송이";
 
-		if (dao.create(dto)) {
-			model.addAttribute("message", message);
-			return "message/proc";
+		String seceder = dao.getGrade(dto.getMessage_id());
+		if (seceder.equals("seceder")) {
+			String sts = "이미 탈퇴한 회원입니다.";
+			model.addAttribute("sts", sts);
+			return "seceder";
 		} else {
-			return "error";
+
+			String message = "전송이";
+
+			if (dao.create(dto)) {
+				model.addAttribute("message", message);
+				return "message/proc";
+			} else {
+				return "error";
+			}
 		}
 	}
 
 	/** 쪽지보내기GET */
 	@RequestMapping(value = "/message/create", method = RequestMethod.GET)
 	public String create(HttpSession session, Model model) {
+
 		model.addAttribute("id", session.getAttribute("id"));
 		return "message/create";
 	}
