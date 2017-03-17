@@ -1,12 +1,16 @@
 package spring.sts.pixel7;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,13 +45,68 @@ public class MemberController {
 	@Autowired
 	private MemberDAO dao;
 
-	/** 통계 */
-	@RequestMapping("member/stat")
-	public String stat(Model model) {
+	/**
+	 * 통계
+	 * 
+	 * @throws IOException
+	 */
+	@RequestMapping("/member/stat")
+	public String stat() throws IOException {
+
+		return "/member/stat";
+	}
+
+	/** json */
+	@RequestMapping("member/stat_j")
+	public void stat_j(Model model, HttpServletResponse res, String year, String month) throws IOException {
 		Map map = new HashMap();
+		map.put("year", year);
+		map.put("month", month);
+		System.out.println(year);
+		System.out.println(month);
 		List list = (List) dao.statDate(map);
-		// model.addAttribute("list", list);
-		return "member/stat";
+		JSONArray ja = new JSONArray();
+		JSONArray atitle = new JSONArray();
+		ja.add(year + "년도 가입/탈퇴 현황");
+		MemberDTO dto2 = null;
+		int j = 1;
+
+		for (int i = 0; i < 6; i++) {
+			JSONArray adto = new JSONArray();
+
+			MemberDTO dto = null;
+			if (i < list.size()) {
+				System.out.println("size1" + list.size());
+				dto = (MemberDTO) list.get(i);
+				dto2 = dto;
+				System.out.println("size2" + list.size());
+			}
+
+			if (dto == null) {
+				int m = Integer.parseInt(dto2.getStatdate().substring(3, 5));
+				int mon =m+j;
+				if (mon < 10) {
+					adto.add("0" + mon + "월");
+				} else {
+					adto.add(mon + "월");
+				}
+				adto.add('0');
+				adto.add('0');
+				ja.add(adto);
+				j++;
+			} else {
+				dto = (MemberDTO) list.get(i);
+				adto.add(dto.getStatdate().substring(3, 5) + "월");
+				adto.add(dto.getSignup());
+				adto.add(dto.getWithdrawal());
+				ja.add(adto);
+			}
+
+		}
+		res.setContentType("text/html; charset=UTF-8");
+		PrintWriter print = res.getWriter();
+		print.print(ja);
+
 	}
 
 	/** 로그아웃 */
@@ -63,7 +122,7 @@ public class MemberController {
 		String seceder = dao.getGrade(id);
 		if (seceder.equals("seceder")) {
 			String sts = "이미 탈퇴한 회원입니다.";
-			model.addAttribute("sts",sts);
+			model.addAttribute("sts", sts);
 			return "/member/seceder";
 		} else {
 			if (dao.passwdCheck(id, password)) {
@@ -132,7 +191,7 @@ public class MemberController {
 			String seceder = dao.getGrade(id);
 			if (seceder.equals("seceder")) {
 				String sts = "이미 탈퇴한 회원입니다.";
-				model.addAttribute("sts",sts);
+				model.addAttribute("sts", sts);
 				return "/member/seceder";
 			} else {
 				model.addAttribute("dto", dao.read(session.getAttribute("id")));
@@ -183,7 +242,7 @@ public class MemberController {
 			String seceder = dao.getGrade(id);
 			if (seceder.equals("seceder")) {
 				String sts = "이미 탈퇴한 회원입니다.";
-				model.addAttribute("sts",sts);
+				model.addAttribute("sts", sts);
 				return "/member/seceder";
 			} else {
 				return "/member/delete";
@@ -250,7 +309,7 @@ public class MemberController {
 			String seceder = dao.getGrade(rqid);
 			if (seceder.equals("seceder")) {
 				String sts = "이미 탈퇴한 회원입니다.";
-				model.addAttribute("sts",sts);
+				model.addAttribute("sts", sts);
 				return "/member/seceder";
 			} else {
 				model.addAttribute("dto", dao.read(id));
@@ -265,7 +324,7 @@ public class MemberController {
 		String seceder = dao.getGrade(dto.getId());
 		if (seceder.equals("seceder")) {
 			String sts = "7일 이내로 재가입이 불가합니다.";
-			model.addAttribute("sts",sts);
+			model.addAttribute("sts", sts);
 			return "/member/seceder";
 		} else {
 
@@ -313,7 +372,7 @@ public class MemberController {
 			String seceder = dao.getGrade(id);
 			if (seceder.equals("seceder")) {
 				String sts = "이미 탈퇴한 회원입니다.";
-				model.addAttribute("sts",sts);
+				model.addAttribute("sts", sts);
 				return "/member/seceder";
 			} else {
 				return "/member/create";

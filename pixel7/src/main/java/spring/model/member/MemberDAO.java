@@ -1,12 +1,17 @@
 package spring.model.member;
 
+import java.net.Authenticator;
+import java.net.PasswordAuthentication;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import oracle.jdbc.driver.Message;
 /**
  * 
  * <pre>
@@ -36,6 +41,9 @@ public class MemberDAO implements Pixel7_MemberDAO {
 	public void setMybatis(SqlSessionTemplate mybatis) {
 		this.mybatis = mybatis;
 	}
+	
+	
+	
 	
 	/**회원등급리턴*/
 	public String getGrade(String id) {

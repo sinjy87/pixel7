@@ -40,7 +40,8 @@ public class MemberDTO {
 	/** 가입회원수 */
 	private int signup;
 	/** 탈퇴회원수 */
-	private int withdrawal;
+	private int Withdrawal;
+	
 
 	
 	
@@ -66,12 +67,12 @@ public class MemberDTO {
 
 	/** 탈퇴회원수 */
 	public int getWithdrawal() {
-		return withdrawal;
+		return Withdrawal;
 	}
 
 	/** 탈퇴회원수 */
 	public void setWithdrawal(int withdrawal) {
-		withdrawal = withdrawal;
+		Withdrawal = withdrawal;
 	}
 
 	/** 배경사진MF */

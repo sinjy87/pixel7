@@ -45,4 +45,8 @@
         <put-attribute name="title" value="로그인" ></put-attribute> 
         <put-attribute name="body" value="/WEB-INF/views/member/login.jsp" /> 
     </definition>     
+    <definition name="/member/stat" extends="main"> 
+        <put-attribute name="title" value="로그인" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/member/stat.jsp" /> 
+    </definition>     
  </tiles-definitions>  

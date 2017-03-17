@@ -13,6 +13,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="statDate" parameterType="Map" resultType="MemberDTO">
 		SELECT *
 		FROM member_stat
+		
+		<where>
+		<if test="month=='frist'">
+		(statdate like '%'||#{year}||'%' and statdate like '%'||'01'||'%') or
+		(statdate like '%'||#{year}||'%' and statdate like '%'||'02'||'%') or
+		(statdate like '%'||#{year}||'%' and statdate like '%'||'03'||'%') or
+		(statdate like '%'||#{year}||'%' and statdate like '%'||'04'||'%') or
+		(statdate like '%'||#{year}||'%' and statdate like '%'||'05'||'%') or
+		(statdate like '%'||#{year}||'%' and statdate like '%'||'06'||'%') 
+		</if>
+		<if test="month=='second'">
+		(statdate like '%'||#{year}||'%' and statdate like '%'||'07'||'%') or
+		(statdate like '%'||#{year}||'%' and statdate like '%'||'08'||'%') or
+		(statdate like '%'||#{year}||'%' and statdate like '%'||'09'||'%') or
+		(statdate like '%'||#{year}||'%' and statdate like '%'||'10'||'%') or
+		(statdate like '%'||#{year}||'%' and statdate like '%'||'11'||'%') or
+		(statdate like '%'||#{year}||'%' and statdate like '%'||'12'||'%') 
+		</if>
+		 </where>
+		
 		ORDER BY statdate ASC
 	</select>
 
