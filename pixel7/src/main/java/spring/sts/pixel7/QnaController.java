@@ -34,8 +34,11 @@ public class QnaController {
 		return "/qna/login";
 	}
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(String id, HttpSession session){
+	public String login(String id, String grade, HttpSession session){
 		session.setAttribute("id", id);
+		session.setAttribute("grade", grade);
+		System.out.println("id : " + id);
+		System.out.println("grade : " + grade);
 		return "redirect:./";
 	}
 	
