@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,9 +16,9 @@ height: 500px;
 function update() {
 	var url = "update"
 	url += "?img_num=${dto.img_num}";
-	url += "&img_photo=${dto.img_photo}";
 	location.href = url;
 }
+
 
 </script>
 </head>
@@ -37,13 +38,24 @@ function update() {
 
 		<tr>
 			<td>Category: ${dto.img_category }	</td>
+			<td>id=${dto.id }</td>
+			<td>sessionid=${sessionScope.id }</td>
 		</tr>
 		
+		<c:if test = "${ sessionScope.id == dto.id}">
 		<tr>
 		<td>
 		<input type="button" value="update" onclick="update()"> 
 		<td>
-		<tr>
+		</c:if>
+		
+<%-- 		<c:if test="${not empty sessionScope.id== dto.id }"> --%>
+<!-- 		<tr> -->
+<!-- 		<td> -->
+<!-- 		<input type="button" value="delete">  -->
+<!-- 		<td> -->
+<!-- 		<tr> -->
+<%-- 		</c:if> --%>
 
 	</table>
 

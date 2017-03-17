@@ -34,6 +34,7 @@ height:  600px;
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
+
 </script>
 
 </head>
@@ -59,8 +60,8 @@ height:  600px;
 			<th>Category</th>
 			<td>
 <!-- 			<button name="img_category" value="human">Human</button> -->
-<!-- 			<input type="button" value="Human" name="img_category">  -->
-							<TD><input type="text" name="img_category"/></TD>
+			<input type="button" value = "Human" > 
+							<TD><input id="Human" type="text" name="img_category"/></TD>
 			
 			</td>  
 			</tr>

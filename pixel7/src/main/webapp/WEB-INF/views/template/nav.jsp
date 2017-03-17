@@ -27,9 +27,9 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 <nav class="w3-sidenav w3-center w3-small w3-hide-small">	
   <!-- Avatar image in top left corner -->
   
-
-<%--   <img id="img" src="${pageContext.request.contextPath }/images/rails.jpg" style="width:100%"> --%>
-  
+<%-- <c:if test="${not empty sessionScope.id }"> --%>
+<!--   <img id="img"  src="" style="width:100%"> -->
+<%--   </c:if> --%>
   
   <a class="w3-padding-large w3-black" href="${pageContext.request.contextPath }/main">
     <i class="fa fa-home w3-xxlarge"></i>
@@ -41,7 +41,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
     <p>Writing</p>
   </a>
   <a class="w3-padding-large w3-hover-black" href="${pageContext.request.contextPath }/img_item/list">
-    <i class="fa fa-pencil" style="font-size:36px"></i>
+    <i class="fa fa-folder-open-o" style="font-size:36px"></i>
     <p>	Marketplace</p>
   </a>
   <a class="w3-padding-large w3-hover-black" href="${pageContext.request.contextPath }/img_item/login">
