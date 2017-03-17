@@ -1,5 +1,6 @@
 package spring.model.reply;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,18 +37,9 @@ public class ReplyMgr {
 	 * ´ñ±Û ±Û¾²±â
 	 */
 	public boolean create(ReplyDTO dto){
-		boolean flag = false;
+	
 		
-		try{
-			flag = dao.create(dto);
-			
-		} catch (Exception e){
-			System.out.println(e);
-		}finally{
-			
-		}
-		
-		return flag;
+		return dao.create(dto);
 	}
 	
 	/**
@@ -116,5 +108,39 @@ public class ReplyMgr {
 		return flag;
 		
 	}
+	
+	/**
+	 * ´ñ±Û ¸®½ºÆ®
+	 */
+	public List<ReplyDTO> getList(Map map){
+		
+		List<ReplyDTO> v = null;
+		try{
+			v = dao.list(map);
+		}catch(Exception e){
+			System.out.println(e);
+		}finally{
+		}
+		
+		return v;
+	}
+	
+	/**
+	 * ´ñ±Û ÃÑ ¼ö
+	 */
+	public int getTotal(Map map){
+		int total = 0;
+		
+		try {
+			total = dao.total(map);
+		} catch (Exception e) {
+			System.out.println(e);
+		}finally{
+		}
+		
+		return total;
+	}
+	
+	
 
 }

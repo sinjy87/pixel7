@@ -20,7 +20,7 @@
 	<table>
 		<tr>
 			<th>ID</th>
-			<td>${dto.id}</td>
+			<td>${id}</td>
 		</tr>
 		<tr>
 			<th>내용</th>

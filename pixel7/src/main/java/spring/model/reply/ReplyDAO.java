@@ -1,5 +1,6 @@
 package spring.model.reply;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +25,6 @@ public class ReplyDAO implements Pixel7_ReplyDAO {
 	@Override
 	public boolean create(Object dto) {
 		boolean flag = false;
-		
 		int cnt = mybatis.insert("reply_create.create",dto);
 		if(cnt > 0)flag = true;
 		
@@ -65,10 +65,13 @@ public class ReplyDAO implements Pixel7_ReplyDAO {
 		return flag;
 	}
 
+	/**
+	 * ´ñ±Û ¸®½ºÆ®
+	 */
 	@Override
 	public List list(Map map) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return mybatis.selectList("reply_create.list",map);
 	}
 
 	/**
@@ -88,10 +91,13 @@ public class ReplyDAO implements Pixel7_ReplyDAO {
 		return mybatis.selectOne("reply_create.readReply",reply_num);
 	}
 
+	/**
+	 * ´ñ±Û ÃÑ ¼ö
+	 */
 	@Override
 	public int total(Map map) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return mybatis.selectOne("reply_create.total", map);
 	}
 
 

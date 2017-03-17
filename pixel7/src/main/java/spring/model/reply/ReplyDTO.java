@@ -3,6 +3,7 @@ package spring.model.reply;
 public class ReplyDTO {
 	private int reply_num; //댓글 번호
 	private String id;     //회원ID (맴버테이블 참조값)
+	private int img_num;   //이미지 번호
 	private String reply_content; //댓글 내용
 	private int  reply_like; //댓글 좋아요
 	private int  reply_hate; //댓글 싫어요
@@ -11,6 +12,13 @@ public class ReplyDTO {
 	private int  reply_indent; //답변여부,답변의 깊이
 	private int  reply_ansnum; //답변 순서
 	private String reply_date; // 등록 날짜
+	
+	public int getImg_num() {
+		return img_num;
+	}
+	public void setImg_num(int img_num) {
+		this.img_num = img_num;
+	}
 	public int getReply_num() {
 		return reply_num;
 	}

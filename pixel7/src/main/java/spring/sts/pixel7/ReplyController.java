@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import spring.model.reply.ReplyDAO;
 import spring.model.reply.ReplyDTO;
 import spring.model.reply.ReplyMgr;
+import spring.utility.pixel7.Utility;
 
 /**
  * 
@@ -45,26 +47,37 @@ public class ReplyController {
 	@Autowired
 	private ReplyMgr mgr;
 	
-	/**
-	 * ´ñ±Û »ý¼º GET
-	 */
-	@RequestMapping(value="/create",method=RequestMethod.GET)
-	public String create(){
-		return "/reply/create";
-	}
-	/**
-	 * ´ñ±Û »ý¼º POST
-	 */
-	@RequestMapping(value="/create",method=RequestMethod.POST)
-	public String create(ReplyDTO dto,HttpServletRequest request){
-		String upDir = request.getRealPath("/storage");
+	@RequestMapping(value="/reply/login",method=RequestMethod.POST)
+	public String login(String id,HttpSession session){
+		session.setAttribute("id", id);
 		
-		boolean flag = mgr.create(dto);
+		return "redirect:./list";
+	}
+	
+	@RequestMapping(value="/reply/login",method=RequestMethod.GET)
+	public String login(){
+		return "/reply/login";
+	}
+
+	@RequestMapping(value="/reply/create")
+	public String create(ReplyDTO dto,Model model,HttpSession session,String img_num){
+
+		dto.setId((String)session.getAttribute("id"));
+		dto.setImg_num(Integer.parseInt(img_num));
+
+		boolean flag = rdao.create(dto);
+		
 		
 		if(flag){
-			return "redirect:/list";
+//			model.addAttribute("id", (String)session.getAttribute("id"));
+//			model.addAttribute("img_num",dto.getImg_num());
+//			model.addAttribute("col",col);
+//			model.addAttribute("word",word);
+//			model.addAttribute("nowPage",nowPage);
+			
+			return "redirect:./list";
 		}else{
-			return "redirect:/list";
+			return "error";
 		}
 		
 	}
@@ -74,38 +87,46 @@ public class ReplyController {
 	 */
 	@RequestMapping("/read")
 	public String read(int reply_num,Model model,String id,String reply_content,
-			HttpServletRequest request){
+			HttpServletRequest request) throws Exception{
 		
-		ReplyDTO dto = mgr.read(reply_num);
+		ReplyDTO dto = (ReplyDTO) rdao.read(reply_num);
 		String content = dto.getReply_content().replaceAll("\r\n", "<br>");
 		dto.setReply_content(reply_content);
 		model.addAttribute("dto",dto);
 		
 		
-		return "/reply/read";
+		return "/reply/list";
 	}
 	
-	/**
-	 * ´ñ±Û ¼öÁ¤POST
-	 */
-	@RequestMapping(value="/update",method=RequestMethod.POST)
-	public String update(ReplyDTO dto,
-			HttpServletRequest request,Model model){
-			
-			return "redirect:./list";		
-		
-	}
 	
 	/**
-	 * ´ñ±Û ¼öÁ¤ GET
+	 * ´ñ±Û ¼öÁ¤
 	 */
-	@RequestMapping(value="/update",method=RequestMethod.GET)
-	public String update(int reply_num,Model model){
-		ReplyDTO dto = mgr.read(reply_num);
+	@RequestMapping(value="/reply/update",method=RequestMethod.GET)
+	public String update(int reply_num,Model model,String reply_content
+			,String col, String nowPage,String word) throws Exception{
+		ReplyDTO dto = (ReplyDTO) rdao.read(reply_num);
 		
 		model.addAttribute("dto",dto);
 		
-		return "/reply/update";
+		return "redirect:./list";
+	}
+	
+	@RequestMapping(value="/reply/update",method=RequestMethod.POST)
+	public String update(ReplyDTO dto ,int reply_num,Model model,String reply_content
+			,String col, String nowPage,String word) throws Exception{
+
+		if(rdao.update(dto)){
+			model.addAttribute("col",col);
+			model.addAttribute("nowPage",nowPage);
+			model.addAttribute("word",word);
+		return "redirect:./list";
+		
+		}else{
+			return "error";
+					
+		}
+			
 	}
 	
 	/**
@@ -124,37 +145,70 @@ public class ReplyController {
 	 * ´ñ±Û¿¡ ´ä±Û »ý¼ºGET
 	 */
 	@RequestMapping(value="/rcreate",method=RequestMethod.GET)
-	public String rcreate(int reply_num,Model model){
+	public String rcreate(int reply_num,Model model) throws Exception{
 		
-		ReplyDTO dto = mgr.read(reply_num);
+		ReplyDTO dto = (ReplyDTO) rdao.read(reply_num);
 		
 		model.addAttribute("dto",dto);
 		
-		return "/board/reply";
+		return "/reply/list";
+	}
+	
+
+	
+	/**
+	 * ´ñ±Û »èÁ¦
+	 */
+	@RequestMapping(value="/reply/delete")
+	public String delete(int reply_num,Model model,String col, String nowPage,String word){
+				if(mgr.delete(reply_num)){
+					return "redirect:/reply/list";
+				}else{
+					return "error";
+				}
 	}
 	
 	/**
-	 * ´ñ±Û »èÁ¦POST
+	 * ´ñ±Û ¸®½ºÆ®
+	 * @throws Exception 
 	 */
-	@RequestMapping(value="/delete",method=RequestMethod.POST)
-	public String delete(int reply_num,
-			HttpServletRequest request
-			,Model model){
-				
-		return "redirect:./list";
-	}
-	
-	/**
-	 * ´ñ±Û »èÁ¦ GET
-	 */
-	@RequestMapping(value="/delete",method=RequestMethod.GET)
-	public String delete(int reply_num,Model model){
-		boolean flag= mgr.delete(reply_num);
-				
-		model.addAttribute("flag",flag);
+	@RequestMapping("/reply/list")
+	public String list(HttpServletRequest request) throws Exception{
 		
+		String col = Utility.checkNull(request.getParameter("col"));
+		String word = Utility.checkNull(request.getParameter("word"));
 		
-		return "/reply/delete";
+		if(col.equals("total")){
+			word = "";
+		}
+		//ÆäÀÌÂ¡
+		int nowPage = 1;
+		if(request.getParameter("nowPage") != null){
+			nowPage = Integer.parseInt(request.getParameter("nowPage"));
+		}
+		int recordPerPage = 5;
+		int sno = ((nowPage - 1) * recordPerPage) + 1;
+		int eno = nowPage * recordPerPage;
+		
+		Map map = new HashMap();
+		map.put("col", col);
+		map.put("word", word);
+		map.put("sno", sno);
+		map.put("eno", eno);		
+		
+		int total = rdao.total(map);
+		
+		String paging = Utility.paging3(total, nowPage, recordPerPage, col, word);
+		
+		int totalRecode = rdao.total(map);
+		List<ReplyDTO> list = rdao.list(map);
+		
+		request.setAttribute("list", list);
+		request.setAttribute("col", col);
+		request.setAttribute("word", word);
+		request.setAttribute("nowPage", nowPage);
+		request.setAttribute("paging", paging);
+		
+		return "/reply/list";
 	}
-	
 }

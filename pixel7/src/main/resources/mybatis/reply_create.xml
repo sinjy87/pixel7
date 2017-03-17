@@ -8,10 +8,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 댓글 생성 -->
 <insert id="create" parameterType="ReplyDTO">
-insert into reply_create(reply_num, id, reply_content, reply_grpno,
+insert into reply_create(reply_num, id,img_num, reply_content, reply_grpno,
 reply_date)
-values((select nvl (max(reply_num),0)+1 from reply_create),
-#{id},#{reply_content},
+values((select nvl (max(reply_num),0)+1 from reply_create),#{id},
+#{img_num},#{reply_content},
 (select nvl (max(reply_grpno),0)+1 from reply_create),sysdate)
 </insert>
 
@@ -24,19 +24,60 @@ where reply_num= #{reply_num}
 
 <!-- 댓글에 답글 생성 -->
 <insert id="rcreate" parameterType="ReplyDTO">
-insert into reply_create(reply_num, id, reply_content, reply_grpno,
+insert into reply_create(reply_num, id, img_num ,reply_content, reply_grpno,
 reply_indent,reply_ansnum,reply_date)
-values((select nvl (max(reply_num),0)+1 from reply_create),#{id},#{reply_content}
-,#{reply_grpno},(select nvl (max(reply_indent),0)+1 from reply_create),
+values((select nvl (max(reply_num),0)+1 from reply_create),#{id},#{img_num}
+,#{reply_content},#{reply_grpno},(select nvl (max(reply_indent),0)+1 from reply_create),
 (select nvl (max(reply_ansnum),0)+1 from reply_create),sysdate)
 </insert>
 
 <!-- 댓글 보기 -->
 <select id="readReply" resultType="ReplyDTO" parameterType="int">
-select reply_num, id, reply_content, reply_grpno,
+select reply_num, id,img_num, reply_content, reply_grpno,
 reply_indent,reply_ansnum,reply_date
 from reply_create
 where reply_num = #{reply_num}
+</select>
+
+<!-- 댓글 리스트 -->
+<select id="list" resultType="ReplyDTO" parameterType="Map">
+select reply_num, id,img_num, reply_content, reply_grpno, reply_indent,reply_ansnum,
+reply_date, r
+from( select reply_num, id,img_num ,reply_content, reply_grpno, reply_indent,reply_ansnum,
+reply_date, rownum as r
+from(select reply_num, id,img_num ,reply_content, reply_grpno, reply_indent,reply_ansnum,
+reply_date
+
+from reply_create
+	<where>
+	<choose>
+	<when test="col == 'id'">
+	id like '%'||#{word}||'%'
+	</when>
+	<when test="col == 'reply_content'">
+	reply_content like '%'||#{word}||'%'
+	</when>
+	</choose>
+	</where>
+	order by reply_grpno desc, reply_ansnum asc
+	)
+)
+<![CDATA[where r>= #{sno} and r<= #{eno}]]>
+</select>
+
+<!-- 댓글 총합 -->
+<select id="total" parameterType="Map" resultType="int">
+	select count(*) from reply_create
+	<where>
+	<choose>
+	<when test="col == 'id'">
+	id like '%'||#{word}||'%'
+	</when>
+	<when test="col == reply_content">
+	reply_content like '%'||#{word}||'%'
+	</when>
+	</choose>
+	</where>
 </select>
 
 <!-- 답글에 답글 생성 -->
