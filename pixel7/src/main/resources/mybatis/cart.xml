@@ -5,38 +5,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="cart"> 
 
-<!-- 	<delete id="delete" parameterType="int"> -->
-<!-- 		delete from cart -->
-<!-- 		where cart_num = #{cart_num} -->
-<!-- 	</delete> -->
+	<delete id="delete" parameterType="int">
+		delete from cart
+		where cart_num = #{cart_num}
+	</delete>
 	
 <!-- 	<update id="update" parameterType="CartDTO"> -->
 <!-- 	 update없음. --> 
 <!-- 	</update> -->
 
-<!-- 	<insert id="create" parameterType="CartDTO"> -->
-<!-- 		insert into cart (cart_num, img_num, id) -->
-<!-- 		values ((select nvl(max(cart_num),0)+1 from cart), #{img_num}, #{id}); -->
-<!-- 	</insert> -->
+	<insert id="create" parameterType="CartDTO">
+		insert into cart (cart_num, img_num, id)
+		values ((select nvl(max(cart_num),0)+1 from cart), #{img_num}, #{id})
+	</insert>
 
-<!-- 	<select id="read" parameterType="int" resultType="CartDTO"> -->
-<!-- 		select cart_num, img_num, id from cart -->
-<!-- 		where cart_num=#{cart_num} -->
-<!-- 	</select> -->
+	<select id="read" parameterType="int" resultType="CartDTO">
+		select cart_num, img_num, id from cart
+		where cart_num=#{cart_num}
+	</select>
 
-<!-- 	<select id="total" parameterType="Map" resultType="int"> -->
-<!-- 		select count(*) from cart -->
-<!-- 	</select> -->
+	<select id="total" parameterType="Map" resultType="int">
+		select count(*) from cart
+	</select>
 
-<!-- 	<select id="list" parameterType="Map" resultType="CartDTO"> -->
-<!-- 		select cart_num, img_num, id, r -->
-<!-- 		from( -->
-<!-- 			select cart_num, img_num, id, rownum r -->
-<!-- 			from( -->
-<!-- 				select cart_num, img_num, id -->
-<!-- 				from cart -->
-<!-- 				order by cart_num DESC -->
-<!-- 				) -->
-<!-- 			) -->
-<!-- 	</select> -->
+	<select id="list" parameterType="Map" resultType="CartDTO">
+		select cart_num, img_num, id, r
+		from(
+			select cart_num, img_num, id, rownum r
+			from(
+				select cart_num, img_num, id
+				from cart
+				order by cart_num DESC
+				)
+			)
+	</select>
 </mapper>

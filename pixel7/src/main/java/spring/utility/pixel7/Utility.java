@@ -13,12 +13,16 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import spring.model.i_order.I_orderDAO;
+
 //import spring.model.IReplyDAO;
 //import spring.model.bbs.ReplyDAO;
 
 public class Utility {
 	private static final String root ="/blog";
-	 
+	
+	
+	
 	  public static synchronized String getRoot(){
 	    return root;
 	  }
@@ -26,7 +30,26 @@ public class Utility {
 //	     public static int rcount(int no,IReplyDAO rdao){
 //	          return rdao.rcount(no);
 //	     }
+	
 	  
+	  public static String getId(int img_num,I_orderDAO dao){
+		  String id=dao.getId(img_num);
+		  return id;
+	  }
+	  public static String getContent(int img_num,I_orderDAO dao){
+		  String content=dao.getContent(img_num);
+		  return content;
+	  }
+	  
+	  public static String getPhoto(int img_num,I_orderDAO dao){
+		  String photo=dao.getPhoto(img_num);
+		  return photo;
+	  }
+	 
+	  public static String getPrice(int img_num,I_orderDAO dao){
+		  String price=dao.getPrice(img_num);
+		  return price;
+	  }
 	 
 	  /**
 	   * 2010-12-14 형식의 날짜를 리턴합니다.

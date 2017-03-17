@@ -31,6 +31,14 @@
     <bean id="multipartResolver" 
         class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
     </bean> 
+    <bean id="idao"
+    	  class="spring.model.i_order.I_orderDAO"
+    	  p:mybatis-ref="sqlSession"
+    />
+    <bean id="cdao"
+    	  class="spring.model.cart.CartDAO"
+    	  p:mybatis-ref="sqlSession"
+    />
     
 </beans>   
 		
