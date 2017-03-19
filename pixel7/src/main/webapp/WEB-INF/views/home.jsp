@@ -11,7 +11,14 @@
 
 <P>  The time on the server is ${serverTime}. </P>
 
-	<input type="button" value="질문 게시판" onclick="location.href='./qna/list'">
-	${id}  
+	
+	${id}  ${grade} <br><br>
+	
+	
+	<input type="button" value="질문 게시판" onclick="location.href='./qna/list'"><br>
+	
+	
+	<input type="button" value="설문조사" onclick="location.href='./chart/list'">
+	
 </body>
 </html>
