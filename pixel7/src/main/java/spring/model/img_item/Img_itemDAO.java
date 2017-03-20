@@ -75,4 +75,9 @@ public class Img_itemDAO implements Pixel7_Img_itemDAO {
 		return 0;
 	}
 
+	public String getgrade(String id) {
+		
+		return mybatis.selectOne("img_item.grade",id);
+	}
+
 }

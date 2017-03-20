@@ -19,6 +19,21 @@ function update() {
 	location.href = url;
 }
 
+function buy(){
+	if('${sessionScope.id}' ==""){
+		alert("로그인을 하셔야 구입하실수 있습니다.");
+		var url = "./login";
+		location.href = url;
+	}
+	else if('${grade}'=="seceder"){
+		alert("구입할수 없는 상품입니다");
+	}else{
+		var url= "update"
+		url +="?img_num=${dto.img_num}";
+		location.href = url;
+	}
+}
+
 
 </script>
 </head>
@@ -39,7 +54,16 @@ function update() {
 		<tr>
 			<td>Category: ${dto.img_category }	</td>
 			<td>id=${dto.id }</td>
+			<td>grade=${grade }</td>
 			<td>sessionid=${sessionScope.id }</td>
+		</tr>
+		
+		
+
+		<tr>
+		<td>
+		<input type="button" value="구입" onclick="buy()">
+		</td>
 		</tr>
 		
 		<c:if test = "${ sessionScope.id == dto.id}">
@@ -48,14 +72,6 @@ function update() {
 		<input type="button" value="update" onclick="update()"> 
 		<td>
 		</c:if>
-		
-<%-- 		<c:if test="${not empty sessionScope.id== dto.id }"> --%>
-<!-- 		<tr> -->
-<!-- 		<td> -->
-<!-- 		<input type="button" value="delete">  -->
-<!-- 		<td> -->
-<!-- 		<tr> -->
-<%-- 		</c:if> --%>
 
 	</table>
 

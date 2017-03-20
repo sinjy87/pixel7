@@ -80,6 +80,7 @@ public class Img_itemController {
 
 		dto.setImg_content(dto.getImg_content().replaceAll("\r\n", "<br>"));
 
+		model.addAttribute("grade", itemdao.getgrade(dto.getId()));
 		model.addAttribute("dto", dto);
 
 		return "/img_item/read";
