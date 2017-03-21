@@ -1,23 +1,63 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+
 <html>
 <head>
-	<title>Home</title>
-<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
-<script type="text/javascript">
+ <title></title>
 
-window.onload =function () {
-   window.open("pop",  "popupNo1", "width=500, height=500");
+
+<script language="javascript">
+            // 해당이름의 쿠키를 가져온다.
+            function getCookie(cookie_name) {
+                var isCookie = false;
+                var start, end;
+                var i = 0;
+
+                // cookie 문자열 전체를 검색
+                while(i <= document.cookie.length) {
+                     start = i;
+                     end = start + cookie_name.length;
+                     // cookie_name과 동일한 문자가 있다면
+                     if(document.cookie.substring(start, end) == cookie_name) {
+                         isCookie = true;
+                         break;
+                     }
+                     i++;
+                }
+
+                // cookie_name 문자열을 cookie에서 찾았다면
+                if(isCookie) {
+                    start = end + 1;
+                    end = document.cookie.indexOf(";", start);
+                    // 마지막 부분이라는 것을 의미(마지막에는 ";"가 없다)
+                    if(end < start)
+                        end = document.cookie.length;
+                    // cookie_name에 해당하는 value값을 추출하여 리턴한다.
+                    return document.cookie.substring(start, end);
+                }
+                // 찾지 못했다면
+                return "";
+            }
+
+
+function openMsgBox()
+{
+        var eventCookie=getCookie("event_condo");
+        // 쿠키가 없을 경우에만 (다시 보지 않기를 선택하지 않았을 경우.)
+        if (eventCookie != "no")
+            window.open('pop','_blank','width=500,height=450,top=100,left=500');
 }
+openMsgBox();   // 팝업창을 띄운다.
+</SCRIPT>  
 
-
-</script>
 </head>
-<body style="padding-top: 20px;text-align: center">
+<body bgcolor="#FFFFFF" text="#000000" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0"> 
 
 <h1>
 	Hello world! Calender <br>
+	${id}<br>
+	${grade}<br>
 	   
 </h1>
 

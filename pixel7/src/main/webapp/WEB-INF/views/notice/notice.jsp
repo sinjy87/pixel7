@@ -8,15 +8,14 @@
 <link href="${pageContext.request.contextPath }/css/style.css" rel="stylesheet" type="text/css">
 </head>
 
-<body onLoad="closeWin('5000')">
-이창은 15초후 자동으로 창이 닫힘니다.<br>
+<body>
 <table border="0" cellpadding="0" cellspacing="0" width="90%" height="70%" align='center' 
        style="margin-top: 10px;padding-top: 10px;padding-bottom: 10px">
   <tr>
     <td align="center"><a
-      href="./calendar?y=${prevYear }&m=${prevMonth}">[이전달]</a> 
+      href="./notice?y=${prevYear }&m=${prevMonth}">[이전달]</a> 
       ${year}년 ${month+1}월 <a
-      href="./calendar?y=${nextYear}&m=${nextMonth}">[다음달]</a></td>
+      href="./notice?y=${nextYear}&m=${nextMonth}">[다음달]</a></td>
   </tr> 
   <tr>
     <td>
@@ -38,7 +37,7 @@
     </tr>
   </table>
   <div style="text-align: center">
-  <input type='button' value='등록' onclick="location.href='./create'">
+
   <input type='button' value='목록' onclick="location.href='./list'">
   
 

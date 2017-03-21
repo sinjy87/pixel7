@@ -36,6 +36,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="col=='notice_content'">
 		notice_content like '%'||#{word}||'%'
 		</if>
+		<if test="col=='notice_title'">
+		notice_title like '%'||#{word}||'%'
+		</if>
 	</where>
 	ORDER BY id ASC
 	)
@@ -75,11 +78,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  <select id="total" parameterType="Map" resultType="int">
 	select count(*) from notice
 	<where>
-		<if test="col=='title'">
+		<if test="col=='notice_title'">
 			notice_title like '%' ||#{word}||'%'
 		</if>
-		<if test="col=='content'">
+		<if test="col=='notice_content'">
 			notice_content like '%' ||#{word}||'%'
+		</if>
+		<if test="col=='id'">
+		id like '%'||#{word}||'%'
 		</if>
 	</where>
 </select>

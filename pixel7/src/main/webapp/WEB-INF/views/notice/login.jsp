@@ -9,7 +9,11 @@
 <body>
 <FORM name="frmData" method="POST" action="./login">
 
+
+
 <input type="text" name="id">
+<input type="text" name="grade">
+
 <input type="submit">
 </form>
 </body>

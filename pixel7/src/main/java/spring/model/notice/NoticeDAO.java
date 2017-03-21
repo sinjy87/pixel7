@@ -1,7 +1,6 @@
 package spring.model.notice;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,8 +62,11 @@ public class NoticeDAO implements Pixel7_NoticeDAO {
 	}
 
 	@Override
-	public int total(Map map) throws Exception {
-		
+	public int total(String col, String word) {
+        Map map = new HashMap();
+        map.put("col", col);
+        map.put("word", word);
+	   
 		return mybatis.selectOne("notice.total",map);
 	}
 	
@@ -82,7 +84,13 @@ public class NoticeDAO implements Pixel7_NoticeDAO {
 	    Object obj = mybatis.selectList("notice.label", notice_labeldate);
 	    
 	    return obj;
-	  }  
+	  }
+
+	@Override
+	public int total(Map map) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}  
 
 
 	

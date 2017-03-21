@@ -5,6 +5,35 @@
 <head>
 <meta charset="UTF-8">
 <title> 등록 </title>
+<script>
+function inputCheck(f){
+	
+	if(f.notice_labeldate.value=="");
+	 alert("날짜를 지정해주세요");
+	 f.notice_labeldate.focus();
+	 return false;
+}
+
+if(f.notice_label.value==""){
+	alert("레이블을 지정해주세요");
+	f.notice_label.focus();
+	return false;
+}
+
+if(f.notice_title.value==""){
+	alert("제목을 등록해주세요");
+	f.notice_title.focus();
+	return false;
+}
+
+if(f.notice_content.value==""){
+	alert("내용을 등록해주세요");
+	f.notice_content.focus();
+	return false;
+
+
+</script>
+
 <link href="${pageContext.request.contextPath }/css/style.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -16,7 +45,9 @@
   등록
 </div>
     
-<FORM name="frmData" method="POST" action="./create">
+<FORM name="frmData" method="POST" action="./create"
+      onsubmit="return inputCheck(this)">
+
   <TABLE>
   
 <%--      #{id.SessionScope} --%>

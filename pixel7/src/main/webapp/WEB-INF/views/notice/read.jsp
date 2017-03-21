@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -79,9 +80,11 @@ function f_list(){  // 목록
   </table>
   
   <div class="bottom">
-  <input type='button' value='수정' onclick="f_update('${dto.notice_no}')" title='수정'>
     <input type="button" value="취소(목록)" onclick="f_list()">
+   <c:if test="${not empty id && grade=='A' }"> 
+  <input type='button' value='수정' onclick="f_update('${dto.notice_no}')" title='수정'>
    <input type='button' value='삭제' onclick="f_delete('${dto.notice_no}')" title='삭제'>
+   </c:if>
   </div>
   
   <form name='frm' method="post" >
