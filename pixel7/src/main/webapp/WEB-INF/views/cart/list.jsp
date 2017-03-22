@@ -8,28 +8,27 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 <table border="1">
 	<tr>
 		<th><input type="checkbox"></th>
-		<th>주문번호</th>
+		<th>장바구니번호</th>
 		<th>주문 상품 이미지</th>
 		<th>주문 상품정보</th>
 		<th>상품금액</th>
 		<th>판매자</th>
-		<th>구매자</th>
-		<th>주문상태</th>
+		<th>삭제</th>
 	</tr>
 	<c:forEach items="${list}" var="dto">
 	<tr>
 	
 		<td><input type="checkbox"></td>
-		<td>${dto.i_order_num}</td>
-		<td>${ut:getPhoto(dto.img_num,dao)}</td>
-		<td>${ut:getContent(dto.img_num,dao)}</td>
+		<td>${dto.cart_num}</td>
+		<td>${ut:getPhoto2(dto.img_num,dao)}</td>
+		<td>${ut:getContent2(dto.img_num,dao)}</td>
 		<!--  <td><input type="number" value="1" style="width: 40px"></td>  -->
-		<td>${ut:getPrice(dto.img_num,dao)}</td>
-		<td>${ut:getId(dto.img_num,dao)}</td>
-		<td>${dto.id}</td>
+		<td>${ut:getPrice2(dto.img_num,dao)}</td>
+		<td>${ut:getId2(dto.img_num,dao)}</td>
 		<td><input type="button" value="삭제"></td>
 	</tr>
 	</c:forEach>
@@ -37,7 +36,7 @@
 		<td colspan="7" style="text-align: right;">
 		<c:set var="i" value="0"/>
 		<c:forEach items="${list}" var="dto" >
-		<c:set var="i" value="${i=i+(ut:getPrice(dto.img_num,dao))}"/>
+		<c:set var="i" value="${i=i+(ut:getPrice2(dto.img_num,dao))}"/>
 		</c:forEach>
 		상품총합계 : ${i}
 		</td>

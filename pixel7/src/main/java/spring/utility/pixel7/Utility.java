@@ -13,6 +13,7 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import spring.model.cart.CartDAO;
 import spring.model.i_order.I_orderDAO;
 
 //import spring.model.IReplyDAO;
@@ -31,6 +32,28 @@ public class Utility {
 //	          return rdao.rcount(no);
 //	     }
 	
+	  public static String getId2(int img_num,CartDAO dao){
+		  String id=dao.getId2(img_num);
+		  return id;
+	  }
+	  public static String getContent2(int img_num,CartDAO dao){
+		  String content=dao.getContent2(img_num);
+		  return content;
+	  }
+	  
+	  public static String getPhoto2(int img_num,CartDAO dao){
+		  String photo=dao.getPhoto2(img_num);
+		  return photo;
+	  }
+	 
+	  public static String getPrice2(int img_num,CartDAO dao){
+		  String price=dao.getPrice2(img_num);
+		  return price;
+	  }
+	  
+	  
+	  
+	  
 	  
 	  public static String getId(int img_num,I_orderDAO dao){
 		  String id=dao.getId(img_num);

@@ -4,17 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script type="text/javascript">
-function input(f){
-	var url = "./iorder/update";
-	url = url + "?img_num=${param.img_num}";
-	url = url + "&i_order_total=${i_order_total}";
-	url = url + "&id=${param.id}";
-	url = url + "&i_order_mileage=${param.i_order_mileage}";
-	url = url + "&i_order_information=${param.i_order_information}";
-	location.href=url;
-}
-</script>
+
 <meta content="charset=UTF-8">
 <title>Insert title here</title>
 </head>
@@ -22,8 +12,12 @@ function input(f){
 <FORM name='frm'
 	  method='POST'
 	  action='./create'
-	  onsubmit="return input(this)">
+	 >
 <input type="hidden" name="img_num" value="${param.img_num}">
+<input type="hidden" name="i_order_total" value="${param.i_order_total}">
+<input type="hidden" name="orderid" value="${param.id}">
+<input type="hidden" name="i_order_mileage" value="${param.i_order_mileage}">
+<input type="hidden" name="i_order_information" value="${param.i_order_information}">
 <table border="1">
 	<tr>
 		<th>주문 상품 이미지</th>
@@ -37,8 +31,8 @@ function input(f){
 		<td></td>
 		<td></td>
 		<td><input name="i_order_total" type="text" value="${param.i_order_total}" readonly="readonly" border="0px;"></td>
-		<td><input name="id" type="text" value="${param.id}" readonly="readonly" border="0px;"></td>
-		<td><input name="i_order_information" type="text" value="${param.i_order_information}" readonly="readonly" border="0px;"></td>
+		<td>${param.id}</td>
+		<td>${param.i_order_information}</td>
 	</tr>
 
 
@@ -50,7 +44,7 @@ function input(f){
 	</tr>
 </table>
 	<input type="submit" value="주문하기">
-	<input type="button" value="주문취소" onclick="history.back()">
+	<input type="button" value="취소" onclick="history.back()">
 </FORM>
 
 

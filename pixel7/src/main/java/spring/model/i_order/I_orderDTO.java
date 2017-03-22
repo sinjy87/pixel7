@@ -3,11 +3,25 @@ package spring.model.i_order;
 public class I_orderDTO {
 	 private int i_order_num            ;//주문번호
 	 private int img_num                ;//상품번호
-     private String id                    ;//회원ID
+     private String id                  ;//구매한회원ID
+     private String orderid             ;//판매한회원ID
      private int i_order_total          ;//주문합계
      private int i_order_mileage        ;//마일리지(normal=3%, vip=5%)
-     private String i_order_information   ;
+     private String i_order_information ;
+     private String odate				;
      
+	public String getOdate() {
+		return odate;
+	}
+	public void setOdate(String odate) {
+		this.odate = odate;
+	}
+	public String getOrderid() {
+		return orderid;
+	}
+	public void setOrderid(String orderid) {
+		this.orderid = orderid;
+	}
 	public int getI_order_num() {
 		return i_order_num;
 	}

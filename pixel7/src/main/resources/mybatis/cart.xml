@@ -5,6 +5,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="cart"> 
 
+	<!-- img_num에 대한 아이디 -->
+	<select id="id" parameterType="int" resultType="String">
+		select id from img_item
+		where img_num=#{img_num} 
+	</select>
+
+	<!-- img_num에 대한 내용 -->
+	<select id="content" parameterType="int" resultType="String">
+		select img_content from img_item
+		where img_num=#{img_num} 
+	</select>
+	
+	<!-- img_num에 대한 사진 -->
+	<select id="photo" parameterType="int" resultType="String">
+		select img_photo from img_item
+		where img_num=#{img_num} 
+	</select>
+
+	<!-- img_num에 대한 가격 -->
+	<select id="price" parameterType="int" resultType="String">
+		select img_price from img_item
+		where img_num=#{img_num} 
+	</select>
+
 	<delete id="delete" parameterType="int">
 		delete from cart
 		where cart_num = #{cart_num}
@@ -38,5 +62,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				order by cart_num DESC
 				)
 			)
+				<where>
+				<if test="jj=='dd'">
+				id =#{id}
+				</if>
+				
+				
+				</where>
 	</select>
 </mapper>

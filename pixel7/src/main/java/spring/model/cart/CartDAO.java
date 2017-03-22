@@ -18,6 +18,33 @@ public class CartDAO implements pixel7_CartDAO {
 	}
 
 	@Override
+	public String getId2(int img_num) {
+		String id = mybatis.selectOne("cart.id", img_num);
+		return id;
+	}
+	
+	@Override
+	public String getContent2(int img_num) {
+		String content = mybatis.selectOne("cart.content", img_num);
+		return content;
+	}
+	
+	@Override
+	public String getPhoto2(int img_num) {
+		String photo = mybatis.selectOne("cart.photo", img_num);
+		return photo;
+	}
+	
+	@Override
+	public String getPrice2(int img_num) {
+		String price = mybatis.selectOne("cart.price", img_num);
+		return price;
+	}
+
+	
+	
+	
+	@Override
 	public boolean create(Object dto) throws Exception {
 		boolean flag=false;
 		int cnt = mybatis.insert("cart.create", dto);
@@ -55,5 +82,7 @@ public class CartDAO implements pixel7_CartDAO {
 		
 		return mybatis.selectOne("cart.total", map);
 	}
+
+
 
 }

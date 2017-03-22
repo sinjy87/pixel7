@@ -89,4 +89,46 @@
 		</function-signature>
 	</function>
 	
+	
+	<function>
+		<description>getPrice2</description>
+		<name>getPrice2</name>
+		<function-class>
+			spring.utility.pixel7.Utility
+		</function-class>
+		<function-signature>
+			java.lang.String getPrice2(int ,spring.model.cart.CartDAO)
+		</function-signature>
+	</function>
+	<function>
+		<description>getPhoto2</description>
+		<name>getPhoto2</name>
+		<function-class>
+			spring.utility.pixel7.Utility
+		</function-class>
+		<function-signature>
+			java.lang.String getPhoto2(int ,spring.model.cart.CartDAO)
+		</function-signature>
+	</function>
+	<function>
+		<description>getContent2</description>
+		<name>getContent2</name>
+		<function-class>
+			spring.utility.pixel7.Utility
+		</function-class>
+		<function-signature>
+			java.lang.String getContent2(int ,spring.model.cart.CartDAO)
+		</function-signature>
+	</function>
+	<function>
+		<description>getId2</description>
+		<name>getId2</name>
+		<function-class>
+			spring.utility.pixel7.Utility
+		</function-class>
+		<function-signature>
+			java.lang.String getId2(int ,spring.model.cart.CartDAO)
+		</function-signature>
+	</function>
+	
 </taglib> 

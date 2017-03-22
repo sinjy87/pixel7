@@ -6,18 +6,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="i_order"> 
 
 	<select id="num" parameterType="Map" resultType="I_OrderDTO">
-	select i_order_num, img_num, id, i_order_total, i_order_mileage, i_order_information, to_char(odate, 'yyyy-mm-dd') odate, r
-from(
-	select i_order_num, img_num, id, i_order_total, i_order_mileage, i_order_information, odate, rownum r
+	select i_order_num, img_num, id, orderid, i_order_total, i_order_mileage, i_order_information, to_char(odate, 'yyyy-mm-dd') odate, r
 	from(
-		select i_order_num, img_num, id, i_order_total, i_order_mileage, i_order_information, odate
-		from i_order
-		order by odate DESC
+		select i_order_num, img_num, id, orderid, i_order_total, i_order_mileage, i_order_information, odate, rownum r
+		from(
+			select i_order_num, img_num, id, orderid, i_order_total, i_order_mileage, i_order_information, odate
+			from i_order
+			order by odate DESC
+			)
 		)
-	)
 	<![CDATA[where r >= 1 and r <= 1]]>
-	 
-	
 	</select>
 
 	<select id="id" parameterType="int" resultType="String">
@@ -54,13 +52,13 @@ from(
 	</update>
 
 	<insert id="create" parameterType="I_OrderDTO">
-		insert into i_order(i_order_num, img_num, id, i_order_total, i_order_mileage, i_order_information, odate)
+		insert into i_order(i_order_num, img_num, id, orderid, i_order_total, i_order_mileage, i_order_information, odate)
 		values((select nvl(max(i_order_num),0)+1 as i_order_num from i_order),
-		#{img_num}, #{id}, #{i_order_total}, #{i_order_mileage}, #{i_order_information}, sysdate)
+		#{img_num}, #{id}, #{orderid}, #{i_order_total}, #{i_order_mileage}, #{i_order_information}, sysdate)
 	</insert>
 
 	<select id="read" parameterType="int" resultType="I_OrderDTO">
-		select i_order_num, img_num, id, i_order_total, i_order_mileage, i_order_information, to_char(odate, 'yyyy-mm-dd') odate from i_order
+		select i_order_num, img_num, id, orderid, i_order_total, i_order_mileage, i_order_information, to_char(odate, 'yyyy-mm-dd') odate from i_order
 		where i_order_num=#{i_order_num}
 	</select>
 
@@ -69,14 +67,15 @@ from(
 	</select>
 
 	<select id="list" parameterType="Map" resultType="I_OrderDTO">
-		select i_order_num, img_num, id, i_order_total, i_order_mileage, i_order_information, to_char(odate, 'yyyy-mm-dd') odate, r
+		select i_order_num, img_num, id, orderid, i_order_total, i_order_mileage, i_order_information, to_char(odate, 'yyyy-mm-dd') odate, r
 		from(
-			select i_order_num, img_num, id, i_order_total, i_order_mileage, i_order_information, odate, rownum r
+			select i_order_num, img_num, id, orderid, i_order_total, i_order_mileage, i_order_information, odate, rownum r
 			from(
-				select i_order_num, img_num, id, i_order_total, i_order_mileage, i_order_information, odate
+				select i_order_num, img_num, id, orderid, i_order_total, i_order_mileage, i_order_information, odate
 				from i_order
 				order by i_order_num DESC
 				)
 			)
+			where id = #{id}
 	</select>
 </mapper>
