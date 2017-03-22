@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import spring.model.member.MemberDAO;
 import spring.model.member.MemberDTO;
@@ -44,6 +45,9 @@ import spring.utility.pixel7.Utility;
 public class MemberController {
 	@Autowired
 	private MemberDAO dao;
+
+
+
 
 	/**
 	 * 통계
@@ -84,7 +88,7 @@ public class MemberController {
 
 			if (dto == null) {
 				int m = Integer.parseInt(dto2.getStatdate().substring(3, 5));
-				int mon =m+j;
+				int mon = m + j;
 				if (mon < 10) {
 					adto.add("0" + mon + "월");
 				} else {

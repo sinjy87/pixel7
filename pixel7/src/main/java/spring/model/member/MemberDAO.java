@@ -1,17 +1,18 @@
 package spring.model.member;
 
-import java.net.Authenticator;
-import java.net.PasswordAuthentication;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
+
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMessage.RecipientType;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Repository;
 
-import oracle.jdbc.driver.Message;
 /**
  * 
  * <pre>
@@ -36,6 +37,10 @@ import oracle.jdbc.driver.Message;
 public class MemberDAO implements Pixel7_MemberDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
+	
+	
+	
+	
 
 	/** junit test용 */
 	public void setMybatis(SqlSessionTemplate mybatis) {

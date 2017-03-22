@@ -83,6 +83,12 @@
 			class="fa fa-envelope w3-xxlarge"></i>
 			<p>stat</p>
 		</a>
+		</a> <a
+			class="w3-bar-item w3-button w3-center w3-padding-large w3-hover-black"
+			href="${pageContext.request.contextPath }/mail"> <i
+			class="fa fa-envelope w3-xxlarge"></i>
+			<p>mail</p>
+		</a>
 	</nav>
 
 
