@@ -71,6 +71,7 @@ public class MemberController {
 		List list = (List) dao.statDate(map);
 		JSONArray ja = new JSONArray();
 		JSONArray atitle = new JSONArray();
+		
 		ja.add(year + "년도 가입/탈퇴 현황");
 		MemberDTO dto2 = null;
 		int j = 1;
