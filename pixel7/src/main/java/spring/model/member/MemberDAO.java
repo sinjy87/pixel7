@@ -163,4 +163,11 @@ public class MemberDAO implements Pixel7_MemberDAO {
 		return flag;
 	}
 
+
+
+
+	public Object getid(String id) {
+		return mybatis.selectList("member.getid",id);
+	}
+
 }

@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-
+<script type="text/javascript"
+	src="${pageContext.request.contextPath }/js/httpRequest.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
@@ -25,9 +26,11 @@
 			</tr>
 			<tr>
 				<th>*아이디</th>
-				<td><input type="text" name="id"></td>
+				<td><input type="text" name="id" onkeydown="sendKeyword()"></td>
 				<td><div id="id_aj">비동기</div></td>
 			</tr>
+
+
 			<tr>
 				<th>*비밀번호확인</th>
 				<td><input type="password" name="password"></td>
@@ -35,12 +38,12 @@
 			</tr>
 			<tr>
 				<th>*비밀번호확인</th>
-				<td><input type="password" name="passwd_check"></td>
+				<td><input type="password" name="passwd_check"  onkeyup="passwdcheck(document.frm.passwd_check.value)"></td>
 				<td><div id="passwd_aj">비동기</div></td>
 			</tr>
 			<tr>
 				<th>*E-mail</th>
-				<td><input type="text" name="email"> <br> <input
+				<td><input type="email" name="email"> <br> <input
 					type="text" name="check" id="check" value="인증해주세요"
 					readonly="readonly"></td>
 				<td><input type="button" value="인증메일 발송"
@@ -57,7 +60,6 @@
 		<input type="button" value="취소" onclick="history.back()"> <input
 			type="submit">
 	</form>
-	asdaa
 
 
 	<script type="text/javascript">
@@ -136,6 +138,62 @@
 	 }
 	 
  }
+function passwdcheck(ck){
+	
+var pass=document.frm.password.value
+	if(ck!=pass){
+		var passms="달라요"
+		var checkView = document.getElementById('passwd_aj');
+		checkView.innerHTML = passms;
+		show('passwd_aj');
+	}else{
+		var passms="같아요"
+			var checkView = document.getElementById('passwd_aj');
+			checkView.innerHTML = passms;
+			show('passwd_aj');
+	}
+}
+ function frmSend(f) {
+		$(f).submit();}
+</script>
+	<script type="text/javascript">
+
+
+	
+	function sendKeyword() {
+		
+		var keyword = document.frm.id.value
+
+		if (keyword == '') {
+			lastKeyword = '';
+			hide('id_aj');
+
+		} else if (keyword != lastKeyword) {
+			lastKeyword = keyword;
+			var params = "keyword=" + encodeURIComponent(keyword);
+			
+			$(document).ready(function() {
+				$.getJSON(
+					"./id?keyword="+keyword,
+					response);
+	
+	
+			});
+		}
+		setTimeout("sendKeyword();", 100);
+	}
+
+	
+	function response(result) {
+		var html = result[0];
+		var listView = document.getElementById('id_aj');
+		listView.innerHTML = html;
+		show('id_aj');
+	}
+		
+	
+
+
 </script>
 </body>
 </html>

@@ -5,6 +5,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 <mapper namespace="member">
+
+
+	<select id="getid" parameterType="String" resultType="MemberDTO">
+		select
+		id from member
+		
+	</select>
 	<select id="grade" parameterType="String" resultType="String">
 		select
 		grade from member

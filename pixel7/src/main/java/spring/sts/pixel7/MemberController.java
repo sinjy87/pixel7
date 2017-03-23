@@ -2,21 +2,25 @@ package spring.sts.pixel7;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import spring.model.member.MemberDAO;
 import spring.model.member.MemberDTO;
@@ -46,14 +50,38 @@ public class MemberController {
 	@Autowired
 	private MemberDAO dao;
 
+	
+	/**아이디중복체크*/
+	@RequestMapping("/member/id")
+	protected void doGet(HttpServletRequest request, HttpServletResponse res) throws ServletException, IOException {
+		// 출력시 사용할 문자셋 지정
+		res.setContentType("text/html;charset=UTF-8");
+		request.setCharacterEncoding("utf-8");
 
 
 
-	/**
-	 * 통계
-	 * 
-	 * @throws IOException
-	 */
+		String keyword = request.getParameter("keyword");
+		System.out.println("servlet keyword: " + keyword);// 한글 안깨지는지확인과정
+		JSONArray ja = new JSONArray();
+		List list = (List) dao.getid("");
+		int y = 0;
+		for (int i = 0; list.size() > i; i++) {
+			MemberDTO dto = (MemberDTO) list.get(i);
+			if (dto.getId().equals(keyword)) {
+				y = y + 1;
+			} 
+		}
+		if (y > 0) {
+			ja.add("●사용 불가 아이디입니다");
+		} else {
+			ja.add("●사용 가능한 아이디입니다");
+		}
+		
+		PrintWriter print = res.getWriter();
+		print.print(ja);
+	}
+
+	/** 통계 */
 	@RequestMapping("/member/stat")
 	public String stat() throws IOException {
 
@@ -71,7 +99,7 @@ public class MemberController {
 		List list = (List) dao.statDate(map);
 		JSONArray ja = new JSONArray();
 		JSONArray atitle = new JSONArray();
-		
+
 		ja.add(year + "년도 가입/탈퇴 현황");
 		MemberDTO dto2 = null;
 		int j = 1;
