@@ -26,6 +26,12 @@ public class NoticeController {
   @Autowired
   NoticeDAO dao;
   
+  @RequestMapping(value="upViewcntRant",method = RequestMethod.GET)
+  public String upViewcntRant(){
+	  
+	  return "/cal/list";
+  }
+  
  
   @RequestMapping(value = "pop", method = RequestMethod.GET)
   public ModelAndView pop(HttpServletRequest request) throws Exception{

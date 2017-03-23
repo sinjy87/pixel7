@@ -6,6 +6,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="notice"> 
  
+ 
+ <select id="upViewcntRank" parameterType="int">
+ 
+ select * from notice 
+ order by notice_cnt desc
+ 
+ </select>
+ 
   <!-- 레코드 추가 -->
   <insert id="create" parameterType="NoticeDTO">
 

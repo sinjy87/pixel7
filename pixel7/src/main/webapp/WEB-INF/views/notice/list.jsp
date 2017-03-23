@@ -9,6 +9,10 @@
 <title>목록</title>
 
 <script type="text/javascript">
+function f_cnt(notice_cnt){
+    location.href='./upViewcntRant?notice_cnt=' + notice_cnt;
+
+  }
 
 function f_read(notice_no){
     location.href='./read?notice_no=' + notice_no;
@@ -38,12 +42,6 @@ function f_read(notice_no){
     }
 
   } 
-     // delete GET
-/*   function f_delete(notice_no){
-    location.href='./delete.do?notice_no=' + notice_no;
-    }  */ 
-  
-
 
 </script>
 <link href="${pageContext.request.contextPath }/css/style.css" rel="stylesheet" type="text/css">
@@ -84,7 +82,8 @@ function f_read(notice_no){
         <th>레이블 날짜</th>
         <th>레이블</th>
         <th>제목</th>
-        <th>조회</th>        
+        <th>
+             <a href="javascript:f_cnt('${dto.notice_cnt }')">조회</a></th>        
         <th>관리자</th>
         <th>등록일</th>
         <th>기타</th>
