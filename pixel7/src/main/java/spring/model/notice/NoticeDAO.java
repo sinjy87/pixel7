@@ -16,21 +16,15 @@ public class NoticeDAO implements Pixel7_NoticeDAO {
     private SqlSessionTemplate mybatis;
 	
 	
-	
-	
-	
 
 	public void setMybatis(SqlSessionTemplate mybatis) {
 		this.mybatis = mybatis;
 	}
 
 	 
-	public boolean upViewcntRank(Object notice_cnt){
-		boolean flag = false;
-		int cnt = mybatis.selectOne("notice.upViewcntRank",notice_cnt);
-				if(cnt>0) 
-					flag = true;
-		return flag;
+	public List<NoticeDTO> upViewcntRank(Map map){
+		
+		return  mybatis.selectList("notice.upViewcntRank",map);
 	}
 	
 	

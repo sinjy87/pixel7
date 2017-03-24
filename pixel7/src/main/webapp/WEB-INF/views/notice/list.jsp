@@ -10,7 +10,8 @@
 
 <script type="text/javascript">
 function f_cnt(notice_cnt){
-    location.href='./upViewcntRant?notice_cnt=' + notice_cnt;
+//     location.href='./upViewcntRant?notice_cnt=' + notice_cnt;
+    location.href='./upViewcntRant';
 
   }
 

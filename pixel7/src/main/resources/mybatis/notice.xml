@@ -6,13 +6,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="notice"> 
  
+ 	<select id="upViewcntRank" parameterType="Map" resultType="NoticeDTO">
+
+	SELECT notice_no, id, notice_labeldate , notice_label, notice_title, notice_content, notice_date,notice_cnt,r
+	     from( 
+	SELECT notice_no, id, notice_labeldate, notice_label, notice_title, notice_content, notice_date,notice_cnt, rownum r
+	     from( 
+	SELECT notice_no, id, notice_labeldate, notice_label, notice_title, notice_content, notice_date,notice_cnt
+	     FROM notice
+	<where>
+		<if test="col=='id'">
+		id like '%'||#{word}||'%'
+		</if>
+		<if test="col=='notice_content'">
+		notice_content like '%'||#{word}||'%'
+		</if>
+		<if test="col=='notice_title'">
+		notice_title like '%'||#{word}||'%'
+		</if>
+	</where>
+	 order by notice_cnt desc
+	)
+	)
+
+<![CDATA[where r>=#{sno} and r<=#{eno}   ]]>    
+</select>
  
- <select id="upViewcntRank" parameterType="int">
  
- select * from notice 
- order by notice_cnt desc
  
- </select>
+ 
  
   <!-- 레코드 추가 -->
   <insert id="create" parameterType="NoticeDTO">
@@ -46,7 +68,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 		<if test="col=='notice_title'">
 		notice_title like '%'||#{word}||'%'
-		</if>
+		</if>	
 	</where>
 	ORDER BY id ASC
 	)

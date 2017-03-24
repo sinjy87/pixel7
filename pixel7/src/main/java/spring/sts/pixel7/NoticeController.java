@@ -26,8 +26,42 @@ public class NoticeController {
   @Autowired
   NoticeDAO dao;
   
-  @RequestMapping(value="upViewcntRant",method = RequestMethod.GET)
-  public String upViewcntRant(){
+  @RequestMapping(value="/cal/upViewcntRant",method = RequestMethod.GET)
+  public String upViewcntRant(String notice_cnt,HttpServletRequest request) throws Exception{
+	 
+	  String col = Utility.checkNull(request.getParameter("col"));
+		String word = Utility.checkNull(request.getParameter("word"));
+		if(col.equals("total")){
+			word = "";
+		}
+		
+		int nowPage = 1;
+		int recordPerPage = 5;
+		if(request.getParameter("nowPage")!=null){
+			nowPage = Integer.parseInt(request.getParameter("nowPage"));
+		}
+		
+		int sno = ((nowPage-1)*recordPerPage)+1;
+		int eno = nowPage * recordPerPage;
+		
+	  Map map = new HashMap();
+	    map.put("col", col);
+		map.put("word", word);
+		map.put("sno", sno);
+		map.put("eno", eno);
+
+		int total = dao.total(col,word);
+//		List<NoticeDTO> list = dao.list(map);
+		List<NoticeDTO> list = dao.upViewcntRank(map);
+		
+		String paging = Utility.paging3(total, nowPage, recordPerPage, col, word);
+		
+        
+        request.setAttribute("list", list);
+    	request.setAttribute("col", col);
+		request.setAttribute("word", word);
+		request.setAttribute("nowPage", nowPage);
+		request.setAttribute("paging", paging);
 	  
 	  return "/cal/list";
   }
