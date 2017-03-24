@@ -17,6 +17,7 @@
 		<th>주문 상품정보</th>
 		<th>상품금액</th>
 		<th>판매자</th>
+		<th>구매자</th>		
 		<th>삭제</th>
 	</tr>
 	<c:forEach items="${list}" var="dto">
@@ -29,6 +30,7 @@
 		<!--  <td><input type="number" value="1" style="width: 40px"></td>  -->
 		<td>${ut:getPrice2(dto.img_num,dao)}</td>
 		<td>${ut:getId2(dto.img_num,dao)}</td>
+		<td>${dto.id}</td>
 		<td><input type="button" value="삭제"></td>
 	</tr>
 	</c:forEach>

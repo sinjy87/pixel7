@@ -24,7 +24,7 @@ public class I_orederController {
 	private I_orderDAO dao;
 	
 	@RequestMapping("iorder/logout")
-	String login(HttpSession session){
+	String logout(HttpSession session){
 		session.invalidate();
 		return "redirect:../";
 		
@@ -42,11 +42,25 @@ public class I_orederController {
 		
 	}
 	
-	@RequestMapping(value = "/iorder/delete", method = RequestMethod.GET)
-	public String delete(int i_order_num) throws Exception{
-		dao.delete(i_order_num);
-		return "redirect:../";
+	
+	@RequestMapping(value = "/iorder/delete", method = RequestMethod.POST)
+	public String delete(Model model, int i_order_num,I_orderDTO dto) throws Exception {
+		model.addAttribute("dao", dao);
+		if(dao.delete(i_order_num)){
+			
+			return "redirect:./list";
+		}else{
+			return "error";
+		}
 	}
+
+	@RequestMapping(value = "/iorder/delete", method = RequestMethod.GET)
+	public String delete(int i_order_num, Model model) {
+		model.addAttribute("dao", dao);
+		return "/iorder/delete";
+	}
+	
+	
 	
 	@RequestMapping(value = "/iorder/update", method = RequestMethod.POST)
 	public String update(I_orderDTO dto,Model model,int i_order_num) throws Exception{
@@ -62,8 +76,8 @@ public class I_orederController {
 	}
 	
 	@RequestMapping(value = "/iorder/update", method = RequestMethod.GET)
-	public String update(){
-		
+	public String update(Model model){
+		model.addAttribute("dao", dao);
 		return "/iorder/update";
 	}
 	
@@ -91,8 +105,8 @@ public class I_orederController {
 	
 	
 	@RequestMapping(value = "/iorder/create", method = RequestMethod.GET)
-	public String create(){
-		
+	public String create(Model model){
+		model.addAttribute("dao", dao);
 		return "/iorder/create";
 	}
 	

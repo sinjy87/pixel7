@@ -18,6 +18,11 @@ public class CartDAO implements pixel7_CartDAO {
 	}
 
 	@Override
+	public Object getNum2(Map map){
+		return mybatis.selectList("cart.num", map);
+	}
+	
+	@Override
 	public String getId2(int img_num) {
 		String id = mybatis.selectOne("cart.id", img_num);
 		return id;

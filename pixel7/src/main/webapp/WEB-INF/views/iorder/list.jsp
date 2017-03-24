@@ -4,7 +4,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
+<script type="text/javascript">
+function idelete(){
+	var url = "delete";
+	url += "?i_order_num=${i_order_num}";
+	location.href=url;
+}
+</script>
+<meta content="charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
@@ -17,6 +24,8 @@
 		<th>상품금액</th>
 		<th>판매자</th>
 		<th>구매자</th>
+		<th>구매일</th>
+		<th>적립마일리지</th>
 		<th>주문상태</th>
 	</tr>
 	<c:forEach items="${list}" var="dto">
@@ -30,22 +39,24 @@
 		<td>${ut:getPrice(dto.img_num,dao)}</td>
 		<td>${ut:getId(dto.img_num,dao)}</td>
 		<td>${dto.id}</td>
-		<td><input type="button" value="삭제"></td>
+		<td>${dto.odate}</td>
+		<td>${dto.i_order_mileage}</td>
+		<td><input type="button" value="삭제" onclick="idelete()"></td>
 	</tr>
 	</c:forEach>
 	<tr>
 		<td colspan="7" style="text-align: right;">
 		<c:set var="i" value="0"/>
+		<c:set var="m" value="0"/>
 		<c:forEach items="${list}" var="dto" >
 		<c:set var="i" value="${i=i+(ut:getPrice(dto.img_num,dao))}"/>
+		<c:set var="m" value="${m=m+dto.i_order_mileage}"/>
 		</c:forEach>
-		상품총합계 : ${i}
+		상품총합계 : ${i} <br> 적립마일리지 : ${m}
 		</td>
 	</tr>
 
 </table>
-	<input type="button" value="주문하기">
-	<input type="button" value="">
-	<input type="button" value="쇼핑계속">
+	<input type="button" value="쇼핑계속" onclick="location.href='../'">
 </body>
 </html>

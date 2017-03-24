@@ -5,6 +5,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="cart"> 
 
+	<select id="num" parameterType="Map" resultType="CartDTO">
+		select cart_num, img_num, id, cartid, to_char(cdate, 'yyyy-mm-dd') cdate, r
+		from(
+			select cart_num, img_num, id, cartid, cdate, rownum r
+			from(
+				select cart_num, img_num, id, cartid, cdate
+				from cart
+				order by cart_num DESC
+				)
+			)
+			<![CDATA[where r >= 1 and r <= 1]]>
+	</select>
+
+
 	<!-- img_num에 대한 아이디 -->
 	<select id="id" parameterType="int" resultType="String">
 		select id from img_item
@@ -39,12 +53,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 	</update> -->
 
 	<insert id="create" parameterType="CartDTO">
-		insert into cart (cart_num, img_num, id)
-		values ((select nvl(max(cart_num),0)+1 from cart), #{img_num}, #{id})
+		insert into cart (cart_num, img_num, id, cartid)
+		values ((select nvl(max(cart_num),0)+1 from cart), #{img_num}, #{id}, #{cartid})
 	</insert>
 
 	<select id="read" parameterType="int" resultType="CartDTO">
-		select cart_num, img_num, id from cart
+		select cart_num, img_num, id, cartid from cart
 		where cart_num=#{cart_num}
 	</select>
 
@@ -53,21 +67,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="list" parameterType="Map" resultType="CartDTO">
-		select cart_num, img_num, id, r
+		select cart_num, img_num, id, cartid, to_char(cdate, 'yyyy-mm-dd') cdate, r
 		from(
-			select cart_num, img_num, id, rownum r
+			select cart_num, img_num, id, cartid, cdate, rownum r
 			from(
-				select cart_num, img_num, id
+				select cart_num, img_num, id, cartid, cdate
 				from cart
 				order by cart_num DESC
 				)
 			)
-				<where>
-				<if test="jj=='dd'">
-				id =#{id}
-				</if>
-				
-				
-				</where>
+			where id =#{id}
 	</select>
 </mapper>

@@ -14,6 +14,7 @@
 	  method='POST'
 	  action='./create'>
 <input type="hidden" name="img_num" value="${param.img_num}">
+<input type="hidden" name="cartid" value="${param.id}">
 
 <table border="1">
 	<tr>

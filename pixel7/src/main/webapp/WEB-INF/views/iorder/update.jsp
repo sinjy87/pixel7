@@ -9,11 +9,16 @@
 </head>
 <body>
 	<form name="frm" action="./update" method="POST">
-		<c:if test="${empty dto }">
+		<c:if test="${empty dto}">
 
-			<c:forEach items="${list }" var="dto">
+			<c:forEach items="${list}" var="dto">
 
 				<input type="hidden" name="i_order_num" value="${dto.i_order_num}">
+				<input type="hidden" name="img_num" value="${param.img_num}">
+				<input type="hidden" name="i_order_total" value="${param.i_order_total}">
+				<input type="hidden" name="orderid" value="${param.id}">
+				<input type="hidden" name="i_order_mileage" value="${param.i_order_mileage}">
+				<input type="hidden" name="i_order_information" value="${param.i_order_information}">
 
 <table border="1">
 					<tr>
@@ -27,12 +32,10 @@
 
 					<tr>
 						<td>${dto.i_order_num}</td>
-						<td></td>
-						<td></td>
-						<td><input name="i_order_total" type="text"
-							value="${i_order_total}" readonly="readonly" border="0px;"></td>
-						<td><input name="orderid" type="text" value="${orderid}"
-							readonly="readonly" border="0px;"></td>
+						<td>${ut:getPhoto(param.img_num,dao)}</td>
+						<td>${ut:getContent(param.img_num,dao)}</td>
+						<td><input name="i_order_total" type="text" value="${i_order_total}" readonly="readonly" border="0px;"></td>
+						<td><input name="orderid" type="text" value="${orderid}" readonly="readonly" border="0px;"></td>
 						<td><c:choose>
 								<c:when test="${ empty dto}">${i_order_information}</c:when>
 								<c:otherwise>${dto.i_order_information }</c:otherwise>
@@ -42,13 +45,10 @@
 
 
 					<tr>
-						<td colspan="5" style="text-align: right;">보유마일리지 :<input
-							name="i_order_mileage" type="text"
-							value="${i_order_mileage}" readonly="readonly"
-							border="0px;"> <br> <input name="i_order_total"
-							type="text" value="${i_order_total}" readonly="readonly"
-							border="0px;"> - <input type="text" value="0"
-							style="width: 20px"> =
+						<td colspan="5" style="text-align: right;">보유마일리지 :
+						<input name="i_order_mileage" type="text" value="${i_order_mileage}" readonly="readonly" border="0px;"> <br> 
+						<input name="i_order_total" type="text" value="${i_order_total}" readonly="readonly" border="0px;"> - 
+						<input type="text" value="0" style="width: 20px"> =
 						</td>
 					</tr>
 				</table>
@@ -62,7 +62,7 @@
 	
 	
 	
-	<c:if test="${empty list }">
+	<c:if test="${empty list}">
 	
 		
 
@@ -83,12 +83,10 @@
 
 					<tr>
 						<td>${dto.i_order_num}</td>
-						<td></td>
-						<td></td>
-						<td><input name="i_order_total" type="text"
-							value="${i_order_total}" readonly="readonly" border="0px;"></td>
-						<td><input name="id" type="text" value="${id}"
-							readonly="readonly" border="0px;"></td>
+						<td>${ut:getPhoto(param.img_num,dao)}</td>
+						<td>${ut:getContent(param.img_num,dao)}</td>
+						<td><input name="i_order_total" type="text" value="${i_order_total}" readonly="readonly" border="0px;"></td>
+						<td><input name="id" type="text" value="${id}" readonly="readonly" border="0px;"></td>
 						<td><c:choose>
 								<c:when test="${empty dto}">${i_order_information}</c:when>
 								<c:otherwise>${dto.i_order_information}</c:otherwise>
@@ -97,13 +95,10 @@
 					</tr>
 
 					<tr>
-						<td colspan="5" style="text-align: right;">보유마일리지 :<input
-							name="i_order_mileage" type="text"
-							value="${i_order_mileage}" readonly="readonly"
-							border="0px;"> <br> <input name="i_order_total"
-							type="text" value="${i_order_total}" readonly="readonly"
-							border="0px;"> - <input type="text" value="0"
-							style="width: 20px"> =
+						<td colspan="5" style="text-align: right;">보유마일리지 :
+						<input name="i_order_mileage" type="text"value="${i_order_mileage}" readonly="readonly"border="0px;"> <br> 
+						<input name="i_order_total"type="text" value="${i_order_total}" readonly="readonly"border="0px;"> - 
+						<input type="text" value="0"style="width: 20px"> =
 						</td>
 					</tr>
 				</table>

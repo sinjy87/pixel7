@@ -88,6 +88,16 @@
 			java.lang.String getId(int ,spring.model.i_order.I_orderDAO)
 		</function-signature>
 	</function>
+	<function>
+		<description>getNum</description>
+		<name>getNum</name>
+		<function-class>
+			spring.utility.pixel7.Utility
+		</function-class>
+		<function-signature>
+			java.lang.String getNum(int ,spring.model.i_order.I_orderDAO)
+		</function-signature>
+	</function>
 	
 	
 	<function>
@@ -128,6 +138,16 @@
 		</function-class>
 		<function-signature>
 			java.lang.String getId2(int ,spring.model.cart.CartDAO)
+		</function-signature>
+	</function>
+	<function>
+		<description>getNum2</description>
+		<name>getNum2</name>
+		<function-class>
+			spring.utility.pixel7.Utility
+		</function-class>
+		<function-signature>
+			java.lang.String getNum2(int ,spring.model.cart.CartDAO)
 		</function-signature>
 	</function>
 	

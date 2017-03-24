@@ -4,7 +4,21 @@ public class CartDTO {
 	private int 	cart_num    ;         
     private int 	img_num     ;         
     private String  id			;
+    private String  cartid		;
+    private String  cdate		;
     
+	public String getCartid() {
+		return cartid;
+	}
+	public void setCartid(String cartid) {
+		this.cartid = cartid;
+	}
+	public String getCdate() {
+		return cdate;
+	}
+	public void setCdate(String cdate) {
+		this.cdate = cdate;
+	}
 	public int getCart_num() {
 		return cart_num;
 	}

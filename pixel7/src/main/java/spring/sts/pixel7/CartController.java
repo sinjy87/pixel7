@@ -22,9 +22,10 @@ public class CartController {
 	private CartDAO dao;
 
 	@RequestMapping("/cart/list")
-	public String list(Model model) throws Exception {
+	public String list(Model model, HttpSession session) throws Exception {
 
 		Map map = new HashMap();
+		map.put("id", session.getAttribute("id"));
 		List<CartDTO> list = dao.list(map);
 		model.addAttribute("list", list);
 		model.addAttribute("dao", dao);
@@ -32,34 +33,24 @@ public class CartController {
 	}
 
 	@RequestMapping(value = "/cart/create", method = RequestMethod.POST)
-	public String create(CartDTO dto, Model model) throws Exception {
-		dto.setId("vip");
+	public String create(CartDTO dto, Model model,int img_num, String id, String cartid, HttpSession session) throws Exception {
+		dto.setId((String)session.getAttribute("id"));
 		model.addAttribute("dao", dao);
 		if (dao.create(dto)) {
-			// Map map =new HashMap();
-			// List list =(List) dao.getNum(map);
-			// model.addAttribute("list", list);
+			Map map =new HashMap();
+			List list =(List) dao.getNum2(map);
+			model.addAttribute("img_num", img_num);
+			model.addAttribute("cartid", cartid);
+			model.addAttribute("list", list);
 			return "/cart/createProc";
-		} else {
+		}else{
 			return "redirect:../";
 		}
 	}
 
 	@RequestMapping(value = "/cart/create", method = RequestMethod.GET)
 	public String create(Model model, HttpSession session, int img_num) throws Exception {
-		String url = "/cart/create";
-		Map map = new HashMap();
-		map.put("jj", "dd");
-		map.put("id", "vip");
-		List list = dao.list(map);
-		for (int i = 0; list.size() > i; i++) {
-			CartDTO dto = (CartDTO) list.get(i);
-			if (dto.getImg_num() == img_num) {
-				url = "error";
-			}
-		}
-
 		model.addAttribute("dao", dao);
-		return url;
+		return "/cart/create";
 	}
 }

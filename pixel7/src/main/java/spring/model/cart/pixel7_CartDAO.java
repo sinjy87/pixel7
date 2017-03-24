@@ -1,5 +1,7 @@
 package spring.model.cart;
 
+import java.util.Map;
+
 import spring.model.pixel7.DAOSTDInter;
 
 public interface pixel7_CartDAO extends DAOSTDInter {
@@ -11,5 +13,7 @@ public interface pixel7_CartDAO extends DAOSTDInter {
 	String getPhoto2(int img_num);
 
 	String getPrice2(int img_num);
+
+	Object getNum2(Map map);
 
 }

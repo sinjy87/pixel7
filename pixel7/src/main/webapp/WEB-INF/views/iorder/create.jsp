@@ -28,8 +28,8 @@
 	</tr>
 
 	<tr>
-		<td></td>
-		<td></td>
+		<td>${ut:getPhoto(param.img_num,dao)}</td>
+		<td>${ut:getContent(param.img_num,dao)}</td>
 		<td><input name="i_order_total" type="text" value="${param.i_order_total}" readonly="readonly" border="0px;"></td>
 		<td>${param.id}</td>
 		<td>${param.i_order_information}</td>
@@ -43,6 +43,8 @@
 		</td>
 	</tr>
 </table>
+
+		
 	<input type="submit" value="주문하기">
 	<input type="button" value="취소" onclick="history.back()">
 </FORM>
