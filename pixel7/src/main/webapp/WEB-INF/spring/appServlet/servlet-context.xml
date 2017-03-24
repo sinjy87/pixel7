@@ -24,6 +24,4 @@
 	<context:component-scan base-package="spring.sts.pixel7" />
 	<context:component-scan base-package="spring.model.*" />
 	
-	
-	
 </beans:beans>

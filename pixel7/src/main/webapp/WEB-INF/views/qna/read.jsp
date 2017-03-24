@@ -66,39 +66,31 @@ function qna_delete(){
 
 <!-- 댓글 관련 -->
 
-	<c:forEach var="qrdto" items="${rlist}">
-	
-		<br><br>
-		<div class="rlist">
-		
-		<table border="1">
-			<tr>
-				<th>작성자</th>
-				<td>${qrdto.id}</td>
-			</tr>
-			<tr>
-				<td colspan="2">${qrdto.qna_rcontent}</td>
-			</tr>
-			<tr>
-				<td colspan="2">${qrdto.qna_rdate}</td>
-			</tr>
-			
-			
-			<c:if test="${sessionScope.id==qrdto.id  }">
-			<div style="width: 300px;">
-	   			<span style="float: right;">
-	   				<a href="javascript:rupdate('${qrdto.qna_rnum}','${qrdto.qna_rcontent }')">수정</a>|<a href="javascript:rdelete('${rqdto.qna_rnum}')">삭제</a>
-	   			</span>
-	   		</div>
-   			</c:if>
-   			
-   		</table>
-		</div>
-	
-	
-	
-	</c:forEach>
 
+	<br><br><hr>
+	답변
+	<table border="1">
+			<c:forEach var="qrdto" items="${rlist}">
+				<tr>
+					<th>작성자</th>
+					<td>${qrdto.id}</td>
+				</tr>
+				<tr>
+					<td colspan="2">${qrdto.qna_rcontent}</td>
+				</tr>
+				<tr>
+					<td colspan="2">${qrdto.qna_rdate}</td>
+				</tr>
+
+				<c:if test="${sessionScope.id==qrdto.id  }">
+					<div style="width: 300px;">
+			   			<span style="float: right;">
+			   				<a href="javascript:rupdate('${qrdto.qna_rnum}','${qrdto.qna_rcontent }')">수정</a>|<a href="javascript:rdelete('${rqdto.qna_rnum}')">삭제</a>
+			   			</span>
+		   			</div>
+	   			</c:if>
+			</c:forEach>
+  	</table>	
 
 	<c:if test="${sessionScope.grade == 'admin'}">
 	  <div class="rcreate">

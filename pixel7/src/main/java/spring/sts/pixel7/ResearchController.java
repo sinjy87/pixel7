@@ -10,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import spring.model.pixel7.MemberResearchDAO;
+import spring.model.pixel7.MemberResearchDTO;
 import spring.model.pixel7.ResearchDAO;
 import spring.model.pixel7.ResearchDTO;
 import spring.model.pixel7.ResearchItemDAO;
@@ -27,9 +30,21 @@ public class ResearchController {
 	@Autowired
 	private ResearchItemDAO ridao;
 	
+	@Autowired
+	private MemberResearchDAO mrdao;
+	
 	
 	@RequestMapping("/chart/view")
-	public String view(){
+	public String view(Model model, int research_num) throws Exception{
+		
+		Map map = new HashMap();
+		map.put("research_num", research_num);
+//		
+		List<ResearchItemDTO> rilist = ridao.list(map);
+//		
+		model.addAttribute("list", rilist);
+//		model.addAttribute("dto", dao.read(research_num));
+		model.addAttribute("dto", dao.read(research_num));
 		
 		return "/chart/viewChart";
 	}
@@ -60,14 +75,10 @@ public class ResearchController {
 		map.put("word", word);
 		
 		List<ResearchDTO> list = dao.list(map);
-		List<ResearchItemDTO> rilist = ridao.list(map);
-		ResearchItemDTO ridto = (ResearchItemDTO) ridao.read(1);
-		
+
 		int total = dao.total(map);
 		String paging = Utility.paging(total, nowPage, recordPerPage, col, word);
-		
-		model.addAttribute("ridto", ridto);
-		model.addAttribute("rilist", rilist);
+
 		model.addAttribute("list", list);
 		model.addAttribute("col", col);
 		model.addAttribute("word", word);
@@ -79,6 +90,65 @@ public class ResearchController {
 		return "/chart/list";
 	}
 	
+	
+	@RequestMapping("/chart/read")
+	public String read(int research_num, Model model) throws Exception{
+		
+		Map map = new HashMap();
+		map.put("research_num", research_num);
+		
+		List<ResearchItemDTO> rilist = ridao.list(map);
+		
+		model.addAttribute("list", rilist);
+		
+		return "/chart/read";
+	}
+	
+	@RequestMapping(value="/chart/create", method=RequestMethod.POST)
+	public String create(MemberResearchDTO dto) throws Exception{
+		
+		if(mrdao.create(dto)){
+			return "redirect:./list";
+		}
+		else{
+			return "error";
+		}
+	}
+	
+	@RequestMapping(value="/chart/update", method=RequestMethod.GET)
+	public String update(int research_num, Model model) throws Exception{
+	
+		Map map = new HashMap();
+		map.put("research_num", research_num);
+		
+		List<ResearchItemDTO> rilist = ridao.list(map);
+		
+		model.addAttribute("list", rilist);
+		model.addAttribute("dto", dao.read(research_num));
+		
+		return "/chart/update";
+	}
+	
+	@RequestMapping(value="/chart/update", method=RequestMethod.POST)
+	public String update(ResearchDTO dto, Model model) throws Exception{
+	
+		if(dao.create(dto)){
+			return "redirect:./list";
+		}
+		
+		else{
+			return "error";
+		}
+
+	}
+	
+	
+	@RequestMapping("/chart/delete")
+	public String delete(){
+		
+		
+		return  "";
+	}
 	
 	
 }
