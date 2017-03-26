@@ -57,13 +57,10 @@ public class MemberController {
 		// 출력시 사용할 문자셋 지정
 		res.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
-
-
-
 		String keyword = request.getParameter("keyword");
 		System.out.println("servlet keyword: " + keyword);// 한글 안깨지는지확인과정
 		JSONArray ja = new JSONArray();
-		List list = (List) dao.getid("");
+		List list = (List) dao.getId("");
 		int y = 0;
 		for (int i = 0; list.size() > i; i++) {
 			MemberDTO dto = (MemberDTO) list.get(i);
@@ -151,8 +148,15 @@ public class MemberController {
 
 	/** 로그인 */
 	@RequestMapping(value = "member/login", method = RequestMethod.POST)
-	public String login(String id, String password, HttpSession session, Model model) {
-		String seceder = dao.getGrade(id);
+	public String login(MemberDTO dto ,String id, String password, HttpSession session, Model model) {
+		
+		String seceder="" ;
+		if(dao.getGrade(dto.getId())==null){
+			
+		}else{
+			seceder =dao.getGrade(dto.getId());
+		}
+		
 		if (seceder.equals("seceder")) {
 			String sts = "이미 탈퇴한 회원입니다.";
 			model.addAttribute("sts", sts);
@@ -354,7 +358,12 @@ public class MemberController {
 	/** * 회원가입POST */
 	@RequestMapping(value = "/member/create", method = RequestMethod.POST)
 	public String create(MemberDTO dto, HttpServletRequest request, Model model) {
-		String seceder = dao.getGrade(dto.getId());
+		String seceder="" ;
+		if(dao.getGrade(dto.getId())==null){
+			
+		}else{
+			seceder =dao.getGrade(dto.getId());
+		}
 		if (seceder.equals("seceder")) {
 			String sts = "7일 이내로 재가입이 불가합니다.";
 			model.addAttribute("sts", sts);

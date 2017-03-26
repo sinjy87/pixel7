@@ -120,22 +120,7 @@
 		 frm.passwd_check.focus();
 		 return false;
 	 }
-	 if(frm.inter.value ==""){
-		 alert("inter");
-		
-		 return false;
-	 }
 	
-	 
-	 
-	 if(frm.photoMF.value ==""){
-		 alert("photo");
-		 return false;
-	 }
-	 if(frm.bgphotoMF.value ==""){
-		 alert("photo");
-		 return false;
-	 }
 	 
  }
 function passwdcheck(ck){

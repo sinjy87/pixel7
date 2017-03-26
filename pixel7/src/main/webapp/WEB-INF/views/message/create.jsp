@@ -21,7 +21,7 @@
 			</tr>
 			<tr>
 				<td>보내는사람</td>
-				<td><input type="text" name="id" value="${id }" disabled="disabled"></td>
+				<td><input type="text" name="id" value="${id }" readonly="readonly"></td>
 			</tr>
 		</table>
 		<input type="submit" value="전송"> <input type="button"

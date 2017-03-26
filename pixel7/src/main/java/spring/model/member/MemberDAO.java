@@ -31,32 +31,23 @@ import org.springframework.stereotype.Repository;
  *
  * ----------------------------------------------
  * 
- *</pre>
+ * </pre>
  */
 @Repository
 public class MemberDAO implements Pixel7_MemberDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
-	
-	
-	
-	
 
 	/** junit test용 */
 	public void setMybatis(SqlSessionTemplate mybatis) {
 		this.mybatis = mybatis;
 	}
-	
-	
-	
-	
-	/**회원등급리턴*/
+
+	/** 회원등급리턴 */
 	public String getGrade(String id) {
 		return mybatis.selectOne("member.grade", id);
 	}
 
-	
-	
 	/*** 통계용 */
 	@Override
 	public Object statDate(Map map) {
@@ -163,11 +154,9 @@ public class MemberDAO implements Pixel7_MemberDAO {
 		return flag;
 	}
 
-
-
-
-	public Object getid(String id) {
-		return mybatis.selectList("member.getid",id);
+	/**id리스트*/
+	public Object getId(String id) {
+		return mybatis.selectList("member.getid", id);
 	}
 
 }

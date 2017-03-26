@@ -20,8 +20,8 @@ public class EmailController {
 	private JavaMailSender mailSender;
 
 	int code;
-	
 
+	/** 인증번호확인 */
 	@RequestMapping(value = "/mail", method = RequestMethod.POST)
 	public String mailForm(String incode, Model model) {
 		System.out.println("code확인" + code);
@@ -29,10 +29,10 @@ public class EmailController {
 		int intcode = Integer.parseInt(incode);
 		String url = "emailProc";
 		if (intcode == code) {
-			model.addAttribute("sts", "성공");
+			model.addAttribute("flag", "성공");
 
 		} else {
-			model.addAttribute("sts", "실패");
+			model.addAttribute("flag", "실패");
 		}
 		return url;
 	}
