@@ -27,5 +27,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from qna_reply 
 		where qna_num = #{qna_num}
 	</delete>
+	
+	<delete id="rdelete" parameterType="int">
+		delete from qna_reply
+		where qna_rnum = #{qna_rnum}
+	</delete>
 
 </mapper>

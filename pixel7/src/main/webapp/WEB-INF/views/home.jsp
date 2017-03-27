@@ -12,13 +12,14 @@
 <P>  The time on the server is ${serverTime}. </P>
 
 	
-	${id}  ${grade} <br><br>
+	아이디 : ${id}  등급 : ${grade} <br><br>
 	
 	
 	<input type="button" value="질문 게시판" onclick="location.href='./qna/list'"><br>
+	<input type="button" value="설문조사" onclick="location.href='./chart/list'"><br>
+	<input type="button" value="로그인" onclick="location.href='./login'"><br>
+
 	
-	
-	<input type="button" value="설문조사" onclick="location.href='./chart/list'">
 	
 </body>
 </html>

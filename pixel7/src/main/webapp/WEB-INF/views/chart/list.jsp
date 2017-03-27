@@ -7,7 +7,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
-
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/httpRequest.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
 
 function research_read(research_num, research_title){
@@ -52,6 +54,7 @@ function research_delete(research_num){
 				<th>번호</th>
 				<td>설문내용</td>
 				<td>조회수</td>
+				<td>결과</td>
 				<c:if test="${not empty sessionScope.id && sessionScope.grade == 'admin'}">
 					<td>관리</td>	
 				</c:if>
@@ -68,6 +71,7 @@ function research_delete(research_num){
 						<td>${dto.research_num}</td>
 						<td><a href="javascript:research_read(${dto.research_num},'${dto.research_title}')">${dto.research_title}</a></td>
 						<td></td>
+						<td><input type="button" value="설문조사 결과" onclick="chartview(${dto.research_num})"></td>
 						<c:if test="${not empty sessionScope.id && sessionScope.grade == 'admin'}">
 							<td><a href="javascript:research_update(${dto.research_num})">수정</a>/<a href="javascript:research_delete(${dto.research_num})">삭제</a></td>	
 						</c:if>
@@ -83,9 +87,91 @@ function research_delete(research_num){
 	
 	<input type="submit" value="확인">
 	<input type="button" value="홈" onclick="location.href='${pageContext.request.contextPath}'">
+	<c:if test="${not empty sessionScope.id && sessionScope.grade == 'admin'}">
+		<input type="button" value="설문추가" onclick="location.href='./create'">		
+	</c:if>
+	
 	
 	
 </form>
+
+
+
+
+
+
+
+		<div id="chartview"></div>
+		
+		
+			<script type="text/javascript">
+		function chartview(research_num) {
+
+			$(document).ready(function() {
+				$.getJSON(
+					"./view?research_num="+research_num,
+					response);
+	
+	
+			});
+			function response(result, textStatus) {
+
+				
+				
+				
+				
+				
+			      // Load the Visualization API and the corechart package.
+			      google.charts.load('current', {'packages':['corechart']});
+
+			      // Set a callback to run when the Google Visualization API is loaded.
+			      google.charts.setOnLoadCallback(drawChart);
+
+			      // Callback that creates and populates a data table,
+			      // instantiates the pie chart, passes in the data and
+			      // draws it.
+			      function drawChart() {
+			    	  
+			        // Create the data table.
+			        var data = new google.visualization.DataTable();
+			        data.addColumn('string', 'Topping');
+			        data.addColumn('number', 'Slices');
+			        data.addRows([
+
+			       	  [ result[1], result[2]],
+			       	  [ result[3], result[4]],
+			       	  [ result[5], result[6]],
+			       	  [ result[7], result[8]]
+			          
+			        ]);
+
+			        // Set chart options
+			        var options = {'title':'${dto.research_title}',
+			                       'width':400,
+			                       'height':300};
+
+			        // Instantiate and draw our chart, passing in some options.
+			        var chart = new google.visualization.PieChart(document.getElementById('chartview'));
+			        chart.draw(data, options);
+			      }
+			}
+		}
+	</script>
+		
+		
+		
+		
+		
+
+
+
+
+
+
+
+
+
+
 
 
 </body>

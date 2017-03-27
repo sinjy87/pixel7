@@ -49,6 +49,61 @@
         chart.draw(data, options);
       }
     </script>
+    
+    
+    <script type="text/javascript">
+    
+    function b17_1(year,month) {
+		alert("호출");
+		$(document).ready(function() {
+			$.getJSON(
+				"./stat_j?year="+year+"&month="+month,
+				response);
+
+
+		});
+		function response(result, textStatus) {
+			google.charts.load('current', {
+				'packages' : [ 'bar' ]
+			});
+			google.charts.setOnLoadCallback(drawChart);
+
+			function drawChart() {
+				
+				var data = google.visualization.arrayToDataTable([
+					[ result[0], '가입자수', '탈퇴자수' ]
+					
+				
+						
+					, result[1],result[2],result[3],result[4],result[5],result[6]
+				]);
+
+				var options = {
+					chart : {
+						title : 'Company Performance',
+						subtitle : 'Sales, Expenses, and Profit: 2014-2017',
+					},
+					bars : 'vertical',
+					vAxis : {
+						format : 'decimal'
+					},
+					height : 400,
+					colors : [ '#1b9e77', '#d95f02', '#7570b3' ]
+				};
+
+				var chart = new google.charts.Bar(document.getElementById('chart_div'));
+
+				chart.draw(data, google.charts.Bar.convertOptions(options));
+
+			}
+		}
+	}
+    
+    
+    </script>
+    
+    
+    
   </head>
 
   <body>
@@ -57,30 +112,58 @@
     
     
     <input type="button" value="home" onclick="location.href='../'">
+	<input type="button" value="다음" onclick="javascript:nextView(${ridto.research_num+1})">
+    
 
-    		<c:forEach items="${list}" var="ridto">
-				<input type="hidden" id="research_num" value="${ridto.research_num}">
-				<input type="hidden" id="research_title" value="${dto.research_title}">
-				<c:if test="${not empty ridto.result1}">
-					<input type="hidden" id="researchitem_content1"	value="${ridto.result1}">
-					<input type="hidden" id="researchitem_cnt1"	value="${ridto.cnt1}">
-				</c:if> 
-				<c:if test="${not empty ridto.result3}">
-					<input type="hidden" id="researchitem_content3"	value="${ridto.result3}">
-					<input type="hidden" id="researchitem_cnt3"	value="${ridto.cnt2}">
-				</c:if> 
-				<c:if test="${not empty ridto.result5}">
-					<input type="hidden" id="researchitem_content5"	value="${ridto.result5}">						
-					<input type="hidden" id="researchitem_cnt5"	value="${ridto.cnt3}">							
-				</c:if> 
-				<c:if test="${not empty ridto.result7}">
-					<input type="hidden" id="researchitem_content7"	value="${ridto.result7}">							
-					<input type="hidden" id="researchitem_cnt7"	value="${ridto.cnt4}">						
-				</c:if>
-			</c:forEach>
     
     
-    
+    <script type="text/javascript">
+    function b17_1(year,month) {
+		alert("호출");
+		$(document).ready(function() {
+			$.getJSON(
+				"./stat_j?year="+year+"&month="+month,
+				response);
+
+
+		});
+		function response(result, textStatus) {
+			google.charts.load('current', {
+				'packages' : [ 'bar' ]
+			});
+			google.charts.setOnLoadCallback(drawChart);
+
+			function drawChart() {
+				
+				var data = google.visualization.arrayToDataTable([
+					[ result[0], '가입자수', '탈퇴자수' ]
+					
+				
+						
+					, result[1],result[2],result[3],result[4],result[5],result[6]
+				]);
+
+				var options = {
+					chart : {
+						title : 'Company Performance',
+						subtitle : 'Sales, Expenses, and Profit: 2014-2017',
+					},
+					bars : 'vertical',
+					vAxis : {
+						format : 'decimal'
+					},
+					height : 400,
+					colors : [ '#1b9e77', '#d95f02', '#7570b3' ]
+				};
+
+				var chart = new google.charts.Bar(document.getElementById('chart_div'));
+
+				chart.draw(data, google.charts.Bar.convertOptions(options));
+
+			}
+		}
+	}
+    </script>
     
     
     

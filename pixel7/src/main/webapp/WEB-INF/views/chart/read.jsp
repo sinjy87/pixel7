@@ -59,10 +59,19 @@ function chartview(){
 			</c:forEach>
 		</table>
 		<input type="submit" value="확인 ">
-		<input type="button" value="설문조사 결과" onclick="chartview()">
+
 	</form>
 
 	
+		<input type="button" value="설문조사 결과" onclick="location.href='./view'">
+		
+		
+		
+		
+
+		
+		
+		
 
 </body>
 </html>

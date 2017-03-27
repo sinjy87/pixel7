@@ -2,7 +2,20 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:p="http://www.springframework.org/schema/p"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:context="http://www.springframework.org/schema/context"
+	
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	
+						http://www.springframework.org/schema/aop
+    					http://www.springframework.org/schema/aop/spring-aop.xsd
+    					http://www.springframework.org/schema/tx
+    					http://www.springframework.org/schema/tx/spring-tx.xsd
+    					http://www.springframework.org/schema/context 
+    					http://www.springframework.org/schema/context/spring-context.xsd
+	">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 				
@@ -27,18 +40,11 @@
     <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
   </bean>
 		
-		
     <bean id="tilesconfigurer"  
         class="org.springframework.web.servlet.view.tiles2.TilesConfigurer"> 
         <property name="definitions"> 
             <list> 
                 <value>/WEB-INF/spring/tilesMember.xml</value> 
-<!--                 <value>/WEB-INF/spring/tilesBbs.xml</value>  -->
-<!--                 <value>/WEB-INF/spring/tilesMemo.xml</value>  -->
-<!--                 <value>/WEB-INF/spring/tilesTeam.xml</value>  -->
-<!--                 <value>/WEB-INF/spring/tilesAddress.xml</value>  -->
-<!--                 <value>/WEB-INF/spring/tilesImage.xml</value>  -->
-<!--                 <value>/WEB-INF/spring/tilesCalendar.xml</value>  -->
             </list> 
         </property> 
     </bean>  
@@ -53,9 +59,37 @@
         </property> 
     </bean> 
 				
-			   <!--    파일 전송이 있는 경우만 선언, File upload   --> 
-    <bean id="multipartResolver" 
-        class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
+	<!--    파일 전송이 있는 경우만 선언, File upload   --> 
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
     </bean> 	
+		
+		
+	<!-- Transaction Manager -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+ 
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+       <tx:attributes>
+          <tx:method name="delete" rollback-for="Exception"/>
+       </tx:attributes>
+    </tx:advice>
+ 
+    <aop:config>
+        <aop:pointcut id="transactionPointcut" expression="execution(* spring.model.bbs.*Service.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="transactionPointcut" />
+    </aop:config>	
+		
+		
+	<context:component-scan base-package="spring.model.*" use-default-filters="false"> 
+      	<context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
+      	<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+   </context:component-scan> 
+	<!-- Transaction Manager end-->
+		
+		
+		
+		
+		
 		
 </beans>

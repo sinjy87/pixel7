@@ -48,7 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 	<delete id="delete" parameterType="int">
-		delete qna 
+		delete from qna 
 		where qna_num = #{qna_num}
 	</delete>
 	
