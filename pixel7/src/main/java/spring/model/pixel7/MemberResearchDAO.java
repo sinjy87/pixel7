@@ -61,5 +61,11 @@ public class MemberResearchDAO implements DAOSTDInter {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	
+	public int idCheck(Map map){
+		return sqlSession.selectOne("memberresearch.idCheck", map);
+	}
+	
 
 }

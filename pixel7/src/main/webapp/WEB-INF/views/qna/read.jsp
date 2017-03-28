@@ -141,8 +141,14 @@ function qna_delete(){
 </table>
 
 <input type="button" value="목록" onclick="location.href='./list'">
-<input type="button" value="수정" onclick="qna_update()">
-<input type="button" value="삭제" onclick="qna_delete()">
+
+<c:if test="${sessionScope.id == dto.id}">
+	<input type="button" value="수정" onclick="qna_update()">
+	<input type="button" value="삭제" onclick="qna_delete()">
+</c:if>
+
+
+
 
 
 

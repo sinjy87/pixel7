@@ -25,49 +25,67 @@ function chartview(){
 </head>
 <body>
 
-	<form name="frm" action="./create" method="post">
 
-		${sessionScope.id}
+${flag}
+${not flag }
 
-		<table border="1">
-			<c:forEach items="${list}" var="ridto">
-				<tr>
-					<th>${ridto.research_num}</th>
-					<th>${param.research_title}</th>
-				</tr>
-				<tr>
-					<td colspan="2">
-						<c:if test="${not empty ridto.result1}">
-							<input type="radio" name="researchitem_content"	value="${ridto.result1}" onclick="riCheck(${ridto.result2})">${ridto.result1}
-						</c:if> 
-						<c:if test="${not empty ridto.result3}">
-							<input type="radio" name="researchitem_content"	value="${ridto.result3}" onclick="riCheck(${ridto.result4})">${ridto.result3}
-						</c:if> 
-						<c:if test="${not empty ridto.result5}">
-							<input type="radio" name="researchitem_content" value="${ridto.result5}" onclick="riCheck(${ridto.result6})">${ridto.result5}
-						</c:if> 
-						<c:if test="${not empty ridto.result7}">
-							<input type="radio" id="researchitem_content"	value="${ridto.result7}" onclick="riCheck(${ridto.result8})">${ridto.result7}
-						</c:if>
-					</td>
-				</tr>
-				
-				<input type="hidden" name="id" value="${sessionScope.id}">
-				<input type="hidden" name="researchitem_num" value="">
-				<input type="hidden" id="research_num" value="${ridto.research_num}">
-				
-			</c:forEach>
-		</table>
-		<input type="submit" value="확인 ">
 
-	</form>
+<c:choose>
 
+
+<c:when test="${not flag}">
+		
+		이미 하셨습니다.
+		<input type="button" value="확인" onclick="history.back()">
 	
-		<input type="button" value="설문조사 결과" onclick="location.href='./view'">
+</c:when>
+
+<c:otherwise>
+	
+
+		<form name="frm" action="./create" method="post">
+	
+			${sessionScope.id}
+	
+			<table border="1">
+				<c:forEach items="${list}" var="ridto">
+					<tr>
+						<th>${ridto.research_num}</th>
+						<th>${param.research_title}</th>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<c:if test="${not empty ridto.result1}">
+								<input type="radio" name="researchitem_content"	value="${ridto.result1}" onclick="riCheck(${ridto.result2})">${ridto.result1}
+							</c:if> 
+							<c:if test="${not empty ridto.result3}">
+								<input type="radio" name="researchitem_content"	value="${ridto.result3}" onclick="riCheck(${ridto.result4})">${ridto.result3}
+							</c:if> 
+							<c:if test="${not empty ridto.result5}">
+								<input type="radio" name="researchitem_content" value="${ridto.result5}" onclick="riCheck(${ridto.result6})">${ridto.result5}
+							</c:if> 
+							<c:if test="${not empty ridto.result7}">
+								<input type="radio" name="researchitem_content"	value="${ridto.result7}" onclick="riCheck(${ridto.result8})">${ridto.result7}
+							</c:if>
+						</td>
+					</tr>
+					
+					<input type="hidden" name="id" value="${sessionScope.id}">
+					<input type="hidden" name="researchitem_num" value="">
+					<input type="hidden" id="research_num" value="${ridto.research_num}">
+					
+				</c:forEach>
+			</table>
+			<input type="submit" value="확인 ">
+			<input type="button" value="홈 " onclick="location.href='${pageContext.request.contextPath}'">
+			
+	
+		</form>
+
+</c:otherwise>
+	
 		
-		
-		
-		
+</c:choose>
 
 		
 		

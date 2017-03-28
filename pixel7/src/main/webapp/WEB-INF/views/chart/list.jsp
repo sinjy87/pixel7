@@ -14,11 +14,32 @@
 
 function research_read(research_num, research_title){
 	
-	var url = "./read?research_num="+research_num;
-	url += "&research_title="+research_title;
-	url += "";
 	
-	location.href= url;
+	
+	
+	
+
+	if(${not empty sessionScope.id}){
+
+		var url = "./read?research_num="+research_num;
+		url += "&research_title="+research_title;
+		url += "";
+		
+		location.href= url;	
+		
+	}
+
+	else if(${empty sessionScope.id}){
+		alert("회원만 이용할 수 있습니다");
+		return false;
+	}
+
+	else if(${cnt>0}){
+		alert(flag);
+		alert("이미 사용 하셨습니다.");
+		return false;
+	}
+	
 	
 }
 
@@ -38,11 +59,7 @@ function research_delete(research_num){
 	
 	location.href= url;
 }
-
-
 </script>
-
-
 </head>
 <body>
 
@@ -85,7 +102,7 @@ function research_delete(research_num){
 	
 	<input type="hidden" name=research_content value="${research_content}">
 	
-	<input type="submit" value="확인">
+	
 	<input type="button" value="홈" onclick="location.href='${pageContext.request.contextPath}'">
 	<c:if test="${not empty sessionScope.id && sessionScope.grade == 'admin'}">
 		<input type="button" value="설문추가" onclick="location.href='./create'">		
@@ -106,54 +123,54 @@ function research_delete(research_num){
 		
 			<script type="text/javascript">
 		function chartview(research_num) {
+			if(${not empty sessionScope.id}){
+				$(document).ready(function() {
+					$.getJSON(
+						"./view?research_num="+research_num,
+						response);
+		
+		
+				});
+				function response(result, textStatus) {
 
-			$(document).ready(function() {
-				$.getJSON(
-					"./view?research_num="+research_num,
-					response);
+				      // Load the Visualization API and the corechart package.
+				      google.charts.load('current', {'packages':['corechart']});
 	
+				      // Set a callback to run when the Google Visualization API is loaded.
+				      google.charts.setOnLoadCallback(drawChart);
 	
-			});
-			function response(result, textStatus) {
-
-				
-				
-				
-				
-				
-			      // Load the Visualization API and the corechart package.
-			      google.charts.load('current', {'packages':['corechart']});
-
-			      // Set a callback to run when the Google Visualization API is loaded.
-			      google.charts.setOnLoadCallback(drawChart);
-
-			      // Callback that creates and populates a data table,
-			      // instantiates the pie chart, passes in the data and
-			      // draws it.
-			      function drawChart() {
-			    	  
-			        // Create the data table.
-			        var data = new google.visualization.DataTable();
-			        data.addColumn('string', 'Topping');
-			        data.addColumn('number', 'Slices');
-			        data.addRows([
-
-			       	  [ result[1], result[2]],
-			       	  [ result[3], result[4]],
-			       	  [ result[5], result[6]],
-			       	  [ result[7], result[8]]
-			          
-			        ]);
-
-			        // Set chart options
-			        var options = {'title':'${dto.research_title}',
-			                       'width':400,
-			                       'height':300};
-
-			        // Instantiate and draw our chart, passing in some options.
-			        var chart = new google.visualization.PieChart(document.getElementById('chartview'));
-			        chart.draw(data, options);
-			      }
+				      // Callback that creates and populates a data table,
+				      // instantiates the pie chart, passes in the data and
+				      // draws it.
+				      function drawChart() {
+				    	  
+				        // Create the data table.
+				        var data = new google.visualization.DataTable();
+				        data.addColumn('string', 'Topping');
+				        data.addColumn('number', 'Slices');
+				        data.addRows([
+	
+				       	  [ result[1], result[2]],
+				       	  [ result[3], result[4]],
+				       	  [ result[5], result[6]],
+				       	  [ result[7], result[8]]
+				          
+				        ]);
+	
+				        // Set chart options
+				        var options = {'title':'${dto.research_title}',
+				                       'width':400,
+				                       'height':300};
+	
+				        // Instantiate and draw our chart, passing in some options.
+				        var chart = new google.visualization.PieChart(document.getElementById('chartview'));
+				        chart.draw(data, options);
+				      }
+				}
+			}
+			else{
+				alert("회원만 이용할 수 있습니다.");
+				return false;
 			}
 		}
 	</script>

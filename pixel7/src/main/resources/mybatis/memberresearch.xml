@@ -15,5 +15,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from memberresearch
 		where researchmember_num = #{researchmember_num}
 	</select>
+	
+	
+	<select id="idCheck" parameterType="Map" resultType="int">
+		select count(*) from
+		(
+			select * from memberresearch mr, researchitem ri
+			where mr.researchitem_num = ri.researchitem_num 
+		)
+		where id = #{id} and research_num = #{research_num}
+		
+		
+	</select>
+	
+	
 
 </mapper>

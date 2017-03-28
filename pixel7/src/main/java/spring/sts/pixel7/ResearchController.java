@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,8 +96,6 @@ public class ResearchController {
 					
 				}
 
-
-			
 //		}
 
 		res.setContentType("text/html;charset=UTF-8");
@@ -107,7 +106,7 @@ public class ResearchController {
 	}
 
 	@RequestMapping("/chart/list")
-	public String list(HttpServletRequest request, Model model) throws Exception {
+	public String list(HttpServletRequest request, Model model , HttpSession session) throws Exception {
 
 		String col = Utility.checkNull(request.getParameter("col"));
 		String word = Utility.checkNull(request.getParameter("word"));
@@ -142,20 +141,35 @@ public class ResearchController {
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("paging", paging);
 
+		
+
+		
+	
 		return "/chart/list";
 	}
 
 	@RequestMapping("/chart/read")
-	public String read(int research_num, Model model) throws Exception {
+	public String read(int research_num, Model model, HttpSession session) throws Exception {
+		
 
 		Map map = new HashMap();
 		map.put("research_num", research_num);
-
+		map.put("id", session.getAttribute("id"));
+		
+		boolean flag = true;
+		int cnt = mrdao.idCheck(map);
+		if(cnt>0)
+			flag = false;
+		
+		model.addAttribute("flag", flag);
+		
+		System.out.println("cnt:"+cnt);
+		
 		List<ResearchItemDTO> rilist = ridao.list(map);
-
 		model.addAttribute("list", rilist);
-
+	
 		return "/chart/read";
+	
 	}
 
 	@RequestMapping(value = "/chart/create", method = RequestMethod.GET)
