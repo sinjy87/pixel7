@@ -32,17 +32,6 @@ public class Img_itemController {
 		return "/img_item/list";
 	}
 
-//	@RequestMapping(value = "/img_item/login", method = RequestMethod.GET)
-//	public String login() {
-//		return "/img_item/login";
-//	}
-//
-//	@RequestMapping(value = "/img_item/login", method = RequestMethod.POST)
-//	public String login(String id, HttpSession session) {
-//		session.setAttribute("id", id);
-//		return "redirect:../";
-//	}
-
 	@RequestMapping(value = "/img_item/delete")
 	public String delete(int img_num) throws Exception {
 

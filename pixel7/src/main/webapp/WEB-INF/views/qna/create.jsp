@@ -11,11 +11,15 @@
 <body>
 
 <form action="./create" method="post" enctype="multipart/form-data">
-	<table border="1">
+
+	<DIV class="container" style="width: 50%">
+	
+	<h2>질문게시판 글 생성(Q&A)</h2><br><br>
+	
+	<TABLE class="table table-hover" >
 		<tr>
 			<th>제목</th>
-			<td><input type="text" name="qna_title"> 비밀글<input type="checkbox" name="qna_check" value="1">전체글<input type="checkbox" name="qna_check" value="0" checked="checked"></td>
-			
+			<td><input type="text" name="qna_title"> 비밀글<input type="radio" name="qna_check" value="1">전체글<input type="radio" name="qna_check" value="0" checked="checked"></td>
 		</tr>
 	
 		<c:choose>
@@ -40,7 +44,7 @@
 	
 		<tr>
 			<th>내용</th>
-			<td> <textarea rows="10" cols="30" name="qna_content"></textarea></td>
+			<td> <textarea rows="10" cols="55%" name="qna_content"></textarea></td>
 		
 		</tr>
 	
@@ -54,9 +58,11 @@
 	
 	
 	</table>
-	
-	<input type="submit" value="등록">
-	<input type="button" value="목록" onclick="location.href='./list'">
+		<DIV align="center">
+			<input type="submit" class="btn btn-default" value="등록">
+			<input type="button" class="btn btn-default" value="목록" onclick="location.href='./list'">
+		</DIV>
+	</DIV>
 	
 </form>
 

@@ -5,7 +5,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
- <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/httpRequest.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.js"></script>
@@ -104,7 +103,7 @@ function research_delete(research_num){
 	
 	<input type="button" value="홈" onclick="location.href='${pageContext.request.contextPath}'">
 	<c:if test="${not empty sessionScope.id && sessionScope.grade == 'admin'}">
-		<input type="button" value="설문추가" onclick="location.href='./create'">		
+		<input type="button" value="설문추가" onclick="location.href='./itemcreate'">		
 	</c:if>
 	
 	

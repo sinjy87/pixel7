@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
- <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
  <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
@@ -14,6 +13,10 @@
 
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ 
+ <script type="text/javascript" src="${pageContext.request.contextPath }/js/httpRequest.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <style>
 body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
@@ -75,6 +78,10 @@ function c(){
   <a class="w3-padding-large w3-hover-black" href="${pageContext.request.contextPath }/member/logout">
     <i class="fa fa-pencil" style="font-size:36px"></i>
     <p>Logout</p>
+  </a>
+    <a class="w3-padding-large w3-hover-black" href="${pageContext.request.contextPath }/member/agree">
+    <i class="fa fa-pencil" style="font-size:36px"></i>
+    <p>회원가입</p>
   </a>
   <a class="w3-padding-large w3-hover-black" href="${pageContext.request.contextPath }/cal/notice">
     <i class="fa fa-pencil" style="font-size:36px"></i>

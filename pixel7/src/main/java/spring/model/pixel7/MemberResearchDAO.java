@@ -53,6 +53,9 @@ public class MemberResearchDAO implements DAOSTDInter {
 	public boolean delete(Object pk) throws Exception {
 		boolean flag = false;
 		
+		int cnt = sqlSession.delete("memberresearch.delete", pk);
+		if(cnt>0)
+			flag = true;
 		return flag;
 	}
 

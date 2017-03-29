@@ -24,6 +24,7 @@ import spring.model.pixel7.ResearchDAO;
 import spring.model.pixel7.ResearchDTO;
 import spring.model.pixel7.ResearchItemDAO;
 import spring.model.pixel7.ResearchItemDTO;
+import spring.model.pixel7.Research_Mgr;
 import spring.utility.pixel7.Utility;
 
 @Controller
@@ -37,6 +38,10 @@ public class ResearchController {
 
 	@Autowired
 	private MemberResearchDAO mrdao;
+	
+	@Autowired
+	private Research_Mgr mgr ;
+	
 
 	@RequestMapping("/chart/view")
 	public void view(Model model, HttpServletResponse res, HttpServletRequest request ,int research_num) throws Exception {
@@ -172,10 +177,57 @@ public class ResearchController {
 	
 	}
 
-	@RequestMapping(value = "/chart/create", method = RequestMethod.GET)
-	public String create() throws Exception {
-		return "/chart/create";
+	@RequestMapping(value = "/chart/itemcreate", method = RequestMethod.GET)
+	public String create(ResearchDTO dto, ResearchItemDTO ridto) throws Exception {
+		return "/chart/itemcreate";
 	}
+	
+	
+	@RequestMapping(value = "/chart/titlecreate", method = RequestMethod.POST)
+	public String create(ResearchDTO dto, Model model) throws Exception {
+
+		
+		Map map = new HashMap();
+		int i = 0;
+		for(i=0; i< dao.list(map).size(); i++){
+			
+		}
+		dto.setResearch_num(i+1);
+		
+		if(dao.create(dto)){
+			model.addAttribute("dto", dto);
+			return "/chart/itemcreate";
+		}
+		else{
+			return "error";
+		}
+		
+//		return "";
+		
+	}
+	
+	@RequestMapping(value = "/chart/contentcreate", method = RequestMethod.POST)
+	public String create(ResearchItemDTO ridto, Model model, int research_num) throws Exception {
+		
+		if(ridao.create(ridto)){
+			model.addAttribute("ridto", ridto);
+			return "/chart/itemcreate";
+		}
+		else{
+			return "error";
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	@RequestMapping(value = "/chart/create", method = RequestMethod.POST)
 	public String create(MemberResearchDTO dto) throws Exception {
@@ -215,9 +267,11 @@ public class ResearchController {
 	}
 
 	@RequestMapping("/chart/delete")
-	public String delete() {
+	public String delete(int research_num) throws Exception {
 
-		return "";
+		mgr.delete(research_num);
+		
+		return "redirect:./list";
 	}
 
 }
