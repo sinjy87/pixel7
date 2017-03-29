@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <!DOCTYPE html>
 <html>
@@ -26,7 +27,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 function c(){
 	if('${sessionScope.id}' ==""){
 		alert("Login///////");
-		var url = "${pageContext.request.contextPath }/img_item/login";
+		var url = "${pageContext.request.contextPath }/member/login";
 		location.href = url;
 	}else if('${grade}'=="seceder"){
 		alert("seceder");
@@ -65,10 +66,28 @@ function c(){
     <i class="fa fa-folder-open-o" style="font-size:36px"></i>
     <p>	Marketplace</p>
   </a>
-  <a class="w3-padding-large w3-hover-black" href="${pageContext.request.contextPath }/img_item/login">
+  <a class="w3-padding-large w3-hover-black" href="${pageContext.request.contextPath }/member/login">
     <i class="fa fa-pencil" style="font-size:36px"></i>
     <p>Login</p>
   </a>
+  <a class="w3-padding-large w3-hover-black" href="${pageContext.request.contextPath }/member/logout">
+    <i class="fa fa-pencil" style="font-size:36px"></i>
+    <p>Logout</p>
+  </a>
+  <a class="w3-padding-large w3-hover-black" href="${pageContext.request.contextPath }/cal/notice">
+    <i class="fa fa-pencil" style="font-size:36px"></i>
+    <p>공지사항</p>
+  </a>
+  <a class="w3-padding-large w3-hover-black" href="${pageContext.request.contextPath }/qna/list">
+    <i class="fa fa-pencil" style="font-size:36px"></i>
+    <p>Q&A</p>
+  </a>
+  <a class="w3-padding-large w3-hover-black" href="${pageContext.request.contextPath }/chart/list">
+    <i class="fa fa-pencil" style="font-size:36px"></i>
+    <p>설문조사</p>
+  </a>
+  
+  
   
 <!--   <a class="w3-padding-large w3-hover-black" href="#photos"> -->
 <!--     <i class="fa fa-eye w3-xxlarge"></i> -->
@@ -81,13 +100,13 @@ function c(){
 </nav>
 
 <!-- Navbar on small screens (Hidden on medium and large screens) -->
-<div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
-  <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
-    <a class="w3-bar-item w3-button" style="width:25% !important" href="#">HOME</a>
-    <a class="w3-bar-item w3-button" style="width:25% !important" href="#about">ABOUT</a>
-    <a class="w3-bar-item w3-button" style="width:25% !important" href="#photos">PHOTOS</a>
-    <a class="w3-bar-item w3-button" style="width:25% !important" href="#contact">CONTACT</a>
-  </div>
-</div>
+<!-- <div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar"> -->
+<!--   <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small"> -->
+<!--     <a class="w3-bar-item w3-button" style="width:25% !important" href="#">HOME</a> -->
+<!--     <a class="w3-bar-item w3-button" style="width:25% !important" href="#about">ABOUT</a> -->
+<!--     <a class="w3-bar-item w3-button" style="width:25% !important" href="#photos">PHOTOS</a> -->
+<!--     <a class="w3-bar-item w3-button" style="width:25% !important" href="#contact">CONTACT</a> -->
+<!--   </div> -->
+<!-- </div> -->
 </body>
 </html>

@@ -30,21 +30,21 @@ public class QnaController {
 	@Autowired
 	private Qna_Mgr mgr;
 	
-	
-	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public String login(){
-		
-		return "/qna/login";
-	}
-	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(String id, String grade, HttpSession session){
-		session.setAttribute("id", id);
-		session.setAttribute("grade", grade);
-		System.out.println("id : " + id);
-		System.out.println("grade : " + grade);
-		return "redirect:./";
-	}
-	
+//	
+//	@RequestMapping(value="/login", method=RequestMethod.GET)
+//	public String login(){
+//		
+//		return "/qna/login";
+//	}
+//	@RequestMapping(value="/login", method=RequestMethod.POST)
+//	public String login(String id, String grade, HttpSession session){
+//		session.setAttribute("id", id);
+//		session.setAttribute("grade", grade);
+//		System.out.println("id : " + id);
+//		System.out.println("grade : " + grade);
+//		return "redirect:./";
+//	}
+//	
 	
 	@RequestMapping("/qna/list")
 	public String list(HttpServletRequest request) throws Exception {

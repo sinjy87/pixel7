@@ -30,8 +30,6 @@ body, html {
 </head>
 
 <body>
-
-
 	<div
 		class="bgimg w3-display-container w3-animate-opacity w3-text-white">
 
@@ -40,8 +38,6 @@ body, html {
 			<hr class="w3-border-grey" style="margin: auto; width: 40%">
 			<p class="w3-large w3-center">16 days left</p>
 		</div>
-
 	</div>
-
 </body>
 </html>

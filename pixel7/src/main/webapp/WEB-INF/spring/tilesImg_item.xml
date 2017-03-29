@@ -7,7 +7,6 @@
      <definition name="main" template="/WEB-INF/views/template/template.jsp"> 
         <put-attribute name="left" value="/WEB-INF/views/template/nav.jsp" /> 
     </definition> 
-    
     <definition name="/main" extends="main"> 
         <put-attribute name="title" value="MainPage" ></put-attribute> 
         <put-attribute name="body" value="/WEB-INF/views/main.jsp" /> 

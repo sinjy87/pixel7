@@ -39,9 +39,13 @@
 		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
 		<property name="definitions">
 			<list>
-            <value>/WEB-INF/spring/tilesImg_item.xml</value> 
-				    <value>/WEB-INF/spring/tilesMember.xml</value>
-            <value>/WEB-INF/spring/tilesNotice.xml</value> 
+            	<value>/WEB-INF/spring/tilesImg_item.xml</value> 
+				<value>/WEB-INF/spring/tilesMember.xml</value>
+            	<value>/WEB-INF/spring/tilesNotice.xml</value> 
+            	<value>/WEB-INF/spring/tilesQna.xml</value> 
+            	<value>/WEB-INF/spring/tilesServey.xml</value> 
+				
+				
 				<!-- <value>/WEB-INF/spring/tilesBbs.xml</value> -->
 				<!-- <value>/WEB-INF/spring/tilesMemo.xml</value> -->
 				<!-- <value>/WEB-INF/spring/tilesTeam.xml</value> -->

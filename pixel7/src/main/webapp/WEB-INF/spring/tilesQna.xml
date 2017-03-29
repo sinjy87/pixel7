@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <!DOCTYPE  tiles-definitions PUBLIC 
+    "-//Aapche Software Foundation//DTD Tiles Configuration 2.0//EN" 
+    "http://tiles.apache.org/dtds/tiles-config_2_0.dtd"> 
+
+<tiles-definitions>
+  	<definition name="/qna/list" extends="main">
+		<put-attribute name="title" value=" notice 목록"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/qna/list.jsp" />
+	</definition>
+	<definition name="/qna/create" extends="main">
+		<put-attribute name="title" value=" 조회"></put-attribute>
+		<put-attribute name="body"  value="/WEB-INF/views/qna/create.jsp" />
+	</definition>
+	<definition name="/qna/update" extends="main">
+		<put-attribute name="title" value="notice 글쓰기"></put-attribute>
+		<put-attribute name="body"  value="/WEB-INF/views/qna/update.jsp" />
+	</definition>
+	<definition name="/qna/delete" extends="main">
+		<put-attribute name="title" value="notice 글쓰기"></put-attribute>
+		<put-attribute name="body"  value="/WEB-INF/views/qna/delete.jsp" />
+	</definition>
+		<definition name="/qna/read" extends="main">
+		<put-attribute name="title" value="notice 글쓰기"></put-attribute>
+		<put-attribute name="body"  value="/WEB-INF/views/qna/read.jsp" />
+	</definition>
+</tiles-definitions> 

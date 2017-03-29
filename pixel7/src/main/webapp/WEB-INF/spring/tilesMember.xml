@@ -4,13 +4,6 @@
     "http://tiles.apache.org/dtds/tiles-config_2_0.dtd"> 
 
 <tiles-definitions> 
-     <definition name="main" template="/WEB-INF/views/template/template.jsp"> 
-        <put-attribute name="left" value="/WEB-INF/views/template/navi.jsp" /> 
-    </definition> 
-    <definition name="/home" extends="main"> 
-        <put-attribute name="title" value="기본페이지" ></put-attribute> 
-        <put-attribute name="body" value="/WEB-INF/views/home.jsp" /> 
-    </definition>   
     <definition name="/member/list" extends="main"> 
         <put-attribute name="title" value="회원목록" ></put-attribute> 
         <put-attribute name="body" value="/WEB-INF/views/member/list.jsp" /> 
