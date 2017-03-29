@@ -4,8 +4,7 @@
 
 <html>
 <head>
- <title></title>
-
+<title></title>
 
 <script language="javascript">
             // 해당이름의 쿠키를 가져온다.
@@ -39,8 +38,6 @@
                 // 찾지 못했다면
                 return "";
             }
-
-
 function openMsgBox()
 {
         var eventCookie=getCookie("event_condo");
@@ -67,6 +64,17 @@ openMsgBox();   // 팝업창을 띄운다.
 <hr>
 <c:import url="/cal/notice_home"></c:import>
 
+<h1>
 
+	Hello world!  안녕하세요
+</h1>
+<c:if test="${not empty id}">
+<h2>${id }님이 로그인하셨습니다</h2>
+</c:if>
+<input type="button" value="로그인"
+					onclick="location.href = '${pageContext.request.contextPath}/member/agree'">
+<P>  The time on the server is ${serverTime}. </P>
+  
 </body>
 </html>
+

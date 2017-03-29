@@ -4,42 +4,41 @@
     "http://tiles.apache.org/dtds/tiles-config_2_0.dtd"> 
 
 <tiles-definitions> 
-
-
-<definition name="/member/list" extends="main"> 
+     <definition name="main" template="/WEB-INF/views/template/template.jsp"> 
+        <put-attribute name="left" value="/WEB-INF/views/template/navi.jsp" /> 
+    </definition> 
+    <definition name="/home" extends="main"> 
+        <put-attribute name="title" value="기본페이지" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/home.jsp" /> 
+    </definition>   
+    <definition name="/member/list" extends="main"> 
         <put-attribute name="title" value="회원목록" ></put-attribute> 
         <put-attribute name="body" value="/WEB-INF/views/member/list.jsp" /> 
     </definition>   
-    <definition name="/cal/update" extends="main"> 
-        <put-attribute name="title" value="나의 정보" ></put-attribute> 
-        <put-attribute name="body" value="/WEB-INF/views/caledar/updateForm.jsp" /> 
-    </definition>  
-    <definition name="/member/agreement" extends="main"> 
+    <definition name="/member/agree" extends="main"> 
         <put-attribute name="title" value="회원가입" ></put-attribute> 
         <put-attribute name="body" value="/WEB--INF/views/member/agreement.jsp" /> 
     </definition>   
-        <definition name="/cal/create1" extends="main"> 
-        <put-attribute name="title" value="회원가입" ></put-attribute> 
-        <put-attribute name="body" value="/WEB-INF/views/calendar/createForm.jsp" /> 
-    </definition>   
     <definition name="/member/update" extends="main"> 
         <put-attribute name="title" value="정보 수정" ></put-attribute> 
-        <put-attribute name="body" value="/WEB-INF/views/member/updateForm.jsp" /> 
+        <put-attribute name="body" value="/WEB-INF/views/member/update.jsp" /> 
     </definition>  
     <definition name="/member/delete" extends="main"> 
         <put-attribute name="title" value="회원 탈퇴" ></put-attribute> 
-        <put-attribute name="body" value="/WEB-INF/views/member/deleteForm.jsp" /> 
+        <put-attribute name="body" value="/WEB-INF/views/member/delete.jsp" /> 
     </definition>  
-    <definition name="/member/updateFile" extends="main"> 
-        <put-attribute name="title" value="사진 수정" ></put-attribute> 
-        <put-attribute name="body" value="/WEB-INF/views/member/updateFileForm.jsp" /> 
+
+    <definition name="/member/seceder" extends="main"> 
+        <put-attribute name="title" value="불가" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/seceder.jsp" /> 
     </definition>     
-    <definition name="/member/updatePw" extends="main"> 
-        <put-attribute name="title" value="비밀번호 수정" ></put-attribute> 
-        <put-attribute name="body" value="/WEB-INF/views/member/updatePwForm.jsp" /> 
-    </definition>     
+
     <definition name="/member/login" extends="main"> 
         <put-attribute name="title" value="로그인" ></put-attribute> 
-        <put-attribute name="body" value="/WEB-INF/views/member/loginForm.jsp" /> 
+        <put-attribute name="body" value="/WEB-INF/views/member/login.jsp" /> 
     </definition>     
-</tiles-definitions> 
+    <definition name="/member/stat" extends="main"> 
+        <put-attribute name="title" value="로그인" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/member/stat.jsp" /> 
+    </definition>     
+ </tiles-definitions>  

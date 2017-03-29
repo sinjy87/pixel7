@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
  
@@ -8,32 +9,30 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><tiles:getAsString name="title"/></title>
 <link href="${pageContext.request.contextPath }/css/style.css" rel="Stylesheet" type="text/css"> 
+ 
+  <style type="text/css">
+#body_center {
+	margin-left: 200px;
+}
+</style>
+
 </head>
-<body leftmargin="0" topmargin="0">
- 
- 
-<!-- 상단 메뉴 -->
+<body>
 
-<tiles:insertAttribute name="header"></tiles:insertAttribute> 
-<!-- 상단 메뉴 끝 -->
- 
- 
- 
-<!-- 내용 시작 -->
-<div style="width: 100%; padding-top: 60px;">
-<tiles:insertAttribute name="body"></tiles:insertAttribute> 
+	<!-- 상단 메뉴 -->
+	<tiles:insertAttribute name="left" />
+	<!-- 상단 메뉴 끝 -->
 
-<br>
-</div>
-<!-- 내용 끝 -->
- 
- 
+	<!-- 내용 시작 -->
+	<div id="body_center">
+	<tiles:insertAttribute name="body" />
+	</div>
+	<!-- 내용 끝 -->
 <!-- 하단 메뉴 시작 -->
 
 <tiles:insertAttribute name="footer"></tiles:insertAttribute> 
 <!-- 하단 메뉴 끝 -->
- 
- 
+
+
 </body>
 </html>
-
