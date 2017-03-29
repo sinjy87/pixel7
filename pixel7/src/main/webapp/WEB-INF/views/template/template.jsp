@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
  
@@ -28,11 +27,6 @@
 	<tiles:insertAttribute name="body" />
 	</div>
 	<!-- 내용 끝 -->
-<!-- 하단 메뉴 시작 -->
-
-<tiles:insertAttribute name="footer"></tiles:insertAttribute> 
-<!-- 하단 메뉴 끝 -->
-
 
 </body>
 </html>

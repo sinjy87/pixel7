@@ -68,4 +68,10 @@ public class ServeyCheckDAO implements DAOSTDInter {
 		return sqlSession.selectOne("serveycheck.total", map);
 	}
 
+	@Override
+	public int total(String col, String word) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

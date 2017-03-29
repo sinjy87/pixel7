@@ -85,4 +85,10 @@ public class MessageDAO implements Pixel7_MessageDAO {
 		return mybatis.selectOne("message.getgrade", id);
 	}
 
+	@Override
+	public int total(String col, String word) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

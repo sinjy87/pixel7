@@ -84,4 +84,10 @@ public class QnaDAO implements DAOSTDInter {
 		return sqlSession.selectOne("qna.total", map);
 	}
 
+	@Override
+	public int total(String col, String word) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

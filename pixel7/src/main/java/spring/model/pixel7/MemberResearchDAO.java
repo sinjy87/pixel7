@@ -66,6 +66,12 @@ public class MemberResearchDAO implements DAOSTDInter {
 	public int idCheck(Map map){
 		return sqlSession.selectOne("memberresearch.idCheck", map);
 	}
+
+	@Override
+	public int total(String col, String word) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 
 }

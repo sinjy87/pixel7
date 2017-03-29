@@ -62,4 +62,12 @@ public class ResearchItemDAO implements DAOSTDInter {
 		return 0;
 	}
 
+
+
+	@Override
+	public int total(String col, String word) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

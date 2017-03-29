@@ -4,13 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMessage.RecipientType;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -157,6 +152,12 @@ public class MemberDAO implements Pixel7_MemberDAO {
 	/**id리스트*/
 	public Object getId(String id) {
 		return mybatis.selectList("member.getid", id);
+	}
+
+	@Override
+	public int total(String col, String word) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
