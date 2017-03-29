@@ -72,7 +72,7 @@ padding-right: 30px
 						<li><a href="${pageContext.request.contextPath}/member/update">회원 수정</a></li>
 						<li><a href="${pageContext.request.contextPath}/member/delete">회원탈퇴</a></li>
 						<li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
-						   
+						  asd 
 					    </c:when>
 						</c:choose>
 						
