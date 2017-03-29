@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ 
+<mapper namespace="notice"> 
+ 
+ 	<select id="upViewcntRank" parameterType="Map" resultType="NoticeDTO">
+
+	SELECT notice_no, id, notice_labeldate , notice_label, notice_title, notice_content, notice_date,notice_cnt,r
+	     from( 
+	SELECT notice_no, id, notice_labeldate, notice_label, notice_title, notice_content, notice_date,notice_cnt, rownum r
+	     from( 
+	SELECT notice_no, id, notice_labeldate, notice_label, notice_title, notice_content, notice_date,notice_cnt
+	     FROM notice
+	<where>
+		<if test="col=='id'">
+		id like '%'||#{word}||'%'
+		</if>
+		<if test="col=='notice_content'">
+		notice_content like '%'||#{word}||'%'
+		</if>
+		<if test="col=='notice_title'">
+		notice_title like '%'||#{word}||'%'
+		</if>
+	</where>
+	 order by notice_cnt desc
+	)
+	)
+
+<![CDATA[where r>=#{sno} and r<=#{eno}   ]]>    
+</select>
+ 
+ 
+ 
+ 
+ 
+  <!-- 레코드 추가 -->
+  <insert id="create" parameterType="NoticeDTO">
+
+	INSERT INTO notice(notice_no, id, notice_labeldate, notice_label, notice_title, notice_content,  notice_date)
+	VALUES( (SELECT NVL(MAX(notice_no), 0) + 1 as notice_no FROM notice),
+	        #{id}, 
+	        #{notice_labeldate}, 
+	        #{notice_label}, 
+	        #{notice_title}, 
+	        #{notice_content}, 
+	        sysdate)
+	        
+ 
+  </insert>
+ 
+	<select id="list" parameterType="Map" resultType="NoticeDTO">
+
+	SELECT notice_no, id, notice_labeldate , notice_label, notice_title, notice_content, notice_date,notice_cnt,r
+	     from( 
+	SELECT notice_no, id, notice_labeldate, notice_label, notice_title, notice_content, notice_date,notice_cnt, rownum r
+	     from( 
+	SELECT notice_no, id, notice_labeldate, notice_label, notice_title, notice_content, notice_date,notice_cnt
+	     FROM notice
+	<where>
+		<if test="col=='id'">
+		id like '%'||#{word}||'%'
+		</if>
+		<if test="col=='notice_content'">
+		notice_content like '%'||#{word}||'%'
+		</if>
+		<if test="col=='notice_title'">
+		notice_title like '%'||#{word}||'%'
+		</if>	
+	</where>
+	ORDER BY id ASC
+	)
+	)
+
+<![CDATA[where r>=#{sno} and r<=#{eno}   ]]>    
+</select>
+
+
+  <!-- 1개의 레코드 출력 -->
+  <select id="read" parameterType="int" resultType="NoticeDTO">
+    SELECT notice_no, notice_labeldate, notice_label, notice_title, notice_content, notice_cnt, notice_date
+    FROM notice
+    WHERE notice_no = #{notice_no}
+  </select>
+ 
+  <!-- 글 수정 --> 
+  <update id="update" parameterType="NoticeDTO">
+    UPDATE notice
+    SET notice_labeldate=#{notice_labeldate}, notice_label=#{notice_label}, notice_title=#{notice_title}, notice_content=#{notice_content}
+    WHERE notice_no = #{notice_no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM notice
+    WHERE notice_no=#{notice_no}    
+  </delete>
+ 
+  <!-- 1개의 레코드 출력 -->
+  <select id="label" parameterType="String" resultType="NoticeDTO" >
+    SELECT notice_no, notice_labeldate, notice_label
+    FROM notice
+    WHERE notice_labeldate = #{notice_labeldate}
+
+  </select>
+ 
+ <select id="total" parameterType="Map" resultType="int">
+	select count(*) from notice
+	<where>
+		<if test="col=='notice_title'">
+			notice_title like '%' ||#{word}||'%'
+		</if>
+		<if test="col=='notice_content'">
+			notice_content like '%' ||#{word}||'%'
+		</if>
+		<if test="col=='id'">
+		id like '%'||#{word}||'%'
+		</if>
+	</where>
+</select>
+
+<update id="upViewcnt" parameterType="int">
+ update notice
+ set notice_cnt = notice_cnt +1
+ where notice_no = #{notice_no}
+</update>
+
+
+ 
+
+</mapper>
