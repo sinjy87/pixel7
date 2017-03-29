@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="research">
+
+	<select id="list" parameterType="Map" resultType="ResearchDTO">
+		select * from research
+	</select>
+	
+	<insert id="create" parameterType="Map">
+		insert into research(research_num, research_title)
+		values((select nvl(max(research_num),0)+1 from research), #{research_title})
+	</insert>
+	
+	<select id="read" parameterType="int" resultType="ResearchDTO">
+		select * from research
+		where research_num = #{research_num}
+	</select>
+	
+	<update id="update" parameterType="ResearchDTO">
+		update research set research_title = #{research_title}
+		where research_num = #{research_num}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete research
+		where research_num = #{research_num}
+	</delete>
+	
+	<select id="total" parameterType="Map" resultType="int">
+		select count(*) from research
+	</select>
+	
+
+
+</mapper>

@@ -1,9 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
 <html>
 <head>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -12,64 +11,25 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<style type="text/css">
-
-/* li#admin{ */
-/* float:right; */
-/* padding-right: 30px */
-/* } */
-
-/* ul#menu li { */
-/* 	display: inline; */
-/* } */
-
-/* ul#menu li a { */
-/* 	background-color: black; */
-/* 	color: white; */
-/* 	pading: 10px 20px; */
-/* 	text-decoration: none; */
-/* 	border-radius: 4px 4px 0 0; */
-/* } */
-
-/* ul#menu li a:hover { */
-/* 	background-color: orange; */
-/* } */
-.table {
-	width: 100%;
-}
-
-.table, .td {
-	border-style: none;
-}
-
-.img {
-	width: 100%;
-	height: 110%;
-}
-</style>
+ 
 <script type="text/javascript">
-	$(document).ready(
-			function() {
-				if ('${sessionScope.id}' != ''
-						&& '${sessionScope.grade}' == 'H') {
-					$("#login").hide();
-					$("#logout").show();
-					$("#admin").hide();
-					$("#member").show();
-
-				} else if ('${sessionScope.id}' != ''
-						&& '${sessionScope.grade}' == 'A') {
-					$("#admin").show();
-					$("#login").hide();
-					$("#logout").show();
-				} else {
-					$("#login").show();
-					$("#logout").hide();
-					$("#admin").hide();
-					$("#member").hide();
-				}
-			});
+$(document).ready(function(){
+	if('${sessionScope.id}' !='' && '${sessionScope.grade}'=='A'){
+		$("#admin").show();
+		$("#login").hide();
+		$("#logout").show();
+	}else if('${sessionScope.id}' !=''){
+		$("#login").hide();
+		$("#admin").hide();
+		$("#logout").show();
+	
+	}else{
+	$("#login").show();
+	$("#logout").hide();
+	$("#admin").hide();
+	
+	}
+});
 </script>
 </head>
 <body>
@@ -157,14 +117,15 @@
 							</ul>
 						</div>
 					</nav>
-				</td>
+  			</td>
 			</tr>
-
 		</table>
 	</div>
 	<!-- 상단 메뉴 끝 -->
-
-
-
 	<!-- 내용 시작 -->
 	<div style="width: 100%; padding-top: 10px;">
+	</div>
+	</body>
+	</html>
+	
+

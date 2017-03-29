@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="researchitem">
+
+	<insert id="create" parameterType="ResearchItemDTO">
+		insert into researchitem(researchitem_num, research_num, researchitem_content)
+		values((select nvl(max(researchitem_num),0)+1 from researchitem), #{research_num}, #{researchitem_content})
+	</insert>
+	
+	<select id="list" parameterType="Map" resultType="ResearchItemDTO">
+		select research_num 
+			, max(case when rnum1 = 1 then researchitem_content end ) result1 
+			, max(case When rnum2 = 1 then researchitem_num end ) result2
+			, max(case When rnum3 = 1 then researchitem_cnt end ) cnt1 
+			, max(case When rnum1 = 2 then researchitem_content end ) result3
+			, max(case When rnum2 = 2 then researchitem_num end ) result4 
+			, max(case When rnum3 = 2 then researchitem_cnt end ) cnt2
+			, max(case When rnum1 = 3 then researchitem_content end ) result5 
+			, max(case When rnum2 = 3 then researchitem_num end ) result6 
+			, max(case When rnum3 = 3 then researchitem_cnt end ) cnt3
+			, max(case When rnum1 = 4 then researchitem_content end ) result7 
+			, max(case When rnum2 = 4 then researchitem_num end ) result8 
+			, max(case When rnum3 = 4 then researchitem_cnt end ) cnt4
+
+		from (
+				select research_num, researchitem_content, researchitem_num, researchitem_cnt, 
+					   row_number() over(partition by research_num order by researchitem_content) as rnum1, 
+					   row_number() over(partition by research_num order by researchitem_content) as rnum2, 
+					   row_number() over(partition by research_num order by researchitem_content) as rnum3 
+				
+				from researchitem
+				where research_num = #{research_num}
+
+		) 
+		group by research_num
+	</select>
+
+	<select id="read" parameterType="int" resultType="ResearchItemDTO">
+		select * from researchitem
+		where research_num = #{research_num} 
+	</select>
+	
+	<update id="update" parameterType="ResearchItemDTO">
+		update  researchitem set
+		researchitem_content = #{researchitem_content}
+		where researchitem_num = #{researchitem_num}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete researchitem 
+		where researchitem_num = #{researchitem_num}
+	</delete>
+
+
+</mapper>

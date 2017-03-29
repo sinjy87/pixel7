@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="memberresearch">
+
+
+	<insert id="create" parameterType="MemberResearchDTO">
+		insert into memberresearch(researchmember_num, researchmember_wdate, researchitem_num, id )
+		values((select nvl(max(researchmember_num),0) +1 from memberresearch ), sysdate, #{researchitem_num}, #{id})
+	</insert>
+
+	<select id="read" parameterType="int" resultType="MemberResearchDTO">
+		select * from memberresearch
+		where researchmember_num = #{researchmember_num}
+	</select>
+	
+	
+	<select id="idCheck" parameterType="Map" resultType="int">
+		select count(*) from
+		(
+			select * from memberresearch mr, researchitem ri
+			where mr.researchitem_num = ri.researchitem_num 
+		)
+		where id = #{id} and research_num = #{research_num}
+		
+		
+	</select>
+	
+	
+
+</mapper>

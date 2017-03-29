@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="qna">
+
+	<select id="list" parameterType="Map" resultType="QnaDTO">
+		select qna_num, qna_title, id, qna_filename, qna_date, qna_check,  r
+		from(
+			select qna_num, qna_title, id, qna_filename, qna_date, qna_check, rownum r
+			from(
+				select qna_num, qna_title, id, qna_filename, qna_date, qna_check
+				from qna
+				<where>
+					<if test="col=='id'">
+						id like '%'||#{word}||'%'
+					</if>
+					<if test="col=='qna_title'">
+						qna_title like '%'||#{word}||'%'
+					</if>
+					<if test="col=='qna_wdate'">
+						qna_date like '%'||#{word}||'%'
+					</if>
+				</where>
+				order by qna_num desc
+			)
+		)
+		<![CDATA[where r>=#{sno} and r<=#{eno}]]>
+	</select>
+	
+	<insert id="create" parameterType="QnaDTO">
+		insert into qna(qna_num, qna_title, id, qna_password, qna_filename, qna_content, qna_date, qna_check)
+		values((select nvl(max(qna_num),0) +1  from qna ), #{qna_title}, #{id}, (select password from member where id = #{id}) , #{qna_filename}, #{qna_content}, sysdate, #{qna_check} )
+	</insert>
+
+	<select id="read" parameterType="int" resultType="QnaDTO">
+		select * from qna
+		where qna_num = #{pk} 
+	</select>
+	
+	<update id="update" parameterType="QnaDTO" >
+		update qna set
+		qna_content = #{qna_content},
+		qna_filename = #{qna_filename},
+		qna_title = #{qna_title}
+		where qna_num = #{qna_num}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete from qna 
+		where qna_num = #{qna_num}
+	</delete>
+	
+	<select id="total" parameterType="Map" resultType="int">
+		select count(*) from qna
+		<where>
+			<if test="col=='id'">
+				id like '%'||#{word}||'%'
+			</if>
+			<if test="col=='qna_title'">
+				qna_title like '%'||#{word}||'%'
+			</if>
+			<if test="col=='qna_wdate'">
+				qna_date like '%'||#{word}||'%'
+			</if>
+		</where>
+	
+	</select>
+	
+
+</mapper>
