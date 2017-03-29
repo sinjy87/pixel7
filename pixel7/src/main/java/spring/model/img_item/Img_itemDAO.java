@@ -88,6 +88,12 @@ public class Img_itemDAO implements Pixel7_Img_itemDAO {
 	public String getprofile(String id){
 		return mybatis.selectOne("img_item.profile",id);
 	}
+
+	@Override
+	public int total(String col, String word) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 
 }
