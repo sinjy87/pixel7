@@ -5,7 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/httpRequest.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.js"></script>
@@ -14,12 +14,8 @@
 
 function research_read(research_num, research_title){
 	
-	
-	
-	
-	
-
 	if(${not empty sessionScope.id}){
+
 
 		var url = "./read?research_num="+research_num;
 		url += "&research_title="+research_title;
@@ -63,19 +59,21 @@ function research_delete(research_num){
 </head>
 <body>
 
+설문조사
+<br><br><br>
 
 <form action="./create" method="POST">
-	<table border="1">
-	
-			<tr>
-				<th>번호</th>
-				<td>설문내용</td>
-				<td>조회수</td>
-				<td>결과</td>
-				<c:if test="${not empty sessionScope.id && sessionScope.grade == 'admin'}">
-					<td>관리</td>	
-				</c:if>
-			</tr>
+  <table class="table">
+    <thead>
+		<tr>
+			<th>번호</th>
+			<th>설문내용</th>
+			<th>결과</th>
+			<c:if test="${not empty sessionScope.id && sessionScope.grade == 'admin'}">
+				<th>관리</th>	
+			</c:if>
+		</tr>
+	</thead>
 		<c:choose>
 			<c:when test="${empty fn:length(list)}">
 				<tr>
@@ -84,10 +82,10 @@ function research_delete(research_num){
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${list}" var="dto">
-					<tr>
+			     <tr class="success">
+			
 						<td>${dto.research_num}</td>
 						<td><a href="javascript:research_read(${dto.research_num},'${dto.research_title}')">${dto.research_title}</a></td>
-						<td></td>
 						<td><input type="button" value="설문조사 결과" onclick="chartview(${dto.research_num})"></td>
 						<c:if test="${not empty sessionScope.id && sessionScope.grade == 'admin'}">
 							<td><a href="javascript:research_update(${dto.research_num})">수정</a>/<a href="javascript:research_delete(${dto.research_num})">삭제</a></td>	
@@ -97,6 +95,7 @@ function research_delete(research_num){
 				
 			</c:otherwise>
 		</c:choose>
+		
 	</table>
 	
 	

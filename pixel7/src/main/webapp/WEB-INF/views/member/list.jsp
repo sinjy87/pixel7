@@ -33,34 +33,29 @@
 	</div>
 	<c:forEach items="${list }" var="dto">
 	
-	<TABLE>
+	 <table class="table">
 
-		<TR>
+		 <tr>
 			<TD rowspan='5' class ="td_size"><img class="img_size" 
 				src='${pageContext.request.contextPath}/member/storage/${dto.photo}'></TD>
 			<TH width="20%">아이디</TH>
 			<TD width="50%"><a href="javascript:read('${dto.id}')">${dto.id}</a></TD>
 		</TR>
 
-		<TR>
-			<TH>이름</TH>
-		</TR>
-
-		<TR>
-			<TH>전화번호</TH>
-		</TR>
-
-		<TR>
+		 <tr>
 			<TH>이메일</TH>
-			<TD>${dto.email }</TD>
+			<td>${dto.email}</td>
 		</TR>
 
-		<TR>
-			<TH>주소</TH>
-
-			</TD>
+		 <tr>
+			<TH>회원가입일</TH>
+			<td>${dto.mdate}</td>
 		</TR>
 
+		 <tr>
+			<TH>등급</TH>
+			<TD>${dto.grade}</TD>
+		</TR>
 
 	</TABLE>
 </c:forEach>

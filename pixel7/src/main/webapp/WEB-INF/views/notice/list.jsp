@@ -4,6 +4,7 @@
 <%@ taglib prefix="ex" uri="/ELFunctions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>목록</title>
@@ -73,11 +74,10 @@ function f_read(notice_no){
 <input type="text" name= "word" value='${word }'>
 <input type="submit" value = "검색">
 </FORM>
-    
- ${grade }
- ${sessionScope.grade }
+ <br>
  
-<table>
+  <table class="table">
+    <thead>
     <tr bgcolor="#AAAAAA">
         <th>번호</th>
         <th>레이블 날짜</th>
@@ -89,12 +89,16 @@ function f_read(notice_no){
         <th>등록일</th>
         <th>기타</th>
     </tr>
-
+  </thead>
 <c:forEach var="dto" items="${list}">
-  <tr bgcolor="#EEEEEE" 
-      onMouseOver="this.style.backgroundColor='#ffffff'" 
-      onMouseOut="this.style.backgroundColor='#EEEEEE'"> 
-  <td align='center'>${dto.notice_no}</td>
+<!--   <tr bgcolor="#EEEEEE"  -->
+<!--       onMouseOver="this.style.backgroundColor='#ffffff'"  -->
+<!--       onMouseOut="this.style.backgroundColor='#EEEEEE'">  -->
+
+
+   <tr class="success">
+  <td  align='center'>${dto.notice_no}</td>
+
   <td align='center'>${dto.notice_labeldate}</td>
   <td align='left'>
   <a href="javascript:f_read('${dto.notice_no}')">${dto.notice_label}</a></td>
@@ -108,7 +112,7 @@ function f_read(notice_no){
   <td align="center">${dto.id }</td>
   <td align="center">${fn:substring(dto.notice_date,0,10)}</td>
   <td align='center'>
-
+  
   <c:if test="${not empty id && grade=='admin' }"> 
   <input type='button' value='U' onclick="f_update('${dto.notice_no}')" title='수정'>
   <input type='button' value='D' onclick="f_delete('${dto.notice_no}')" title='삭제'>
@@ -116,6 +120,8 @@ function f_read(notice_no){
   </c:if>
   </td>
   </tr>
+  
+  
 </c:forEach>
     </table>
     
