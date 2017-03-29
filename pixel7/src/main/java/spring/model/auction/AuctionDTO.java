@@ -5,16 +5,16 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 public class AuctionDTO {
-     private int auction_num; //»ý¼º¹øÈ£
-     private String auction_title;//Á¦¸ñ
+     private int auction_num; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
+     private String auction_title;//ï¿½ï¿½ï¿½ï¿½
      private String auction_content;//
      private MultipartFile fileMF;
      private String auction_item;
      private int auction_smoney;
-     private int auction_bmoney;//Áï±¸°¡
+     private int auction_bmoney;//ï¿½ï±¸ï¿½ï¿½
      private String auction_time;
      private String auction_stime;
-     private String auction_ctime;
+     private String auction_ctime; 
      private String id="admin";
      private List<Auction_biddingDTO> auction_biddingList;
      
