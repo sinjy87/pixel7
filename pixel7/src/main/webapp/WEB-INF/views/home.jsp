@@ -75,6 +75,12 @@ openMsgBox();   // 팝업창을 띄운다.
 					onclick="location.href = '${pageContext.request.contextPath}/member/agree'">
 <P>  The time on the server is ${serverTime}. </P>
   
+
+  
+  <!--  -->
+  <input type="button" value="질문 게시판" onclick="location.href='./qna/list'"><br>
+	<input type="button" value="설문조사" onclick="location.href='./chart/list'"><br>
+	<input type="button" value="로그인" onclick="location.href='./login'"><br>
+  
 </body>
 </html>
-

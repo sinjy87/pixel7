@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="serveycheck">
+
+	<insert id="create" parameterType="ServeyCheckDTO">
+		insert into serveycheck(serveycheck_num, id, servey_num, serveycheck_check)
+		values((select nvl(max(serveycheck_num),0)+1 from serveycheck ), #{id}, #{servey_num}, #{serveycheck_check})
+	</insert>
+	
+	<select id="list" parameterType="Map" resultType="ServeyCheckDTO">
+
+	</select>
+
+	<select id="read" parameterType="int" resultType="ServeyCheckDTO">
+		select 	servey_num, servey_content1, servey_content2, servey_content3, servey_content4, servey_content5, servey_content6, servey_content7
+		from(
+			select s.servey_num, s.servey_content1, s.servey_content2, s.servey_content3, s.servey_content4, s.servey_content5, s.servey_content6, s.servey_content7 
+			from servey s, serveycheck sc
+			where s.servey_num = sc.servey_num 	
+		)where servey_num = #{servey_num}
+	</select>
+	
+	<update id="update" parameterType="ServeyCheckDTO">
+	</update>
+
+	<delete id="delete" parameterType="int">
+	</delete>
+
+
+</mapper>

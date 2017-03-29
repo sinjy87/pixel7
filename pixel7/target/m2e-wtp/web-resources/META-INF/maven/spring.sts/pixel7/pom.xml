@@ -15,6 +15,21 @@
 	</properties>
 	<dependencies>
 		<!-- Spring -->
+
+		<!-- 인터페이스없이 transaction사용시 에러예방 -->
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>3.1</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<!-- aspectjweaver -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${org.aspectj-version}</version>
+		</dependency>
 			
 		<!-- javamail -->
 		<dependency>
@@ -30,7 +45,6 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 
-
 		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
 		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
@@ -38,13 +52,12 @@
 			<version>1.1.1</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-tiles2 -->
+    <!-- https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-tiles2 -->
 		<dependency>
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-tiles2</artifactId>
 			<version>2.0.1</version>
 		</dependency>
-
 
 		<!-- fileupload setting -->
 		<dependency>
@@ -62,6 +75,8 @@
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc6</artifactId>
 			<version>11.1.0.7.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/ojdbc6.jar</systemPath>
 		</dependency>
 
 		<!--MyBatis setting -->
@@ -88,7 +103,8 @@
 			<version>1.4</version>
 		</dependency>
 		<!-- DBCP end -->
-		<dependency>
+
+    <dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>${org.springframework-version}</version>
@@ -98,7 +114,6 @@
 					<groupId>commons-logging</groupId>
 					<artifactId>commons-logging</artifactId>
 				</exclusion>
-
 			</exclusions>
 		</dependency>
 		<dependency>
@@ -106,7 +121,8 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-		<!-- AspectJ -->
+
+    <!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
@@ -162,6 +178,7 @@
 			<artifactId>javax.inject</artifactId>
 			<version>1</version>
 		</dependency>
+
 		<!-- Servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>

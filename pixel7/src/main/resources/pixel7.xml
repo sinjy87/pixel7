@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-
+	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-
-	<bean id="dataSource" destroy-method="close"
-		class="org.apache.commons.dbcp.BasicDataSource" p:driverClassName="oracle.jdbc.driver.OracleDriver"
-		p:url="jdbc:oracle:thin:@172.16.3.12:1521:XE" p:username="pixel7"
-		p:password="1234" />
-
-	<!-- MyBatis SQL 실행 클래스 -->
+				
+	<bean id="dataSource" 
+	destroy-method="close"
+	class="org.apache.commons.dbcp.BasicDataSource" 
+	p:driverClassName="oracle.jdbc.driver.OracleDriver" 
+	p:url="jdbc:oracle:thin:@172.16.3.12:1521:XE" 
+	p:username="pixel7"  
+	p:password="1234"  
+	/> 		
+	
+	<!-- MyBatis SQL 실행 클래스  --> 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
- 
     <property name="dataSource" ref="dataSource" />
     <!-- 아래부분은 매핑할 xml파일이 있는 패키지경로를 설정한다. -->
     <property name="typeAliasesPackage" value="spring.model" />
@@ -23,22 +27,17 @@
     <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
   </bean>
   
-    <!--    파일 전송이 있는 경우만 선언, File upload   --> 
+  			   <!--    파일 전송이 있는 경우만 선언, File upload   --> 
     <bean id="multipartResolver" 
         class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
     </bean> 
-
-    <!-- junit test용 -->
-    <bean id ="mdao" class="spring.model.member.MemberDAO"
-    p:mybatis-ref="sqlSession"/>
-    <bean id ="msdao" class="spring.model.message.MessageDAO"
-    p:mybatis-ref="sqlSession"/>
-   	<bean id="ndao" class="spring.model.notice.NoticeDAO"
-		p:mybatis-ref="sqlSession" />
-    <bean id="qdao" 
+    
+    
+	<!--     QnaDAO 객체 생성 -->
+	<bean id="qdao" 
 		  class="spring.model.pixel7.QnaDAO"
 		  p:sqlSession-ref="sqlSession"
-  	/>
+	/>
     <!--     Qna_replyDAO 객체 생성 -->
 	<bean id="qrdao" 
 		  class="spring.model.pixel7.Qna_replyDAO"
@@ -59,5 +58,7 @@
 		  class="spring.model.pixel7.MemberResearchDAO"
 		  p:sqlSession-ref="sqlSession"
 	/>
+    
+    
 </beans>   
 		
