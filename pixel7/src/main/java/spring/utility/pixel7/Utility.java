@@ -124,7 +124,6 @@ public class Utility {
 	     
 	    str.append("<DIV id='container'>"); 
 //	    str.append("?쁽?옱 ?럹?씠吏?: " + nowPage + " / " + totalPage + "  "); 
-	 
 	    int _nowPage = (nowGrp-1) * pagePerBlock; // 10媛? ?씠?쟾 ?럹?씠吏?濡? ?씠?룞 
 	    if (nowGrp >= 2){ 
 	      str.append("<ul class='pager'><li><A href='./list.jsp?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>?씠?쟾</A></li></ul>"); 
@@ -141,7 +140,6 @@ public class Utility {
 	        str.append("<ul class='pagination'><li><A href='./list.jsp?col="+col+"&word="+word+"&nowPage="+i+"'>"+i+"</A></li></ul>");   
 	      } 
 	    } 
-	     
 	    _nowPage = (nowGrp * pagePerBlock)+1; // 10媛? ?떎?쓬 ?럹?씠吏?濡? ?씠?룞 
 	    if (nowGrp < totalGrp){ 
 	      str.append("<ul class='pager'><li><A href='./list.jsp?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>?떎?쓬</A></li></ul>"); 
@@ -158,7 +156,7 @@ public class Utility {
 		    int nowGrp = (int)(Math.ceil((double)nowPage/pagePerBlock));    // ?쁽?옱 洹몃９ 
 		    int startPage = ((nowGrp - 1) * pagePerBlock) + 1; // ?듅?젙 洹몃９?쓽 ?럹?씠吏? 紐⑸줉 ?떆?옉  
 		    int endPage = (nowGrp * pagePerBlock);             // ?듅?젙 洹몃９?쓽 ?럹?씠吏? 紐⑸줉 醫낅즺   
-		     
+	     
 		    StringBuffer str = new StringBuffer(); 
 		     
 		    str.append("<style type='text/css'>"); 
@@ -210,6 +208,7 @@ public class Utility {
 		    _nowPage = (nowGrp * pagePerBlock)+1; // 10媛? ?떎?쓬 ?럹?씠吏?濡? ?씠?룞 
 		    if (nowGrp < totalGrp){ 
 		      str.append("<span class='span_box_1'><A href='./list?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>?떎?쓬</A></span>"); 
+
 		    } 
 		    str.append("</DIV>"); 
 		     
@@ -256,7 +255,7 @@ public class Utility {
 	        break; 
 	      } 
 	  
-	      if (nowPage == i){ // ?쁽?옱 ?럹?씠吏??씠硫? 媛뺤“ ?슚怨? 
+       if (nowPage == i){ // ?쁽?옱 ?럹?씠吏??씠硫? 媛뺤“ ?슚怨? 
 	        str.append("<span style='font-size: 1.2em; font-weight: bold;'>"+i+"</span> ");   
 	      }else{ 
 	        str.append("<A href='./list.jsp?col="+col+"&word="+word+"&nowPage="+i+"'>"+i+"</A> "); 
@@ -267,6 +266,7 @@ public class Utility {
 	    _nowPage = (nowGrp * pagePerBlock)+1; // 10媛? ?떎?쓬 ?럹?씠吏?濡? ?씠?룞 
 	    if (nowGrp < totalGrp){ 
 	      str.append("[<A href='./list.jsp?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>?떎?쓬</A>]"); 
+
 	    } 
 	    str.append("</DIV>"); 
 	     
@@ -382,6 +382,7 @@ public static String paging(String noname, int totalRecord, int nPage, int recor
   str.append("    border-color: #cccccc;"); 
   str.append("    padding:1px 6px 1px 6px; /*위, 오른쪽, 아래, 왼쪽*/"); 
   str.append("    margin:1px 2px 1px 2px; /*위, 오른쪽, 아래, 왼쪽*/"); 
+
   str.append("  }"); 
   str.append("  .span_box_2{"); 
   str.append("    text-align: center;");    

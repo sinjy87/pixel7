@@ -59,5 +59,8 @@
 		  class="spring.model.pixel7.MemberResearchDAO"
 		  p:sqlSession-ref="sqlSession"
 	/>
+  <bean id="itemdao" class="spring.model.img_item.Img_itemDAO"
+   p:mybatis-ref="sqlSession"/>
+
 </beans>   
 		
