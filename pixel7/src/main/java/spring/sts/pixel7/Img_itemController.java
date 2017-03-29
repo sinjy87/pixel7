@@ -27,6 +27,7 @@ public class Img_itemController {
 	public String list(Model model) throws Exception {
 		Map map =new HashMap();
 		List list = itemdao.list(map);
+		
 		model.addAttribute("list",list);
 		return "/img_item/list";
 	}
@@ -79,7 +80,10 @@ public class Img_itemController {
 		Img_itemDTO dto = itemdao.read(img_num);
 
 		dto.setImg_content(dto.getImg_content().replaceAll("\r\n", "<br>"));
-
+		
+		model.addAttribute("profile",itemdao.getprofile(dto.getId()));
+		model.addAttribute("photo",itemdao.getphoto(dto.getId()));
+		model.addAttribute("email",itemdao.getemail(dto.getId()));
 		model.addAttribute("grade", itemdao.getgrade(dto.getId()));
 		model.addAttribute("dto", dto);
 
@@ -89,6 +93,8 @@ public class Img_itemController {
 	@RequestMapping(value = "/img_item/create", method = RequestMethod.POST)
 	public String create(Img_itemDTO dto, HttpServletRequest request, HttpSession session) throws Exception {
 		String basePath = request.getRealPath("/img_item/storage");
+		
+//		if(dto.getFileMF()!=null){
 
 		int filesize = (int) dto.getFileMF().getSize();
 		String img_photo = "";
@@ -99,12 +105,16 @@ public class Img_itemController {
 		dto.setFilesize(filesize);
 		dto.setId((String) session.getAttribute("id"));
 		boolean flag = itemdao.create(dto);
-
+		
 		if (flag) {
 			return "redirect:./list";
 		} else {
 			return "error";
 		}
+//		}else{
+//			return "error";
+//		}
+		
 	}
 
 	@RequestMapping(value = "/img_item/create", method = RequestMethod.GET)

@@ -6,7 +6,7 @@
 <head>
 <style type="text/css">
 #center{
-margin-left: 150px}
+margin-left: 130px}
 </style>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

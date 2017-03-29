@@ -4,48 +4,69 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="img_item">
-<select id="grade" parameterType="String" resultType="String">
-
-select grade from member
-where id =#{id}
-
-
-</select>
+	<select id="grade" parameterType="String" resultType="String">
+		select
+		grade from member
+		where id =#{id}
+	</select>
+	<select id="email" parameterType="String" resultType="String">
+		select
+		email from member
+		where id =#{id}
+	</select>
+	<select id="photo" parameterType="String" resultType="String">
+		select
+		photo from member
+		where id =#{id}
+	</select>
+	<select id="profile" parameterType="String" resultType="String">
+		select
+		profile from member
+		where id =#{id}
+	</select>
 
 	<insert id="create" parameterType="Img_itemDTO">
-		insert into img_item(img_num, 	img_photo,  img_content,  img_date, img_ban,  img_price,  img_category, id)
+		insert into img_item(img_num,
+		img_photo, img_content, img_date, img_ban, img_price, img_category,
+		id)
 		values((SELECT NVL(MAX(img_num), 0) + 1 as img_num FROM img_item),
-		#{img_photo}, #{img_content}, sysdate, #{img_ban}, #{img_price}, #{img_category}, #{id})
+		#{img_photo}, #{img_content}, sysdate, #{img_ban}, #{img_price},
+		#{img_category}, #{id})
 	</insert>
 
 	<select id="list" parameterType="Map" resultType="Img_itemDTO">
-		select img_photo, img_num from img_item order by img_num desc
+		select
+		img_photo, img_num,id from img_item order by img_num desc
 	</select>
 
 	<select id="read" parameterType="int" resultType="Img_itemDTO">
-		select img_photo, img_content, img_date, img_like,
+		select
+		img_photo, img_content, img_date, img_like,
 		img_price,
 		img_category,img_viewcnt,id
 		from img_item
 		where img_num =
 		#{img_num}
 	</select>
-	
+
 	<update id="update" parameterType="Img_itemDTO">
 		update img_item
-		set img_content=#{img_content}
+		set
+		img_content=#{img_content}
 		where
 		img_num = #{img_num}
 	</update>
 
 	<delete id="delete" parameterType="int">
-		delete from img_item where img_num=#{img_num}
+		delete from img_item where
+		img_num=#{img_num}
 	</delete>
 
 	<update id="upViewcnt" parameterType="int">
 
 		update img_item
-		set img_viewcnt = img_viewcnt+1
+		set
+		img_viewcnt = img_viewcnt+1
 		where
 		img_num =#{img_num}
 	</update>

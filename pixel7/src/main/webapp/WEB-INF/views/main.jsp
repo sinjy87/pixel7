@@ -11,7 +11,7 @@
 </head>
 <body>
 <div>Main Page</div>
-<h2>Hi ${id }</h2>
+<h2>Hi ${id } ${grade }</h2>
 
 
 </body>

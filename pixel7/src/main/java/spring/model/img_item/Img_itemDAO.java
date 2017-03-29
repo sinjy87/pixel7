@@ -79,5 +79,15 @@ public class Img_itemDAO implements Pixel7_Img_itemDAO {
 		
 		return mybatis.selectOne("img_item.grade",id);
 	}
+	public String getemail(String id){
+		return mybatis.selectOne("img_item.email",id);
+	}
+	public String getphoto(String id){
+		return mybatis.selectOne("img_item.photo",id);
+	}
+	public String getprofile(String id){
+		return mybatis.selectOne("img_item.profile",id);
+	}
+	
 
 }

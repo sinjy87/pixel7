@@ -1,13 +1,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <!DOCTYPE html>
 <html>
-<title>W3.CSS</title>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+
+
 <style>
 body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 .w3-row-padding img {margin-bottom: 12px}
@@ -18,6 +22,22 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 /* Remove margins from "page content" on small screens */
 @media only screen and (max-width: 600px) {#main {margin-left: 0}}
 </style>
+<script type="text/javascript">
+function c(){
+	if('${sessionScope.id}' ==""){
+		alert("Login///////");
+		var url = "${pageContext.request.contextPath }/img_item/login";
+		location.href = url;
+	}else if('${grade}'=="seceder"){
+		alert("seceder");
+	}else{
+		var url = "${pageContext.request.contextPath }/img_item/create"
+		location.href=url;
+	}
+}
+
+</script>
+
 </head>
 <body>
 
@@ -35,11 +55,12 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
     <i class="fa fa-home w3-xxlarge"></i>
     <p>Main</p>
   </a>
-  
-  <a class="w3-padding-large w3-hover-black" href="${pageContext.request.contextPath }/img_item/create">
+
+  <a class="w3-padding-large w3-hover-black"  onclick="c()">
     <i class="fa fa-pencil" style="font-size:36px"></i>
-    <p>Writing</p>
+    <p >Writing </p>
   </a>
+
   <a class="w3-padding-large w3-hover-black" href="${pageContext.request.contextPath }/img_item/list">
     <i class="fa fa-folder-open-o" style="font-size:36px"></i>
     <p>	Marketplace</p>
