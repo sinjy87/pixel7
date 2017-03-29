@@ -79,6 +79,7 @@
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
        <tx:attributes>
           <tx:method name="delete" rollback-for="Exception"/>
+          <tx:method name="dc" rollback-for="Exception"/>
        </tx:attributes>
     </tx:advice>
  

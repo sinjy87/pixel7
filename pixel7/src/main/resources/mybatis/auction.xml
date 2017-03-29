@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="auction">
+	<insert id="create" parameterType="AuctionDTO">
+		<selectKey keyProperty="auction_num" resultType="int" order="BEFORE">
+			select nvl(max(auction_num),0)+1 from auction
+		</selectKey>
+		insert into auction(
+		auction_num, auction_title,auction_content,auction_item,auction_smoney,auction_bmoney,id,auction_stime,auction_ctime
+		)
+		values(#{auction_num},#{auction_title},	#{auction_content},	#{auction_item},#{auction_smoney},#{auction_bmoney},#{id},sysdate,sysdate+3/24
+		)
+	</insert>
+<!-- 	inner join 사용안함 -->
+<!-- 	<resultMap type="AuctionDTO" id="auctionList"> -->
+<!-- 	<result property="id" column="id"/> -->
+<!-- 	<result property="auction_num" column="auction_num"/> -->
+<!-- 	<result property="auction_item" column="auction_item"/> -->
+<!-- 	<result property="auction_time" column="auction_time"/> -->
+<!-- 	<result property="auction_title" column="auction_title"/> -->
+<!-- 	<result property="auction_smoney" column="auction_smoney"/> -->
+<!-- 	<collection property="auction_biddingList" column="auction_biddingList" javaType="List" -->
+<!-- 	ofType="Auction_biddingDTO" resultMap="auction.auction_biddingListMap"/> -->
+<!-- 	</resultMap> -->
+<!-- 	<resultMap type="Auction_biddingDTO" id="auction_biddingListMap"> -->
+<!-- 	<result property="auction_bidmoney" column="auction_bidmoney"/> -->
+<!-- 	</resultMap> -->
+	<select id="list" resultType="AuctionDTO">
+	select auction_time,auction_num,auction_item,auction_title,auction_smoney,id
+    from auction 
+	order by auction_num DESC
+	</select>
+	<select id="read" parameterType="int" resultType="AuctionDTO">
+	  select * from auction
+	  where auction_num=#{auction_num}
+	</select>
+	<update id="moneyCharge" parameterType="AuctionDTO">
+	update set auction_money=#{auction_money}
+	where auction_num=#{auction_num};
+	</update>
+	<update id="update" parameterType="AuctionDTO">
+	update auction set auction_content=#{auction_content}
+	where auction_num=#{auction_num}
+	</update>
+     <select id="timeRead" parameterType="int" resultType="AuctionDTO">
+     select auction_time from auction
+     where auction_num=#{auction_num}
+     </select>
+    <update id="timeUpdate" parameterType="int">
+	update auction set auction_time=(select to_char((auction_ctime- auction_stime)*24*60*60) from auction where auction_num=#{auction_num})
+	where auction_num=#{auction_num}
+	</update>
+	<update id="close" parameterType="Map">
+    update auction set auction_time=#{auction_time}-1
+    where auction_num=#{auction_num}
+	</update>
+	<select id="closeTimeRead" parameterType="int" resultType="String">
+	select auction_time from auction
+	where auction_num=#{auction_num}
+	</select>
+	<select id="testTime" resultType="AuctionDTO">
+	select auction_num,auction_time from auction
+	</select>
+	<update id="testUpdate" parameterType="Map">
+	update auction set auction_time=#{auction_time}-1
+	where auction_num=#{auction_num}
+	</update>
+	<select id="auction_TL" resultType="AuctionDTO">
+	select auction_num,auction_time from auction
+	</select>
+	<select id="auction_TR" resultType="AuctionDTO" parameterType="int">
+	select auction_item from auction
+	where auction_num=#{auction_num}
+	</select>
+	<delete id="delete" parameterType="int">
+	delete from auction
+	where auction_num=#{auction_num}
+	</delete>
+	</mapper>	

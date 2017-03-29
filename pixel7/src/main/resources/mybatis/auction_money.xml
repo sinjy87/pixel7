@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="auctionM">
+	<select id="read" resultType="Auction_moneyDTO" parameterType="String">
+	select * from auction_money
+	where id=#{id}
+	</select>
+	<insert id="create" parameterType="String">
+	insert into auction_money(id)
+	values (#{id})
+	</insert>
+	<select id="idCheck" resultType="int" parameterType="String">
+	select count(id) from auction_money
+	where id=#{id}
+	</select>
+	<update id="update" parameterType="Map">
+	update auction_money set auction_money=auction_money+#{auction_money}
+	where id=#{id}
+	</update>
+</mapper>
