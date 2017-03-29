@@ -15,9 +15,7 @@
 	</properties>
 	<dependencies>
 		<!-- Spring -->
-		
-		
-		
+			
 		<!-- javamail -->
 		<dependency>
 			<groupId>javax.mail</groupId>
@@ -25,10 +23,7 @@
 			<version>1.4.7</version>
 		</dependency>
 		<!-- end -->
-		
-		
-		
-		
+			
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
@@ -93,7 +88,6 @@
 			<version>1.4</version>
 		</dependency>
 		<!-- DBCP end -->
-
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
@@ -104,6 +98,7 @@
 					<groupId>commons-logging</groupId>
 					<artifactId>commons-logging</artifactId>
 				</exclusion>
+
 			</exclusions>
 		</dependency>
 		<dependency>
@@ -111,7 +106,6 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -168,7 +162,6 @@
 			<artifactId>javax.inject</artifactId>
 			<version>1</version>
 		</dependency>
-
 		<!-- Servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>

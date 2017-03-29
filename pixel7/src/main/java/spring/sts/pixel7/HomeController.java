@@ -36,7 +36,9 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		model.addAttribute("id",session.getAttribute("id"));
 		
-		return "home";
+		return "/home";
 	}
+	
+	
 	
 }

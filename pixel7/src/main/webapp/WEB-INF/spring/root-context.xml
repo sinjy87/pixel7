@@ -12,6 +12,7 @@
 
 	<!-- MyBatis SQL 실행 클래스 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+
 		<property name="dataSource" ref="dataSource" />
 		<!-- 아래부분은 매핑할 xml파일이 있는 패키지경로를 설정한다. -->
 		<property name="typeAliasesPackage" value="spring.model" />
@@ -28,6 +29,7 @@
 		<property name="definitions">
 			<list>
 				<value>/WEB-INF/spring/tilesMember.xml</value>
+        <value>/WEB-INF/spring/tilesNotice.xml</value> 
 				<!-- <value>/WEB-INF/spring/tilesBbs.xml</value> -->
 				<!-- <value>/WEB-INF/spring/tilesMemo.xml</value> -->
 				<!-- <value>/WEB-INF/spring/tilesTeam.xml</value> -->
