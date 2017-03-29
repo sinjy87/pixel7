@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="auctionB">
+	<insert id="create" parameterType="Map">
+		insert into auction_bidding(auction_btime,auction_bidmoney,id,auction_num)
+		values(sysdate,#{auction_bidmoney},#{id},#{auction_num})
+	</insert>
+	<select id="checkId" parameterType="int" resultType="int">
+		select count(id) from auction_bidding
+		where auction_num=#{auction_num}
+	</select>
+	<select id="read" parameterType="Map" resultType="Auction_biddingDTO">
+		select auction_num,auction_bidmoney,auction_btime from auction_bidding
+		where id=#{id} and auction_num=#{auction_num}
+	</select>
+	<update id="update" parameterType="Map">
+		update auction_bidding set
+		auction_bidmoney=#{auction_bidmoney},auction_btime=sysdate
+		where auction_num=#{auction_num} and id=#{id}
+	</update>
+	<select id="idCheck" parameterType="String" resultType="int">
+		select count(id) from auction_bidding
+		where id=#{id} and auction_num=#{auction_num}
+	</select>
+	<update id="moneyUpdate" parameterType="Map">
+		update auction_money set auction_money=auction_money-#{auction_bidmoney}
+		where id=#{id}
+	</update>
+	<resultMap type="Auction_biddingDTO" id="biddingDTO">
+		<result property="auction_btime" column="auction_btime" />
+		<result property="auction_num" column="auction_num" />
+		<result property="auction_bidmoney" column="auction_bidmoney" />
+		<result property="id" column="id" />
+		<collection property="auctionList" column="auction_num"
+			javaType="List" ofType="AuctionDTO" resultMap="auctionB.auctionListMap" />
+	</resultMap>
+	<resultMap type="AuctionDTO" id="auctionListMap">
+		<result property="auction_num" column="auction_num" />
+		<result property="auction_item" column="auction_item" />
+	</resultMap>
+	<select id="list" parameterType="int" resultMap="biddingDTO">
+		select * from(
+		select bid.*,a.auction_item from auction_bidding bid, auction a
+		where bid.auction_num=#{auction_num} and a.auction_num=#{auction_num}
+		)
+		order by auction_bidmoney desc
+	</select>
+	<select id="bidmoneycheck" parameterType="int" resultType="int">
+		select count(auction_bidmoney) from auction_bidding
+		where auction_num=#{auction_num}
+	</select>
+	<select id="bidmoneys" parameterType="int" resultType="Auction_biddingDTO">
+		select auction_bidmoney from auction_bidding
+		where auction_num=#{auction_num}
+	</select>
+	<select id="bidmoneylist" parameterType="int" resultType="Auction_biddingDTO">
+		select auction_bidmoney from auction_bidding
+		where auction_num=#{auction_num}
+		order by auction_bidmoney desc
+	</select>
+	<select id="bidmoneygetList" parameterType="Map" resultType="int">
+		select auction_bidmoney from auction_bidding
+		where auction_num=#{auction_num} and auction_bidmoney>#{auction_bidmoney}
+		order by auction_bidmoney desc
+	</select>
+	<select id="bidmoneyListR" parameterType="Map" resultType="Auction_biddingDTO">
+		select auction_num,auction_bidmoney,id,r from(
+		select auction_num,auction_bidmoney,id,rownum r from(
+		select auction_num,auction_bidmoney,id from auction_bidding
+		where auction_num=#{auction_num}
+		order by auction_bidmoney desc
+		)
+		)
+	<![CDATA[
+         where r>#{mn} and r<#{mx}
+	]]>
+
+	</select>
+	<delete id="delete" parameterType="int">
+	delete from auction_bidding
+	where auction_num=#{auction_num}
+	</delete>
+</mapper> 
