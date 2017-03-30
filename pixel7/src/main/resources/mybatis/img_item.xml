@@ -71,5 +71,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		img_num =#{img_num}
 	</update>
 
+<select id="imgslide" parameterType="Map" resultType="Img_itemDTO">
+		select
+		img_photo,img_viewcnt,id, r from (
+		select img_photo,img_viewcnt,id, rownum r
+		from(
+		select img_photo,img_viewcnt,id
+		from img_item
+		order by img_viewcnt
+		desc
+		)
+		)
+		<![CDATA[
+		where r>#{s}  and  r<#{e}
+		]]>
+
+	</select>
+	
+	<select id="newslide" parameterType="Map" resultType="Img_itemDTO">
+		select
+		img_photo,img_viewcnt,id,to_char(img_date,'yyyy-mm-dd') img_date, r from (
+		select img_photo,img_viewcnt,id,img_date, rownum r
+		from(
+		select img_photo,img_viewcnt,id,img_date
+		from img_item
+		order by img_date
+		desc
+		)
+		)
+		<![CDATA[
+		where r>#{ns}  and  r<#{ne}
+		]]>
+	</select>
+
+
 
 </mapper>

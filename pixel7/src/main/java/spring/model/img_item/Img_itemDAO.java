@@ -95,5 +95,15 @@ public class Img_itemDAO implements Pixel7_Img_itemDAO {
 		return 0;
 	}
 	
+	// 메인추가
+	public List<Img_itemDTO> imgslide(Map map){
+		return mybatis.selectList("img_item.imgslide", map);
+	}
+	
+	public List<Img_itemDTO> newslide(Map map){
+		return mybatis.selectList("img_item.newslide",map);
+	}
+	//
+	
 
 }

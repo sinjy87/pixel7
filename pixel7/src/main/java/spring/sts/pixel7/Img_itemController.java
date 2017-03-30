@@ -114,6 +114,20 @@ public class Img_itemController {
 	@RequestMapping("/main")
 	public String main(HttpSession session, Model model) {
 		model.addAttribute("id", session.getAttribute("id"));
+		
+		Map map = new HashMap();
+		map.put("s",0);
+		map.put("e", 6);
+		List<Img_itemDTO> list=itemdao.imgslide(map);
+		
+		Map newmap = new HashMap();
+		newmap.put("ns", 0);
+		newmap.put("ne", 7);
+		List<Img_itemDTO> newlist=itemdao.newslide(newmap);
+		
+		model.addAttribute("list", list);
+		model.addAttribute("newlist", newlist);
+		
 		return "/main";
 	}
 
