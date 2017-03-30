@@ -69,9 +69,9 @@ public class MemberController {
 			} 
 		}
 		if (y > 0) {
-			ja.add("�뿈�궗�슜 遺덇� �븘�씠�뵒�엯�땲�떎");
+			ja.add("사용중인 아이디");
 		} else {
-			ja.add("�뿈�궗�슜 媛��뒫�븳 �븘�씠�뵒�엯�땲�떎");
+			ja.add("쓸 수 있는 아이디");
 		}
 		
 		PrintWriter print = res.getWriter();

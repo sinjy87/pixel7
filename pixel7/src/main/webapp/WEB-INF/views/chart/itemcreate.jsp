@@ -6,6 +6,32 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
+
+
+<script type="text/javascript">
+
+$(function viewcontent(){
+	
+	$(document).ready(function() {
+		$.getJSON("./view?research_num="+${dto.research_num}, response);
+	});
+	function response(result, textStatus) {
+	   alert("response");
+		document.getElementById("penaltitle").innerHTML = result[1];
+		document.getElementById("penalcontent1").innerHTML = result[1];
+		document.getElementById("penalcontent2").innerHTML = result[1];
+		document.getElementById("penalcontent3").innerHTML = result[1];
+		document.getElementById("penalcontent4").innerHTML = result[1];
+	}
+	
+});
+
+
+</script>
+
+
+
+
 <script type="text/javascript">
 
 
@@ -18,13 +44,13 @@ $(function(){
 $(function(){
 	
 	if($("#research_title").val()!=""){
-		$("#titlefrm").append("${dto.research_title}");
+// 		$("#titlefrm").append("${dto.research_title}");
 		$("#contentfrm").append("<input type='text' name='researchitem_content' id='researchitem_content'>");
 		$("#contentfrm").append('<input type="button" id="content_btn" class="btn btn-default" value="추가">');
 	}
 	
 	 if($("#researchitem_content").val()!=""){
-			$("#contentfrm").append("${ridto.researchitem_content} + <br>");
+// 			$("#contentfrm").append("${ridto.researchitem_content} + <br>");
 			$("#contentfrm").append("<input type='text' name='researchitem_content' id='researchitem_content' >");
 			$("#contentfrm").append('<input type="button" id="content_btn" class="btn btn-default" value="추가">');
 		}
@@ -41,14 +67,13 @@ $(function(){
 		
 	});
 	
-	 $("#content_btn").click(function(){
+	 $("#content_btn").click(function viewcontent(){
 			
 		alert("content 생성 및 content생성버튼 제거");
 		$("#contentfrm").innerHTML += "<br>" +  $("researchitem_content").val();
 		$("#content_btn").remove();
 		document.getElementById("contentfrm").submit();
 
-			
 	 });
 	
 	
@@ -66,6 +91,14 @@ $(function(){
 <form id="titlefrm" action="./titlecreate" method="POST">
 	설문제목 : 
 </form>
+
+
+<div id="penaltitle"></div>
+<div id="penalcontent1"></div>
+<div id="penalcontent2"></div>
+<div id="penalcontent3"></div>
+<div id="penalcontent4"></div>
+
 
 <form id="contentfrm" action="./contentcreate" method="POST">
 	research_num: ${dto.research_num + ridto.research_num} <br>

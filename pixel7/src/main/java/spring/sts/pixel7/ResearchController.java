@@ -42,35 +42,21 @@ public class ResearchController {
 	@Autowired
 	private Research_Mgr mgr ;
 	
-
+	
 	@RequestMapping("/chart/view")
 	public void view(Model model, HttpServletResponse res, HttpServletRequest request ,int research_num) throws Exception {
 
 		Map map = new HashMap();
 		map.put("research_num", research_num);
 
-//		List<ResearchDTO> list = dao.list(map);
 		ResearchDTO dto = (ResearchDTO) dao.read(research_num);
-
-		
-//		Iterator<ResearchDTO> iter = list.iterator();
 		JSONArray ja = new JSONArray();
 		
 		int i = 0;
-		
-		
-//		while (iter.hasNext()) {
-			i++;
-			
-			System.out.println("1번째 i =" + i);
-			
-			
-//			ResearchDTO dto = iter.next();
-
-			
+		i++;
+		System.out.println("1번째 i =" + i);
 
 				System.out.println("dto :" + dto.getResearch_num());
-//				map.put("research_num", dto.getResearch_num());
 				List<ResearchItemDTO> rilist = ridao.list(map);
 				Iterator<ResearchItemDTO> riiter = rilist.iterator();
 
@@ -97,12 +83,7 @@ public class ResearchController {
 					ja.add(ridto.getCnt4());
 					System.out.println("ridto.getCnt4() : " + ridto.getCnt4());
 					
-//					ja.add(jaContent);
-					
 				}
-
-//		}
-
 		res.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
 
