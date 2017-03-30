@@ -33,22 +33,37 @@
 <body>
 
 	질문게시판<br><br> 
-	
-	현재 로그인<br>
-
 
 	
+<div class="container">
 
-	 <table class="table" border="1">
-    <thead>
+
+	<div class="container">
+	<form method="post" action="./list">
+		<div class="col-sm-2">	
+			<select class="form-control" id="sel1" name="col">
+					<option value="id" 		<c:if test="${col.equals('id')}"> "selected='selected'" </c:if>>아이디</option>
+					<option value="qna_title" 	<c:if test="${col.equals('qna_title')}"> "selected='selected'" </c:if>>제목</option>
+					<option value="total">전체출력</option>
+			</select>
+		</div>
+		<div class="col-sm-3">
+			<input class="form-control w3-hover-blue" type="text" name="word" value="${word}" >
+		</div>
+			<input type='submit' value="검색" class="btn btn-default">
+			<input type='button' value='등록'	onclick="location.href='./create'" class="btn btn-default">
+	</form>
+	</div>
+	 <table class="table">
+    	<thead>
 		<tr>
 			<th>번호</th>
 			<th>제목</th>
 			<th>아이디</th>
 			<th>작성일</th>
-			<th>비밀글 체크</th>
+			<th>글 상태</th>
 		</tr>
-		    </thead>
+		</thead>
 		
 		<c:choose>
 			<c:when test="${empty list}">
@@ -58,14 +73,22 @@
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${list}" var="dto">
-                <tr class="success">
+                	<tr>
 				
-						<td>${dto.qna_num}</td>
-						<td><a href="javascript:check(${dto.qna_check},${dto.qna_num},'${dto.id}')">${dto.qna_title}</a>
+						<td class="w3-hover-red">${dto.qna_num}</td>
+						<td class="w3-hover-green"><a href="javascript:check(${dto.qna_check},${dto.qna_num},'${dto.id}')">${dto.qna_title}</a></td>
+						<td class="w3-hover-red">${dto.id}</td>
+						<td class="w3-hover-red">${fn:substring(dto.qna_date,0,10)}</td>
+						<td class="w3-hover-red">
+							<c:choose>
+								<c:when test="${dto.qna_check == 1}">
+									비밀글
+								</c:when>
+								<c:otherwise>
+									공개글
+								</c:otherwise>
+							</c:choose>
 						</td>
-						<td>${dto.id}</td>
-						<td>${fn:substring(dto.qna_date,0,10)}</td>
-						<td>${dto.qna_check}</td>
 		
 					</tr>
 				</c:forEach>
@@ -74,11 +97,8 @@
 
 	</table>
 
-
-	<input type="button" value="작성" onclick="location.href='./create'">
-	<input type="button" value="홈"
-		onclick="location.href='${pageContext.request.contextPath}'">
-
 	${paging}
+	
+</div>
 </body>
 </html>

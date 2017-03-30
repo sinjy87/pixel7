@@ -8,45 +8,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 <style type="text/css"> 
+
+
 .rcreate{
-  font-size: 20px;
-  font-weight:bold;
-  text-align: left;
-  border-style: solid;   /* 실선 */
-  border-width: 1px;     /* 선 두께 */
-  border-color: #AAAAAA; /* 선 색깔 */
-  color: #000000;        /* 글자 색깔 */
-  width: 35%;            /* 화면의 30% */ 
-  padding: 10px;         /* 위 오른쪽 아래 왼쪽: 시간 방향 적용 */
-  
-  /* padding: 50px 10px;  50px: 위 아래, 10px: 좌우 */
-  /* padding-top: 30px;  상단만 간격을 30px 지정   */
-  
-/*   margin: 20px auto; /* 가운데 정렬 기능, 20px: 위 아래, auto: 오른쪽 왼쪽*/ */
+	margin-top: 50px;
 }
-.rlist{
-  line-height:1.2em;
-  font-size: 15px;
-  font-weight:bold;
-  text-align: left;
-  border-style: solid;   /* 실선 */
-  border-width: 1px;     /* 선 두께 */
-  border-color: #AAAAAA; /* 선 색깔 */
-  color: #000000;        /* 글자 색깔 */
-  width: 35%;            /* 화면의 30% */ 
-  padding: 10px;         /* 위 오른쪽 아래 왼쪽: 시간 방향 적용 */
-  
-  /* padding: 50px 10px;  50px: 위 아래, 10px: 좌우 */
-  /* padding-top: 30px;  상단만 간격을 30px 지정   */
-  
-/*   margin: 20px auto; /* 가운데 정렬 기능, 20px: 위 아래, auto: 오른쪽 왼쪽*/ */
-}
+
 hr{
-  text-align: center;
+/*   text-align: center; */
   border-style: solid;   /* 실선 */
   border-width: 1px;     /* 선 두께 */
   border-color: #AAAAAA; /* 선 색깔 */
-  width: 45%;            /* 화면의 30% */ 
+ 
 }
  
  
@@ -77,7 +50,14 @@ function qna_delete(){
 	
 	location.href=url;
 }
-
+ function filedown(qna_filename){
+	 
+	 var url = "${pageContext.request.contextPath}/download";
+	 url += "?dir=/qna/storage";
+	 url += "&filename="+qna_filename;
+	
+	 location.href=url;
+ }
 </script>
 
 
@@ -119,37 +99,40 @@ function qna_delete(){
 <body>
 
 
-<table border="1">
-	<tr>
-		<th>번호</th>
-		<Td>${dto.qna_num}</Td>
-		<th>제목</th>
-		<td>${dto.qna_title}</td>
-	</tr>
-	<tr>
-		<th>작성자</th>
-		<td colspan="3">${dto.id}</td>
-	</tr>
-	<tr>
-		<th>내용</th>
-		<td colspan="3">${dto.qna_content}</td>
-	</tr>
-	<tr>
-		<th>첨부파일</th>
-		<td colspan="3">${dto.qna_filename}</td>
-	</tr>
-</table>
+<DIV class="container" style="width: 50%">
 
-<input type="button" value="목록" onclick="location.href='./list'">
+			<h2>질문게시판(Q&A)</h2><br><br>
 
-<c:if test="${sessionScope.id == dto.id}">
-	<input type="button" value="수정" onclick="qna_update()">
-	<input type="button" value="삭제" onclick="qna_delete()">
-</c:if>
+		<TABLE class="table table-hover">
+			<tr>
+				<th>번호</th>
+				<Td>${dto.qna_num}</Td>
+				<th>제목</th>
+				<td>${dto.qna_title}</td>
+			</tr>
+			<tr>
+				<th>작성자</th>
+				<td colspan="3">${dto.id}</td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td colspan="3">${dto.qna_content}</td>
+			</tr>
+			<tr>
+				<th>첨부파일</th>
+				<td colspan="3"><a href="javascript:filedown('${dto.qna_filename}')">${dto.qna_filename}</a></td>
+			</tr>
+		</TABLE>
 
+		
 
-
-
+		<DIV align="center">
+				<input type="button" value="목록" onclick="location.href='./list'" class="btn btn-default">
+			<c:if test="${sessionScope.id == dto.id}">
+				<input type="button" value="수정" onclick="qna_update()" class="btn btn-default">
+				<input type="button" value="삭제" onclick="qna_delete()" class="btn btn-default">
+			</c:if>
+		</DIV>
 
 
 <!-- 댓글 관련 -->
@@ -157,57 +140,25 @@ function qna_delete(){
 
 	<br><br><hr>
 	답변
-<!-- 	<table border="1"> -->
-<%-- 			<c:forEach var="qrdto" items="${rlist}"> --%>
-<!-- 				<tr> -->
-<!-- 					<th>작성자</th> -->
-<%-- 					<td>${qrdto.id}</td> --%>
-<!-- 				</tr> -->
-<!-- 				<tr> -->
-<%-- 					<td colspan="2">${qrdto.qna_rcontent}</td> --%>
-<!-- 				</tr> -->
-<!-- 				<tr> -->
-<%-- 					<td colspan="2">${qrdto.qna_rdate}</td> --%>
-<!-- 				</tr> -->
 
-<%-- 				<c:if test="${sessionScope.id== qrdto.id  }"> --%>
-
-<!-- 			   			<span style="float: right;"> -->
-<%-- 			   				<a href="javascript:rupdate('${qrdto.qna_rnum}','${qrdto.qna_rcontent }')">수정</a>|<a href="javascript:rdelete('${rqdto.qna_rnum}')">삭제</a> --%>
-<!-- 			   			</span> -->
-
-<%-- 	   			</c:if> --%>
-<%-- 			</c:forEach> --%>
-<!--   	</table>	 -->
-
-
-
-<c:forEach var="qrdto" items="${rlist}">
-  <div class="rlist">
-${qrdto.id}<br/>
-<p>${qrdto.qna_rcontent}</p>
-${qrdto.qna_rdate}
-<c:if test="${sessionScope.id== qrdto.id  }">
-
-
-			   			<span style="float: right;">
-			   				<a href="javascript:rupdate('${qrdto.qna_rnum}','${qrdto.qna_rcontent}')">수정</a>|<a href="javascript:rdelete('${qrdto.qna_rnum}')">삭제</a>
-			   			</span>
-		   			
-	   			</c:if>
-	   			</div>
-			</c:forEach>
-
-
-
-
-
-
+	<c:forEach var="qrdto" items="${rlist}">
+<!--   		<div class="rlist"> -->
+			${qrdto.id}<br/>
+			<p>${qrdto.qna_rcontent}</p>
+			${qrdto.qna_rdate}
+			
+			<c:if test="${sessionScope.id== qrdto.id  }">
+	   			<span style="float: right;">
+	   				<a href="javascript:rupdate('${qrdto.qna_rnum}','${qrdto.qna_rcontent}')">수정</a>|<a href="javascript:rdelete('${qrdto.qna_rnum}')">삭제</a>
+	   			</span>
+   			</c:if>
+<!-- 		</div> -->
+	</c:forEach>
 
 	<c:if test="${sessionScope.grade == 'admin'}">
-	  <div class="rcreate">
+  		<div class="rcreate">
 		  <form name="rform" action="./rcreate" method="post" onsubmit="return input(this)">
-		  	  <textarea rows="3" cols="28" name="qna_rcontent"></textarea>
+		  	  <textarea rows="10%" cols="65%" name="qna_rcontent"></textarea>
 		  	  <input type="submit" name="rsubmit" value="등록">
 			  <input type="hidden" name="qna_num" value="${dto.qna_num}">
 			  <input type="hidden" name="id" value="${sessionScope.id}">
@@ -218,11 +169,14 @@ ${qrdto.qna_rdate}
 			  <input type="hidden" name="qna_rnum" value="0">
 		  
 		  </form>
-	  </div>
+	  	</div>
 	</c:if>
 	${paging}
 
   <!--  댓글관련 소스 끝 -->
+  
+</DIV>
+
 
 
 </body>

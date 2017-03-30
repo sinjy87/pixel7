@@ -9,9 +9,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from research
 	</select>
 	
-	<insert id="create" parameterType="Map">
+	<insert id="create" parameterType="ResearchDTO">
 		insert into research(research_num, research_title)
-		values((select nvl(max(research_num),0)+1 from research), #{research_title})
+		values(#{research_num}, #{research_title})
 	</insert>
 	
 	<select id="read" parameterType="int" resultType="ResearchDTO">

@@ -10,7 +10,11 @@
     </definition>   
     <definition name="/member/agree" extends="main"> 
         <put-attribute name="title" value="회원가입" ></put-attribute> 
-        <put-attribute name="body" value="/WEB--INF/views/member/agreement.jsp" /> 
+        <put-attribute name="body" value="/WEB-INF/views/member/agreement.jsp" /> 
+    </definition>   
+    <definition name="/member/create" extends="main"> 
+        <put-attribute name="title" value="회원가입" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/member/create.jsp" /> 
     </definition>   
     <definition name="/member/update" extends="main"> 
         <put-attribute name="title" value="정보 수정" ></put-attribute> 

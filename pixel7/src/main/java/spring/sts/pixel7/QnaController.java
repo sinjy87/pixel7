@@ -30,22 +30,6 @@ public class QnaController {
 	@Autowired
 	private Qna_Mgr mgr;
 	
-//	
-//	@RequestMapping(value="/login", method=RequestMethod.GET)
-//	public String login(){
-//		
-//		return "/qna/login";
-//	}
-//	@RequestMapping(value="/login", method=RequestMethod.POST)
-//	public String login(String id, String grade, HttpSession session){
-//		session.setAttribute("id", id);
-//		session.setAttribute("grade", grade);
-//		System.out.println("id : " + id);
-//		System.out.println("grade : " + grade);
-//		return "redirect:./";
-//	}
-//	
-	
 	@RequestMapping("/qna/list")
 	public String list(HttpServletRequest request) throws Exception {
 		
@@ -89,8 +73,11 @@ public class QnaController {
 	@RequestMapping("/qna/read")
 	public String read(int qna_num, Model model, HttpServletRequest request, String col, String word, int nowPage) throws Exception{
 		
-		model.addAttribute("dto", (QnaDTO) dao.read(qna_num));
 		
+		QnaDTO dto =  (QnaDTO) dao.read(qna_num);
+		System.out.println(dto.getQna_content());
+		dto.setQna_content(dto.getQna_content().replaceAll("\r\n", "<br>"));
+		model.addAttribute("dto", dto);
 			
 		
 //		댓글처리

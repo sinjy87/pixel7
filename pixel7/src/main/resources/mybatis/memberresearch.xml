@@ -24,9 +24,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			where mr.researchitem_num = ri.researchitem_num 
 		)
 		where id = #{id} and research_num = #{research_num}
-		
-		
 	</select>
+	
+	<delete id="delete" parameterType="int">
+		delete  from(
+			select * from memberresearch mr, researchitem ri
+			where mr.researchitem_num = ri.researchitem_num 
+		)
+		where research_num = #{research_num}
+	</delete>
 	
 	
 

@@ -16,4 +16,13 @@
 		<put-attribute name="title" value=" notice 목록"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/chart/update.jsp" />
 	</definition>
+  	<definition name="/chart/create" extends="main">
+		<put-attribute name="title" value=" notice 목록"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/chart/create.jsp" />
+	</definition>
+	<definition name="/chart/itemcreate" extends="main">
+		<put-attribute name="title" value=" notice 목록"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/chart/itemcreate.jsp" />
+	</definition>
+
 </tiles-definitions> 
